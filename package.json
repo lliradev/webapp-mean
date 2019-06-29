@@ -1,0 +1,27 @@
+{
+    "name": "webapp-mean",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "dev": "cross-env NODE_ENV=development nodemon server/index.js",
+        "start": "cross-env NODE_ENV=production node server/index.js"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "cloudinary": "^1.14.0",
+        "cors": "^2.8.5",
+        "cross-env": "^5.2.0",
+        "dotenv": "^8.0.0",
+        "express": "^4.17.1",
+        "fs-extra": "^8.1.0",
+        "mongoose": "^5.6.2",
+        "morgan": "^1.9.1",
+        "multer": "^1.4.1"
+    },
+    "devDependencies": {
+        "nodemon": "^1.19.1"
+    }
+}
