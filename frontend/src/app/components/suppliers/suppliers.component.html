@@ -1,0 +1,82 @@
+<div class="row">
+  <div class="col s12 m12 l4">
+    <div class="card">
+      <div class="card-action">
+        <div class="input-field col s12">
+          <span class="card-title">Suppliers</span>
+        </div>
+      </div>
+
+      <form #supplierForm="ngForm" (ngSubmit)="addSupplier(supplierForm)">
+        <div class="card-content">
+          <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="supplierService.selectedSupplier._id">
+
+          <div class="row">
+            <div class="input-field col s12">
+              <input type="text" name="companyName" #companyName="ngModel"
+                [(ngModel)]="supplierService.selectedSupplier.companyName" placeholder="Enter company name">
+            </div>
+            <div class="input-field col s12">
+              <input type="text" name="contactName" #contactName="ngModel"
+                [(ngModel)]="supplierService.selectedSupplier.contactName" placeholder="Enter contact name">
+            </div>
+            <div class="input-field col s12">
+              <input type="text" name="address" #address="ngModel"
+                [(ngModel)]="supplierService.selectedSupplier.address" placeholder="Enter address">
+            </div>
+            <div class="input-field col s12">
+              <input type="text" name="city" #city="ngModel" [(ngModel)]="supplierService.selectedSupplier.city"
+                placeholder="Enter city">
+            </div>
+            <div class="input-field col s12">
+              <input type="number" name="postalCode" #postalCode="ngModel"
+                [(ngModel)]="supplierService.selectedSupplier.postalCode" placeholder="Enter postal code">
+            </div>
+            <div class="input-field col s12">
+              <input type="text" name="country" #country="ngModel"
+                [(ngModel)]="supplierService.selectedSupplier.country" placeholder="Enter country">
+            </div>
+            <div class="input-field col s12">
+              <input type="number" name="phone" #phone="ngModel" [(ngModel)]="supplierService.selectedSupplier.phone"
+                placeholder="Enter phone">
+            </div>
+          </div>
+        </div>
+        <div class="card-action">
+          <button mat-raised-button color="accent" class="btn">
+            Save
+          </button>
+          <button mat-raised-button color="warn" class="btn right" (click)="resetForm(supplierForm)">
+            Clear
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="col s12 m12 l8">
+    <table class="card responsive-table highlight">
+      <thead>
+        <th>Company</th>
+        <th>Contact</th>
+        <th>Phone</th>
+        <th>Operations</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let supplier of supplierService.suppliers">
+          <td>{{ supplier.companyName }}</td>
+          <td>{{ supplier.contactName }}</td>
+          <td>{{ supplier.phone }}</td>
+          <td>
+            <a (click)="editSupplier(supplier)">
+              <i class="material-icons">edit</i>
+            </a>
+            <a (click)="deleteSupplier(supplier._id)">
+              <i class="material-icons">delete</i>
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

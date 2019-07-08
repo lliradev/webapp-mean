@@ -1,22 +1,42 @@
+// built-in
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
-
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
-import { PhotosComponent } from './components/photos/photos.component';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-// Material
+// components
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { PhotosComponent } from './components/photos/photos.component';
+
+// material
 import { MaterialModule } from './material.module';
+import { HomeComponent } from './components/home/home.component';
+import { SuppliersComponent } from './components/suppliers/suppliers.component';
+import { InternalComponent } from './components/internal/internal.component';
+import { MenuComponent } from './components/menu/menu.component';
+import { UserComponent } from './components/user/user.component';
+import { SignUpComponent } from './components/user/sign-up/sign-up.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { SignInComponent } from './components/user/sign-in/sign-in.component';
+import { UserService } from './services/user.service';
+
+import { AuthGuard } from './auth/auth.guard';
+import { AuthInterceptor } from './auth/auth.interceptor';
 
 @NgModule({
     declarations: [
         AppComponent,
-        PhotosComponent
+        PhotosComponent,
+        HomeComponent,
+        SuppliersComponent,
+        InternalComponent,
+        MenuComponent,
+        UserComponent,
+        SignUpComponent,
+        UserProfileComponent,
+        SignInComponent
     ],
     imports: [
         BrowserModule,
@@ -24,12 +44,13 @@ import { MaterialModule } from './material.module';
         FormsModule,
         HttpClientModule,
         MaterialModule,
-        RouterModule.forRoot([
-            { path: 'photos', component: PhotosComponent }
-        ]),
         BrowserAnimationsModule
     ],
-    providers: [],
+    providers: [{
+        provide: HTTP_INTERCEPTORS,
+        useClass: AuthInterceptor,
+        multi: true
+    }, AuthGuard, UserService],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

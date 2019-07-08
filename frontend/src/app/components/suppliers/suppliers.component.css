@@ -1,0 +1,14 @@
+span {
+    display: block;
+    text-align: center;
+}
+
+table th {
+    background-color: #673ab7;
+    text-align: center;
+    color: white;
+}
+
+table td {
+    text-align: center;
+}

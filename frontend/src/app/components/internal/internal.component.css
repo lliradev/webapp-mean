@@ -1,0 +1,15 @@
+span {
+    display: block;
+    text-align: center;
+    font-weight: bold;
+}
+
+table th {
+    background-color: #673ab7;
+    text-align: center;
+    color: white;
+}
+
+table td {
+    text-align: center;
+}

@@ -9,13 +9,13 @@ cloudinary.config({
 const fs = require('fs-extra');
 
 /* METHODS */
-photoCtrl.getPhotos = async(req, res) => {
+photoCtrl.getPhotos = async (req, res) => {
     const photos = await Photo.find();
     res.json(photos);
 };
 
-photoCtrl.createPhoto = async(req, res) => {
-    const { title, description } = req.body;
+photoCtrl.createPhoto = async (req, res) => {
+    /*const { title, description } = req.body;
     console.log(req.file);
     const result = await cloudinary.v2.uploader.upload(req.file.path);
     console.log(result);
@@ -28,33 +28,35 @@ photoCtrl.createPhoto = async(req, res) => {
     });
     await photo.save();
     await fs.unlink(req.file.path);
-    res.json({ status: "Photo saved!" })
+    res.json({ status: "Photo saved!" });*/
+
+    console.log(req.body);
+    console.log(req.file);
 };
 
-photoCtrl.getPhoto = async(req, res) => {
+photoCtrl.getPhoto = async (req, res) => {
     const photo = await Photo.findById(req.params.id);
     res.json(photo);
 };
 
-/*photoCtrl.editPhoto = async(req, res) => {
+/*photoCtrl.editPhoto = async (req, res) => {
     const { id } = req.params;
+    const result = await cloudinary.v2.uploader.upload(req.file.path);
     const photo = {
         title: req.body.title,
         description: req.body.description,
-        imageURL: req.body.imageURL,
-        public_id: req.body.public_id
+        imageURL: result.url,
+        public_id: result.public_id
     };
     await Photo.findByIdAndUpdate(id, { $set: photo }, { new: true });
     res.json({ status: "Photo updated!" })
-};*/
+};
 
-photoCtrl.deletePhoto = async(req, res) => {
-    const { photo_id } = req.params;
-    const photo = await Photo.findByIdAndDelete(photo_id);
+photoCtrl.deletePhoto = async (req, res) => {
+    const photo = await Photo.findByIdAndDelete(req.params.id);
     const result = await cloudinary.v2.uploader.destroy(photo.public_id);
     console.log(result);
     res.json({ status: "Photo deleted!" });
-};
-
+};*/
 
 module.exports = photoCtrl;

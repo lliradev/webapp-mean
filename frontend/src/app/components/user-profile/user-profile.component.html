@@ -1,0 +1,76 @@
+<!-- NAVBAR -->
+<div class="navbar-fixed">
+    <nav class="deep-purple">
+        <div class="nav-wrapper container">
+            <a routerLink="" class="brand-logo">Muelle 13</a>
+            <a href="#" data-target="menu-responsive" class="sidenav-trigger">
+                <i class="material-icons">menu</i>
+            </a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li routerLinkActive="active current"><a routerLink="/photos">Photos</a></li>
+                <li routerLinkActive="active current"><a routerLink="/suppliers">Suppliers</a></li>
+                <li routerLinkActive="active current"><a routerLink="/internal">Internal</a></li>
+                <li routerLinkActive="active current"><a routerLink="/menu">Menu</a></li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<!-- SIDENAV -->
+<ul class="sidenav" id="menu-responsive">
+    <li><a class="subheader">Menu</a></li>
+    <li>
+        <div class="divider"></div>
+    </li>
+    <li routerLinkActive="active current">
+        <a routerLink="/photos" class="sidenav-close">
+            <i class="material-icons">photo</i>
+            Photos
+        </a>
+    </li>
+    <li routerLinkActive="active current">
+        <a routerLink="/suppliers" class="sidenav-close">
+            <i class="material-icons">drive_eta</i>
+            <span matBadge="4" matBadgeOverlap="false">Suppliers</span>
+        </a>
+    </li>
+    <li routerLinkActive="active current">
+        <a routerLink="/internal" class="sidenav-close">
+            <i class="material-icons">note</i>
+            Internal
+        </a>
+    </li>
+    <li routerLinkActive="active current">
+        <a routerLink="/menu" class="sidenav-close">
+            <i class="material-icons">restaurant_menu</i>
+            Menu
+        </a>
+    </li>
+</ul>
+
+<div class="container">
+    <table *ngIf="userDetails" class="table-fill">
+        <thead>
+            <tr>
+                <th colspan="2" class="text-center">User Profile</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>First Name</td>
+                <td>{{ userDetails.fullname }}</td>
+            </tr>
+
+            <tr>
+                <td>Email</td>
+                <td>{{userDetails.email}}</td>
+            </tr>
+            <tr>
+                <td colspan="2" class="text-center">
+                    <input type="button" (click)="onLogout()" value="Logout" />
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

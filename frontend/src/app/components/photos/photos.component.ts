@@ -5,64 +5,71 @@ import { Photo } from 'src/app/models/photo';
 declare var M: any;
 
 @Component({
-    selector: 'app-photos',
-    templateUrl: './photos.component.html',
-    styleUrls: ['./photos.component.css'],
-    providers: [PhotoService]
+  selector: 'app-photos',
+  templateUrl: './photos.component.html',
+  styleUrls: ['./photos.component.css'],
+  providers: [PhotoService]
 })
 export class PhotosComponent implements OnInit {
 
-    constructor(private photoService: PhotoService) { }
+  constructor(private photoService: PhotoService) { }
 
-    ngOnInit() {
-        this.getPhotos();
-    }
+  ngOnInit() {
+    this.getPhotos();
+  }
 
-    addPhoto(form: NgForm) {
-        if (form.value._id) {
-            this.photoService.putPhoto(form.value)
-                .subscribe(res => {
-                    this.resetForm(form);
-                    M.toast({ html: 'Updated successfully!', classes: 'rounded' });
-                    this.getPhotos();
-                });
-        } else {
-            this.photoService.postPhoto(form.value)
-                .subscribe(res => {
-                    this.resetForm(form);
-                    M.toast({ html: 'Saved successfully!', classes: 'rounded' });
-                    this.getPhotos();
-                });
-        }
+  addPhoto(form: NgForm) {
+    if (form.value._id) {
+      this.photoService.putPhoto(form.value)
+        .subscribe(res => {
+          this.resetForm(form);
+          M.toast({ html: 'Updated successfully!', classes: 'rounded' });
+          this.getPhotos();
+        });
+    } else {
+      this.photoService.postPhoto(form.value)
+        .subscribe(res => {
+          this.resetForm(form);
+          M.toast({ html: 'Saved successfully!', classes: 'rounded' });
+          this.getPhotos();
+        });
     }
+  }
 
-    getPhotos() {
-        this.photoService.getPhotos()
-            .subscribe(res => {
-                this.photoService.photos = res as Photo[];
-                console.log(res);
-            });
-    }
+  getPhotos() {
+    this.photoService.getPhotos()
+      .subscribe(res => {
+        this.photoService.photos = res as Photo[];
+        console.log(res);
+      });
+  }
 
-    editPhotos(photo: Photo) {
-        this.photoService.selectedPhoto = photo;
-    }
+  editPhotos(photo: Photo) {
+    this.photoService.selectedPhoto = photo;
+  }
 
-    deletePhoto(_id: string) {
-        if (confirm('Are you sure want to delete it?')) {
-            this.photoService.deletePhoto(_id)
-                .subscribe(res => {
-                    this.getPhotos();
-                    M.toast({ html: 'Deleted successfully!', classes: 'rounded' });
-                });
-        }
+  deletePhoto(_id: string) {
+    if (confirm('Are you sure want to delete it?')) {
+      this.photoService.deletePhoto(_id)
+        .subscribe(res => {
+          this.getPhotos();
+          M.toast({ html: 'Deleted successfully!', classes: 'rounded' });
+        });
     }
+  }
 
-    resetForm(form?: NgForm) {
-        if (form) {
-            form.reset();
-            this.photoService.selectedPhoto = new Photo();
-        }
+  resetForm(form?: NgForm) {
+    if (form) {
+      form.reset();
+      this.photoService.selectedPhoto = new Photo();
     }
+  }
+
+  onFileSelected(event) {
+    this.photoService.onFileSelected(event);
+  }
+  onUpload() {
+    this.photoService.onUpload();
+  }
 
 }//End class
