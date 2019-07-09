@@ -1,10 +1,9 @@
-const mongoose = require('mongoose');
 const User = require('../models/user');
 const passport = require('passport');
 const _ = require('lodash');
 const userCtrl = {};
 
-/*userCtrl.register = async (req, res, next) => {
+userCtrl.register = async (req, res, next) => {
     const user = new User({
         fullname: req.body.fullname,
         email: req.body.email,
@@ -21,30 +20,9 @@ const userCtrl = {};
                 return next(err);
         }
     });
-};*/
+};
 
-//module.exports = userCtrl;
-
-module.exports.register = (req, res, next) => {
-    var user = new User();
-    user.fullname = req.body.fullname;
-    user.email = req.body.email;
-    user.password = req.body.password;
-    user.save((err, doc) => {
-        if (!err)
-            res.send(doc);
-        else {
-            console.log(err);
-            if (err.code == 11000)
-                res.status(422).send(['Duplicate email adrress found.']);
-            else
-                return next(err);
-        }
-    });
-}
-
-// Authenticate
-module.exports.authenticate = (req, res, next) => {
+userCtrl.authenticate = (req, res, next) => {
     // call for passport authentication
     passport.authenticate('local', (err, user, info) => {
         // error from passport middleware
@@ -56,8 +34,7 @@ module.exports.authenticate = (req, res, next) => {
     })(req, res);
 }
 
-// User profile
-module.exports.userProfile = (req, res, next) => {
+userCtrl.userProfile = (req, res, next) => {
     User.findOne({ _id: req._id },
         (err, user) => {
             if (!user)
@@ -67,3 +44,5 @@ module.exports.userProfile = (req, res, next) => {
         }
     );
 }
+
+module.exports = userCtrl;
