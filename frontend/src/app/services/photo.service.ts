@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Photo } from '../models/photo';
-import { environment } from '../../environments/environment.prod';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -11,9 +11,14 @@ export class PhotoService {
   photos: Photo[];
   readonly API = '/photos';
   selectedFile = null;
+  fileData: File = null;
 
   constructor(private http: HttpClient) {
     this.selectedPhoto = new Photo;
+  }
+
+  fileProgress(fileInput: any) {
+    this.fileData = <File>fileInput.target.files[0];
   }
 
   getPhotos() {
@@ -21,6 +26,8 @@ export class PhotoService {
   }
 
   postPhoto(Photo: Photo) {
+    const fd = new FormData();
+    fd.append('file', this.fileData);
     return this.http.post(environment.URL_API + this.API, Photo);
   }
 

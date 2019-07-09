@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class SignInComponent implements OnInit {
 
-  constructor(public userService: UserService, private router: Router) { }
+  constructor(private userService: UserService, private router: Router) { }
   model = {
     email: '',
     password: ''

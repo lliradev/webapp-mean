@@ -11,7 +11,7 @@ declare var M: any;
 })
 export class InternalComponent implements OnInit {
 
-  constructor(public internalService: InternalService) { }
+  constructor(private internalService: InternalService) { }
 
   ngOnInit() {
     this.findAll();

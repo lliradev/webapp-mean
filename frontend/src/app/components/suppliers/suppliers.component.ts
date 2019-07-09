@@ -12,7 +12,7 @@ declare var M: any;
 })
 export class SuppliersComponent implements OnInit {
 
-  constructor(public supplierService: SupplierService) { }
+  constructor(private supplierService: SupplierService) { }
   displayedColumns: string[] = ['company', 'contact', 'phone', 'operations'];
   dataSource = this.supplierService.suppliers;
 
