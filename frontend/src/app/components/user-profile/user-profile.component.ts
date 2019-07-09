@@ -9,7 +9,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class UserProfileComponent implements OnInit {
   userDetails;
-  constructor(private userService: UserService, private router: Router, private route: ActivatedRoute) { }
+  constructor(public userService: UserService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.userService.getUserProfile()

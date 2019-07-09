@@ -11,7 +11,7 @@ declare var M: any;
 })
 export class MenuComponent implements OnInit {
 
-  constructor(private menuService: MenuService) { }
+  constructor(public menuService: MenuService) { }
 
   ngOnInit() {
     this.findAll();

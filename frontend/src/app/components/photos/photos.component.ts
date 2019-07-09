@@ -12,7 +12,7 @@ declare var M: any;
 })
 export class PhotosComponent implements OnInit {
 
-  constructor(private photoService: PhotoService) { }
+  constructor(public photoService: PhotoService) { }
 
   ngOnInit() {
     this.getPhotos();

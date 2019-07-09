@@ -9,7 +9,7 @@ import { Photo } from 'src/app/models/photo';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private photoService: PhotoService) { }
+  constructor(public photoService: PhotoService) { }
 
   ngOnInit() {
     this.getPhotos();
