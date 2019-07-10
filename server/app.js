@@ -36,6 +36,14 @@ app.use((err, req, res, next) => {
         console.log(err);
     }
 });
+if (process.env.NODE_ENV === 'production') {
+    // Serve static files from the Angular frontend app
+    app.use(express.static(path.join(__dirname, '/../frontend/dist/frontend')));
+    // Anything that doesn't match the above, send back index.html
+    app.get('*', (req, res) => {
+        res.sendFile(path.join(__dirname, '/../frontend/dist/frontend/index.html'));
+    });
+}
 
 // Routes
 app.use('/api', require('./routes/user.routes'));

@@ -10,15 +10,9 @@ export class PhotoService {
   selectedPhoto: Photo;
   photos: Photo[];
   readonly API = '/photos';
-  selectedFile = null;
-  fileData: File = null;
 
   constructor(private http: HttpClient) {
     this.selectedPhoto = new Photo;
-  }
-
-  fileProgress(fileInput: any) {
-    this.fileData = <File>fileInput.target.files[0];
   }
 
   getPhotos() {
@@ -26,8 +20,6 @@ export class PhotoService {
   }
 
   postPhoto(Photo: Photo) {
-    const fd = new FormData();
-    fd.append('file', this.fileData);
     return this.http.post(environment.URL_API + this.API, Photo);
   }
 
@@ -37,20 +29,6 @@ export class PhotoService {
 
   deletePhoto(_id: string) {
     return this.http.delete(environment.URL_API + this.API + `/${_id}`);
-  }
-
-  onFileSelected(event) {
-    console.log(event);
-    this.selectedFile = <File>event.target.files[0];
-  }
-
-  onUpload() {
-    const fd = new FormData();
-    fd.append('imageURL', this.selectedFile, this.selectedFile.name);
-    return this.http.post(environment.URL_API + this.API, fd)
-      .subscribe(res => {
-        console.log(res);
-      });
   }
 
 }//End class

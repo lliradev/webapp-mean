@@ -65,11 +65,4 @@ export class PhotosComponent implements OnInit {
     }
   }
 
-  onFileSelected(event) {
-    this.photoService.onFileSelected(event);
-  }
-  onUpload() {
-    this.photoService.onUpload();
-  }
-
 }//End class
