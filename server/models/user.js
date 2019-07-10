@@ -27,7 +27,6 @@ UserSchema.path('email').validate((val) => {
 }, 'Invalid e-mail.');
 
 // Events
-// Poner hash al password
 UserSchema.pre('save', function (next) {
     bcrypt.genSalt(10, (err, salt) => {
         bcrypt.hash(this.password, salt, (err, hash) => {

@@ -1,5 +1,4 @@
 require('./config/passport.config');
-
 const express = require('express');
 const morgan = require('morgan');
 const multer = require('multer');
