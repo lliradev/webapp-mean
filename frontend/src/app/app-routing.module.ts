@@ -29,11 +29,10 @@ const routes: Routes = [
   {
     path: '', redirectTo: '/login', pathMatch: 'full'
   },
-  { path: 'photos', component: PhotosComponent },
-  { path: 'suppliers', component: SuppliersComponent },
-  { path: 'internal', component: InternalComponent },
-  { path: 'menu', component: MenuComponent }
-
+  { path: 'photos', component: PhotosComponent, canActivate: [AuthGuard] },
+  { path: 'suppliers', component: SuppliersComponent, canActivate: [AuthGuard] },
+  { path: 'internal', component: InternalComponent, canActivate: [AuthGuard] },
+  { path: 'menu', component: MenuComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({

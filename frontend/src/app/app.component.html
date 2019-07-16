@@ -1,82 +1,10 @@
-<!-- NAVBAR -->
-<div class="navbar-fixed">
-  <nav class="deep-purple">
-    <div class="nav-wrapper container">
-      <a routerLink="" class="brand-logo">Muelle 13</a>
-      <a href="#" data-target="menu-responsive" class="sidenav-trigger">
-        <i class="material-icons">menu</i>
-      </a>
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <div *ngIf="!user.isLoggedIn(); else logout">
-          <li routerLinkActive="active current"><a routerLink="/signup">Sign Up</a></li>
-          <li routerLinkActive="active current"><a routerLink="/login">Sign In</a></li>
-        </div>
-        <ng-template #logout>
-          <li routerLinkActive="active current"><a routerLink="/photos">Photos</a></li>
-          <li routerLinkActive="active current"><a routerLink="/suppliers">Suppliers</a></li>
-          <li routerLinkActive="active current"><a routerLink="/internal">Internal</a></li>
-          <li routerLinkActive="active current"><a routerLink="/menu">Menu</a></li>
-          <li><a>Logout</a></li>
-        </ng-template>
-      </ul>
-    </div>
-  </nav>
-</div>
+<ng-template [ngIf]="!user.isLoggedIn()" [ngIfElse]="logout">
+  <app-toolbar></app-toolbar>
+</ng-template>
 
-<!-- SIDENAV -->
-<ul class="sidenav" id="menu-responsive">
-  <div *ngIf="!user.isLoggedIn(); else logoutmobile">
-    <li><a class="subheader">Sign Up or Sign In</a></li>
-    <li>
-      <div class="divider"></div>
-    </li>
-    <li routerLinkActive="active current">
-      <a routerLink="/signup" class="sidenav-close">Sign Up</a>
-    </li>
-    <li routerLinkActive="active current">
-      <a routerLink="/login" class="sidenav-close">Sign In</a>
-    </li>
-  </div>
-
-  <ng-template #logoutmobile>
-    <li><a class="subheader">Menu</a></li>
-    <li>
-      <div class="divider"></div>
-    </li>
-    <li routerLinkActive="active current">
-      <a routerLink="/photos" class="sidenav-close">
-        <i class="material-icons">photo</i>
-        Photos
-      </a>
-    </li>
-    <li routerLinkActive="active current">
-      <a routerLink="/suppliers" class="sidenav-close">
-        <i class="material-icons">drive_eta</i>
-        <span matBadge="4" matBadgeOverlap="false">Suppliers</span>
-      </a>
-    </li>
-    <li routerLinkActive="active current">
-      <a routerLink="/internal" class="sidenav-close">
-        <i class="material-icons">note</i>
-        Internal
-      </a>
-    </li>
-    <li routerLinkActive="active current">
-      <a routerLink="/menu" class="sidenav-close">
-        <i class="material-icons">restaurant_menu</i>
-        Menu
-      </a>
-    </li>
-    <li>
-      <a>
-        <i class="material-icons">keyboard_return</i>
-        Logout
-      </a>
-    </li>
-  </ng-template>
-</ul>
+<ng-template #logout>
+  <app-sidenav></app-sidenav>
+</ng-template>
 
 <!-- CONTENT -->
-<div class="container">
-  <router-outlet></router-outlet>
-</div>
+<router-outlet></router-outlet>

@@ -8,3 +8,17 @@ body {
     margin: 0;
     font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+
+table th {
+    background-color: #706fd3;
+    text-align: center;
+    color: white;
+}
+
+table td {
+    text-align: center;
+}
+
+#card_back{
+    background: #706fd3;
+}

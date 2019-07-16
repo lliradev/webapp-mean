@@ -22,9 +22,12 @@ menuCtrl.getMenu = async (req, res) => {
 
 menuCtrl.editMenu = async (req, res) => {
     const { id } = req.params;
-    const { type, name, description, price, image } = req.body;
     const menu = {
-        type, name, description, price, image
+        type: req.body.type, 
+        name: req.body.name, 
+        description: req.body.description, 
+        price: req.body.price, 
+        image: req.body.image
     };
     await Menu.findByIdAndUpdate(id, { $set: menu }, { new: true });
     res.json({ status: "Menu updated!" });

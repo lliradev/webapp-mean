@@ -10,6 +10,7 @@ declare var M: any;
   styleUrls: ['./internal.component.css']
 })
 export class InternalComponent implements OnInit {
+  filterAllInternal = '';
 
   constructor(private internalService: InternalService) { }
 

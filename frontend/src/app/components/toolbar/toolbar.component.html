@@ -1,0 +1,26 @@
+<!-- NAVBAR -->
+<div class="navbar-fixed">
+  <nav class="deep-purple">
+    <div class="nav-wrapper container">
+      <a routerLink="" class="brand-logo">Muelle 13</a>
+      <a href="#" data-target="menu-responsive" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li routerLinkActive="active current"><a routerLink="/signup">Sign Up</a></li>
+        <li routerLinkActive="active current"><a routerLink="/login">Sign In</a></li>
+      </ul>
+    </div>
+  </nav>
+</div>
+
+<!-- SIDENAV -->
+<ul class="sidenav" id="menu-responsive">
+  <li><a class="subheader">Sign Up or Sign In</a></li>
+  <li><div class="divider"></div></li>
+  <li routerLinkActive="active current"><a routerLink="/signup" class="sidenav-close">Sign Up</a></li>
+  <li routerLinkActive="active current"><a routerLink="/login" class="sidenav-close">Sign In</a></li>
+</ul>
+
+<!-- CONTENT -->
+<div class="container">
+  <router-outlet></router-outlet>
+</div>

@@ -41,7 +41,8 @@ if (process.env.NODE_ENV === 'production') {
     app.use(express.static(path.join(__dirname, '/../frontend/dist/frontend')));
     // Anything that doesn't match the above, send back index.html
     app.get('*', (req, res) => {
-        res.sendFile(path.join(__dirname, '/../frontend/dist/frontend/index.html'));
+        const index = path.join(__dirname, '/../frontend/dist/frontend/', 'index.html');
+        res.sendFile(index);
     });
 }
 

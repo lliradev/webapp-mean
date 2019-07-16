@@ -23,6 +23,9 @@ import { UserService } from './services/user.service';
 
 import { AuthGuard } from './auth/auth.guard';
 import { AuthInterceptor } from './auth/auth.interceptor';
+import { FilterInternalPipe } from './pipes/filter-internal.pipe';
+import { SidenavComponent } from './components/sidenav/sidenav.component';
+import { ToolbarComponent } from './components/toolbar/toolbar.component';
 
 @NgModule({
     declarations: [
@@ -35,7 +38,10 @@ import { AuthInterceptor } from './auth/auth.interceptor';
         UserComponent,
         SignUpComponent,
         UserProfileComponent,
-        SignInComponent
+        SignInComponent,
+        FilterInternalPipe,
+        SidenavComponent,
+        ToolbarComponent
     ],
     imports: [
         BrowserModule,
