@@ -15,7 +15,7 @@ photoCtrl.getPhotos = async (req, res) => {
 };
 
 photoCtrl.createPhoto = async (req, res) => {
-    /*const { title, description } = req.body;
+    const { title, description } = req.body;
     console.log(req.file);
     const result = await cloudinary.v2.uploader.upload(req.file.path);
     console.log(result);
@@ -28,10 +28,7 @@ photoCtrl.createPhoto = async (req, res) => {
     });
     await photo.save();
     await fs.unlink(req.file.path);
-    res.json({ status: "Photo saved!" });*/
-
-    console.log(req.body);
-    console.log(req.file);
+    res.json({ status: "Photo saved!" });
 };
 
 photoCtrl.getPhoto = async (req, res) => {

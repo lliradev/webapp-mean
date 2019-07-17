@@ -27,12 +27,13 @@ const routes: Routes = [
     path: 'profile', component: UserProfileComponent, canActivate: [AuthGuard]
   },
   {
-    path: '', redirectTo: '/login', pathMatch: 'full'
+    path: '', redirectTo: '/home', pathMatch: 'full'
   },
   { path: 'photos', component: PhotosComponent, canActivate: [AuthGuard] },
   { path: 'suppliers', component: SuppliersComponent, canActivate: [AuthGuard] },
   { path: 'internal', component: InternalComponent, canActivate: [AuthGuard] },
-  { path: 'menu', component: MenuComponent, canActivate: [AuthGuard] }
+  { path: 'menu', component: MenuComponent, canActivate: [AuthGuard] },
+  { path: 'home', component: HomeComponent }
 ];
 
 @NgModule({

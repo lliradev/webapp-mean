@@ -36,15 +36,6 @@ app.use((err, req, res, next) => {
         console.log(err);
     }
 });
-if (process.env.NODE_ENV === 'production') {
-    // Serve static files from the Angular frontend app
-    app.use(express.static(path.join(__dirname, '/../frontend/dist/frontend')));
-    // Anything that doesn't match the above, send back index.html
-    app.get('*', (req, res) => {
-        const index = path.join(__dirname, '/../frontend/dist/frontend/', 'index.html');
-        res.sendFile(index);
-    });
-}
 
 // Routes
 app.use('/api', require('./routes/user.routes'));
@@ -52,5 +43,8 @@ app.use('/api/photos/', require('./routes/photo.routes'));
 app.use('/api/suppliers/', require('./routes/supplier.routes'));
 app.use('/api/internal/', require('./routes/internal.routes'));
 app.use('/api/menus/', require('./routes/menu.routes'));
+
+// Static Files
+app.use(express.static(path.join(__dirname, 'dist/frontend')));
 
 module.exports = app;
