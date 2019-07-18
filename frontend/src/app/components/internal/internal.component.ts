@@ -12,7 +12,7 @@ declare var M: any;
 export class InternalComponent implements OnInit {
   filterAllInternal = '';
 
-  constructor(private internalService: InternalService) { }
+  constructor(public internalService: InternalService) { } //Cambiar despues a private
 
   ngOnInit() {
     this.findAll();

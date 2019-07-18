@@ -14,7 +14,7 @@ export class PhotosComponent implements OnInit {
   imageURL: string;
   fileToUpload: File = null; //<----
 
-  constructor(private photoService: PhotoService) { }
+  constructor(public photoService: PhotoService) { } //Cambiar despues a private
 
   ngOnInit() {
     this.getPhotos();
