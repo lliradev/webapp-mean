@@ -9,6 +9,10 @@ body {
     font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+.wrapper {
+    margin: 15px;
+}
+
 table th {
     background-color: #706fd3;
     text-align: center;
@@ -19,6 +23,6 @@ table td {
     text-align: center;
 }
 
-#card_back{
+#card_back {
     background: #706fd3;
 }

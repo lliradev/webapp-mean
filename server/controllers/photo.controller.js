@@ -36,7 +36,7 @@ photoCtrl.getPhoto = async (req, res) => {
     res.json(photo);
 };
 
-/*photoCtrl.editPhoto = async (req, res) => {
+photoCtrl.editPhoto = async (req, res) => {
     const { id } = req.params;
     const result = await cloudinary.v2.uploader.upload(req.file.path);
     const photo = {
@@ -46,6 +46,7 @@ photoCtrl.getPhoto = async (req, res) => {
         public_id: result.public_id
     };
     await Photo.findByIdAndUpdate(id, { $set: photo }, { new: true });
+    await fs.unlink(req.file.path);
     res.json({ status: "Photo updated!" })
 };
 
@@ -54,6 +55,6 @@ photoCtrl.deletePhoto = async (req, res) => {
     const result = await cloudinary.v2.uploader.destroy(photo.public_id);
     console.log(result);
     res.json({ status: "Photo deleted!" });
-};*/
+};
 
 module.exports = photoCtrl;

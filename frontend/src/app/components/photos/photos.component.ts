@@ -11,7 +11,7 @@ declare var M: any;
   providers: [PhotoService]
 })
 export class PhotosComponent implements OnInit {
-  imageURL: string = "https://getstamped.co.uk/wp-content/uploads/WebsiteAssets/Placeholder.jpg";
+  imageURL: string;
   fileToUpload: File = null; //<----
 
   constructor(private photoService: PhotoService) { }
@@ -33,28 +33,11 @@ export class PhotosComponent implements OnInit {
   addPhoto(title, description, imageURL) {
     this.photoService.postPhoto(title.value, description.value, this.fileToUpload)
       .subscribe(res => {
+        this.resetForm();
         M.toast({ html: 'Saved successfully!', classes: 'rounded' });
         this.getPhotos();
       });
   }
-
-  /*addPhoto(form: NgForm) {
-    if (form.value._id) {
-      this.photoService.putPhoto(form.value)
-        .subscribe(res => {
-          this.resetForm(form);
-          M.toast({ html: 'Updated successfully!', classes: 'rounded' });
-          this.getPhotos();
-        });
-    } else {
-      this.photoService.postPhoto()
-        .subscribe(res => {
-          this.resetForm(form);
-          M.toast({ html: 'Saved successfully!', classes: 'rounded' });
-          this.getPhotos();
-        });
-    }
-  }*/
 
   getPhotos() {
     this.photoService.getPhotos()
@@ -64,7 +47,7 @@ export class PhotosComponent implements OnInit {
       });
   }
 
-  editPhotos(photo: Photo) {
+  editPhoto(photo: Photo) {
     this.photoService.selectedPhoto = photo;
   }
 
@@ -80,7 +63,7 @@ export class PhotosComponent implements OnInit {
 
   resetForm(form?: NgForm) {
     if (form) {
-      form.reset();
+      form.resetForm();
       this.photoService.selectedPhoto = new Photo();
     }
   }

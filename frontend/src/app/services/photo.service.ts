@@ -27,8 +27,12 @@ export class PhotoService {
     return this.http.post(environment.URL_API + this.API, fd);
   }
 
-  putPhoto(photo: Photo) {
-    return this.http.put(environment.URL_API + this.API + `/${photo._id}`, photo);
+  putPhoto(_id:string, title: string, description: string, fileToUpload: File) {
+    const fd: FormData = new FormData();
+    fd.append('imageURL', fileToUpload, fileToUpload.name);
+    fd.append('title', title);
+    fd.append('description', description);
+    return this.http.put(environment.URL_API + this.API + `/${_id}`, fd);
   }
 
   deletePhoto(_id: string) {

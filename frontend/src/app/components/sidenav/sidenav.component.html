@@ -1,7 +1,6 @@
 <mat-sidenav-container class="app-sidenav-container">
 
   <mat-sidenav #sidenav class="app-sidenav" [opened]="!isScreenSmall()" [mode]="isScreenSmall() ? 'over' : 'side'">
-    <mat-toolbar>Dashboard</mat-toolbar>
     <mat-list role="list">
       <h3 mat-subheader>Catálogos</h3>
       <a routerLink="/photos">
@@ -47,48 +46,7 @@
   </mat-sidenav>
 
   <div class="app-sidenav-content">
-    <nav class="deep-purple">
-      <div class="nav-wrapper container">
-        <a routerLink="" class="brand-logo">Muelle 13</a>
-        <a (click)="sidenav.toggle()" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <li>
-            <button mat-icon-button>
-              <mat-icon>notifications</mat-icon>
-            </button>
-          </li>
-          <li>
-            <button mat-icon-button [matMenuTriggerFor]="menu">
-              <mat-icon>settings</mat-icon>
-            </button>
-            <mat-menu #menu="matMenu">
-              <a routerLink="/profile">
-                <button mat-menu-item>
-                  <mat-icon>person</mat-icon>
-                  <span>Tu perfil</span>
-                </button>
-              </a>
-              <mat-divider></mat-divider>
-              <button mat-menu-item disabled>
-                <mat-icon>help</mat-icon>
-                <span>Ayuda</span>
-              </button>
-              <button mat-menu-item disabled>
-                <mat-icon>settings_applications</mat-icon>
-                <span>Configuraciones</span>
-              </button>
-              <a (click)="onLogout()">
-                <button mat-menu-item>
-                  <mat-icon>keyboard_return</mat-icon>
-                  <span>Cerrar sesión</span>
-                </button>
-              </a>
-            </mat-menu>
-          </li>
-        </ul>
-      </div>
-    </nav>
-    <div class="container">
+    <div class="wrapper">
       <router-outlet></router-outlet>
     </div>
   </div>

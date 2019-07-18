@@ -27,7 +27,7 @@ const routes: Routes = [
     path: 'profile', component: UserProfileComponent, canActivate: [AuthGuard]
   },
   {
-    path: '', redirectTo: '/home', pathMatch: 'full'
+    path: '', redirectTo: '/login', pathMatch: 'full'
   },
   { path: 'photos', component: PhotosComponent, canActivate: [AuthGuard] },
   { path: 'suppliers', component: SuppliersComponent, canActivate: [AuthGuard] },
