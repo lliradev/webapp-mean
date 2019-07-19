@@ -8,7 +8,7 @@ import { environment } from '../../environments/environment';
 })
 export class PhotoService {
   selectedPhoto: Photo;
-  photos: Photo[];
+  photos: Photo[] = [];
   readonly API = '/photos';
 
   constructor(private http: HttpClient) {

@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const supplier = require('../controllers/supplier.controller');
 
-// Routes
 router.get('/', supplier.getSuppliers);
 router.post('/', supplier.createSupplier);
 router.get('/:id', supplier.getSupplier);

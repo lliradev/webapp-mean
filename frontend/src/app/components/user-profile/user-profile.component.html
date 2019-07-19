@@ -1,16 +1,18 @@
 <div class="row" id="row-margin">
-  <div class="col s12 m12 l12 xl6">
+  <div class="col s12 m12 l12 xl4">
     <mat-card *ngIf="userDetails">
       <mat-card-header>
         <div mat-card-avatar class="card-header-image"></div>
         <mat-card-title>{{ userDetails.fullname }}</mat-card-title>
-        <mat-card-subtitle>{{userDetails.email}}</mat-card-subtitle>
+        <mat-card-subtitle>{{ userDetails.email }}</mat-card-subtitle>
       </mat-card-header>
 
-      <mat-card-content></mat-card-content>
+      <mat-card-content>
+          <a mat-stroked-button>Edit profile</a>
+      </mat-card-content>
 
       <mat-card-actions>
-        <a mat-raised-button (click)="onLogout()">Logout</a>
+        <a mat-raised-button (click)="onLogout()">Salir</a>
       </mat-card-actions>
     </mat-card>
   </div>
