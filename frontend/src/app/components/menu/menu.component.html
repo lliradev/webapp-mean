@@ -1,72 +1,80 @@
 <div class="row">
-  <div class="col s12 m12 l12 xl4">
-    <div class="card">
-      <form #menuForm="ngForm" (ngSubmit)="addMenu(menuForm)">
-        <div class="card-content">
-            <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="menuService.selectedMenu._id">
-          <div class="row">
-            <label>Tipo de alimento/bebida</label>
-            <select class="browser-default" name="type" #type="ngModel" [(ngModel)]="menuService.selectedMenu.type">
-              <option value="" disabled selected>Elige una opción</option>
-              <option value="Bebida">Bebida</option>
-              <option value="Comida fria">Comida fria</option>
-              <option value="Comida caliente">Comida caliente</option>
-            </select>
-            <div class="input-field col s12">
-              <input type="text" name="name" #name="ngModel" [(ngModel)]="menuService.selectedMenu.name"
-                placeholder="Ingrese nombre">
-            </div>
-            <div class="input-field col s12">
-              <textarea name="description" #description="ngModel" [(ngModel)]="menuService.selectedMenu.description"
-                class="materialize-textarea" placeholder="Escriba una descripcion"></textarea>
-            </div>
-            <div class="input-field col s12">
-              <input type="number" name="price" #price="ngModel" [(ngModel)]="menuService.selectedMenu.price"
-                placeholder="Ingrese precio">
-            </div>
-            <div class="input-field col s12">
-              <input type="text" name="image" #image="ngModel" [(ngModel)]="menuService.selectedMenu.image"
-                placeholder="Imagen">
-            </div>
-          </div>
-        </div>
-        <div class="card-action">
-          <button mat-raised-button color="accent" class="btn">
-            Save
-          </button>
-          <button mat-raised-button color="warn" class="btn right" (click)="resetForm(menuForm)">
-            Clear
-          </button>
-        </div>
-      </form>
-    </div>
-  </div>
+  <mat-tab-group>
 
-  <div class="col s12 m12 l12 xl8">
-    <table class="card responsive-table">
-      <thead>
-        <tr>
-          <th>Tipo de alimento</th>
-          <th>Nombre</th>
-          <th>Precio</th>
-          <th>Operations</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let menu of menuService.menus">
-          <td>{{ menu.type }}</td>
-          <td>{{ menu.name }}</td>
-          <td>{{ menu.price | currency}}</td>
-          <td>
-            <a (click)="editMenu(menu)">
-              <i class="material-icons">edit</i>
-            </a>
-            <a (click)="deleteMenu(menu._id)">
-              <i class="material-icons">delete</i>
-            </a>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+    <mat-tab label="Menu">
+      <div class="col s12 m12 l12 xl6">
+        <div class="card">
+          <form #menuForm="ngForm" (ngSubmit)="addMenu(menuForm)">
+            <div class="card-content">
+              <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="menuService.selectedMenu._id">
+              <div class="row">
+                <label>Tipo de alimento/bebida</label>
+                <select class="browser-default" name="type" #type="ngModel" [(ngModel)]="menuService.selectedMenu.type">
+                  <option value="" disabled selected>Elige una opción</option>
+                  <option value="Bebida">Bebida</option>
+                  <option value="Comida fria">Comida fria</option>
+                  <option value="Comida caliente">Comida caliente</option>
+                </select>
+                <div class="input-field col s12">
+                  <input type="text" name="name" #name="ngModel" [(ngModel)]="menuService.selectedMenu.name"
+                    placeholder="Ingrese nombre">
+                </div>
+                <div class="input-field col s12">
+                  <textarea name="description" #description="ngModel" [(ngModel)]="menuService.selectedMenu.description"
+                    class="materialize-textarea" placeholder="Escriba una descripcion"></textarea>
+                </div>
+                <div class="input-field col s12">
+                  <input type="number" name="price" #price="ngModel" [(ngModel)]="menuService.selectedMenu.price"
+                    placeholder="Ingrese precio">
+                </div>
+                <div class="input-field col s12">
+                  <input type="text" name="image" #image="ngModel" [(ngModel)]="menuService.selectedMenu.image"
+                    placeholder="Imagen">
+                </div>
+              </div>
+            </div>
+            <div class="card-action">
+              <button mat-raised-button color="accent" class="btn">
+                Save
+              </button>
+              <button mat-raised-button color="warn" class="btn right" (click)="resetForm(menuForm)">
+                Clear
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </mat-tab>
+
+    <mat-tab label="Lista de menus">
+      <div class="col s12 m12 l12 xl12">
+        <table class="card responsive-table">
+          <thead>
+            <tr>
+              <th>Tipo de alimento</th>
+              <th>Nombre</th>
+              <th>Precio</th>
+              <th>Operations</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let menu of menuService.menus">
+              <td>{{ menu.type }}</td>
+              <td>{{ menu.name }}</td>
+              <td>{{ menu.price | currency}}</td>
+              <td>
+                <a (click)="editMenu(menu)">
+                  <i class="material-icons">edit</i>
+                </a>
+                <a (click)="deleteMenu(menu._id)">
+                  <i class="material-icons">delete</i>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </mat-tab>
+
+  </mat-tab-group>
 </div>
