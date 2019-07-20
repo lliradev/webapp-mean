@@ -27,3 +27,7 @@ table td {
 #card_back {
     background: #706fd3;
 }
+
+#icon-cursor{
+    cursor: pointer;
+}

@@ -1,8 +1,8 @@
 <div class="row">
-  <mat-tab-group>
+  <mat-tab-group mat-align-tabs="center">
 
     <mat-tab label="Menu">
-      <div class="col s12 m12 l12 xl6">
+      <div class="col s12 m12 l12 xl4">
         <div class="card">
           <form #menuForm="ngForm" (ngSubmit)="addMenu(menuForm)">
             <div class="card-content">
@@ -64,10 +64,10 @@
               <td>{{ menu.price | currency}}</td>
               <td>
                 <a (click)="editMenu(menu)">
-                  <i class="material-icons">edit</i>
+                  <i id="icon-cursor" class="material-icons">edit</i>
                 </a>
                 <a (click)="deleteMenu(menu._id)">
-                  <i class="material-icons">delete</i>
+                  <i id="icon-cursor" class="material-icons">delete</i>
                 </a>
               </td>
             </tr>

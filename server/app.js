@@ -45,9 +45,9 @@ app.use('/api/internal/', require('./routes/internal.routes'));
 app.use('/api/menus/', require('./routes/menu.routes'));
 
 // Static Files
-app.use(express.static(path.join(__dirname, 'dist/frontend')));
+app.use(express.static(path.join(__dirname, 'dist')));
 app.get('*', function(req, res){
-    res.sendfile(path.join(__dirname, 'dist/frontend/index.html'));
+    res.sendfile(path.join(__dirname, 'dist/index.html'));
 });
 
 module.exports = app;
