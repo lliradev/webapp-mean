@@ -38,7 +38,7 @@
   </div>
 
   <div class="col s12 m12 l12 xl8">
-    <table class="card responsive-table">
+    <table class="card responsive-table" *ngIf="photoService.photos.length > 0">
       <thead>
         <tr>
           <th>Titulo</th>
@@ -61,5 +61,6 @@
         </tr>
       </tbody>
     </table>
+    <p class="info-text mat-body-1" *ngIf="photoService.photos.length <= 0">No photos added yet!</p>
   </div>
 </div>

@@ -46,32 +46,35 @@
   </div>
 
   <div class="col s12 m12 l12 xl8">
-    <input type="text" name="filterAllInternal" placeholder="Buscar..." [(ngModel)]="filterAllInternal">
+    <ng-template [ngIf]="internalService.allInternal.length > 0">
+      <input type="text" name="filterAllInternal" placeholder="Buscar..." [(ngModel)]="filterAllInternal">
 
-    <table class="card responsive-table">
-      <thead>
-        <tr>
-          <th>Tipo de gasto</th>
-          <th>Responsable</th>
-          <th>Monto</th>
-          <th>Operations</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let internal of internalService.allInternal | filterInternal:filterAllInternal">
-          <td>{{ internal.type }}</td>
-          <td>{{ internal.responsible }}</td>
-          <td>{{ internal.amount | currency}}</td>
-          <td>
-            <a (click)="editInternal(internal)">
-              <i id="icon-cursor" class="material-icons">edit</i>
-            </a>
-            <a (click)="deleteInternal(internal._id)">
-              <i id="icon-cursor" class="material-icons">delete</i>
-            </a>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+      <table class="card responsive-table">
+        <thead>
+          <tr>
+            <th>Tipo de gasto</th>
+            <th>Responsable</th>
+            <th>Monto</th>
+            <th>Operations</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let internal of internalService.allInternal | filterInternal:filterAllInternal">
+            <td>{{ internal.type }}</td>
+            <td>{{ internal.responsible }}</td>
+            <td>{{ internal.amount | currency}}</td>
+            <td>
+              <a (click)="editInternal(internal)">
+                <i id="icon-cursor" class="material-icons">edit</i>
+              </a>
+              <a (click)="deleteInternal(internal._id)">
+                <i id="icon-cursor" class="material-icons">delete</i>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </ng-template>
+    <p class="info-text mat-body-1" *ngIf="internalService.allInternal.length <= 0">No Internal added yet!</p>
   </div>
 </div>

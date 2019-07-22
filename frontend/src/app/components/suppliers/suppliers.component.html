@@ -2,7 +2,7 @@
   <div class="col s12 m12 l12 xl4">
     <div class="card">
       <div class="card-action white-text" id="card_back">
-        <span class="card-title"><b>Suppliers</b></span>
+        <span class="card-title"><b>Proveedores</b></span>
       </div>
 
       <form #supplierForm="ngForm" (ngSubmit)="addSupplier(supplierForm)">
@@ -53,12 +53,12 @@
   </div>
 
   <div class="col s12 m12 l12 xl8">
-    <table class="card responsive-table highlight">
+    <table class="card responsive-table highlight" *ngIf="supplierService.suppliers.length > 0">
       <thead>
-        <th>Company</th>
-        <th>Contact</th>
-        <th>Phone</th>
-        <th>Operations</th>
+        <th>Compañia</th>
+        <th>Contacto</th>
+        <th>Telefono</th>
+        <th>Operaciones</th>
       </thead>
       <tbody>
         <tr *ngFor="let supplier of supplierService.suppliers">
@@ -76,5 +76,6 @@
         </tr>
       </tbody>
     </table>
+    <p class="info-text mat-body-1" *ngIf="supplierService.suppliers.length <= 0"><b>No suppliers added yet!</b></p>
   </div>
 </div>

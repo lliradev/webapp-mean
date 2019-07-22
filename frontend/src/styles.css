@@ -28,6 +28,10 @@ table td {
     background: #706fd3;
 }
 
-#icon-cursor{
+#icon-cursor {
     cursor: pointer;
+}
+
+.info-text {
+    text-align: center;
 }

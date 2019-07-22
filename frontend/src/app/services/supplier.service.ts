@@ -8,7 +8,7 @@ import { environment } from '../../environments/environment';
 })
 export class SupplierService {
   selectedSupplier: Supplier;
-  suppliers: Supplier[];
+  suppliers: Supplier[] = [];
   readonly API = '/suppliers';
 
   constructor(private http: HttpClient) {

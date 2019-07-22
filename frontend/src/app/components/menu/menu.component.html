@@ -4,6 +4,9 @@
     <mat-tab label="Menu">
       <div class="col s12 m12 l12 xl4">
         <div class="card">
+          <div class="card-action white-text" id="card_back">
+            <span class="card-title"><b>Menus</b></span>
+          </div>
           <form #menuForm="ngForm" (ngSubmit)="addMenu(menuForm)">
             <div class="card-content">
               <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="menuService.selectedMenu._id">
@@ -48,7 +51,7 @@
 
     <mat-tab label="Lista de menus">
       <div class="col s12 m12 l12 xl12">
-        <table class="card responsive-table">
+        <table class="card responsive-table" *ngIf="menuService.menus.length > 0">
           <thead>
             <tr>
               <th>Tipo de alimento</th>
@@ -73,6 +76,7 @@
             </tr>
           </tbody>
         </table>
+        <p class="info-text mat-body-1" *ngIf="menuService.menus.length <= 0">No menus added yet!</p>
       </div>
     </mat-tab>
 

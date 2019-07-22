@@ -8,7 +8,7 @@ import { environment } from '../../environments/environment';
 })
 export class MenuService {
   selectedMenu: Menu;
-  menus: Menu[];
+  menus: Menu[] = [];
   readonly API = '/menus';
 
   constructor(private http: HttpClient) {
