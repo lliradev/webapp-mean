@@ -1,66 +1,76 @@
 <div class="row">
-  <div class="col s12 m12 l12 xl4">
-    <div class="card">
-      <div class="card-action white-text" id="card_back">
-        <span class="card-title"><b>Fotos</b></span>
-      </div>
-      <form #photoForm="ngForm" (ngSubmit)="addPhoto(title, description, imageURL)">
-        <div class="card-content">
-          <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="photoService.selectedPhoto._id">
-          <div class="row">
-            <div class="input-field col s12">
-              <input type="text" name="title" #title="ngModel" id="title" [(ngModel)]="photoService.selectedPhoto.title"
-                placeholder="Título">
-            </div>
-            <div class="input-field col s12">
-              <textarea name="description" #description="ngModel" [(ngModel)]="photoService.selectedPhoto.description"
-                class="materialize-textarea" placeholder="Descripción"></textarea>
-            </div>
-            <div class="file-field col s12">
-              <div class="btn">
-                <span>Archivo</span>
-                <input type="file" name="imageURL" #imageURL="ngModel" [(ngModel)]="photoService.selectedPhoto.imageURL"
-                  accept="image/*" (change)="handleFileInput($event.target.files)">
+  <mat-tab-group mat-align-tabs="center">
+
+    <mat-tab label="Registro">
+      <div class="col s12 m12 l6 offset-l3">
+        <div class="card">
+          <div class="card-action white-text" id="card_back">
+            <span class="card-title"><b>Fotos</b></span>
+          </div>
+          <form #photoForm="ngForm" (ngSubmit)="addPhoto(title, description, imageURL)">
+            <div class="card-content">
+              <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="photoService.selectedPhoto._id">
+              <div class="row">
+                <div class="input-field col s12">
+                  <input type="text" name="title" #title="ngModel" id="title"
+                    [(ngModel)]="photoService.selectedPhoto.title" placeholder="Título">
+                </div>
+                <div class="input-field col s12">
+                  <textarea name="description" #description="ngModel"
+                    [(ngModel)]="photoService.selectedPhoto.description" class="materialize-textarea"
+                    placeholder="Descripción"></textarea>
+                </div>
+                <div class="file-field col s12">
+                  <div class="btn">
+                    <span>Archivo</span>
+                    <input type="file" name="imageURL" #imageURL="ngModel"
+                      [(ngModel)]="photoService.selectedPhoto.imageURL" accept="image/*"
+                      (change)="handleFileInput($event.target.files)">
+                  </div>
+                  <div class="file-path-wrapper">
+                    <input class="file-path validate" type="text">
+                  </div>
+                </div>
               </div>
-              <div class="file-path-wrapper">
-                <input class="file-path validate" type="text">
+              <!-- SHOW IMAGE -->
+            </div>
+            <div class="card-action">
+              <button mat-raised-button color="accent" class="btn">Save</button>
+              <button mat-raised-button color="warn" class="btn right" (click)="resetForm(photoForm)">Clear</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </mat-tab>
+
+    <mat-tab label="Lista">
+      <div class="col s12 m12 l12 xl12">
+        <ng-template [ngIf]="photoService.photos.length > 0">
+          <div class="row">
+            <div *ngFor="let photo of photoService.photos">
+              <div class="col s12 m12 l4">
+                <div class="card">
+                  <div class="card-image">
+                    <img src="{{ photo.imageURL }}" class="materialboxed">
+                    <h1 class="card-title mat-h1"><b>{{ photo.title }}</b></h1>
+                  </div>
+                  <div class="card-content">
+                    <p>{{ photo.description }}</p>
+                    <a mat-button href="{{ photo.imageURL }}" target="_blanck">View picture</a>
+                  </div>
+                  <div class="card-action">
+                    <a mat-raised-button (click)="editPhoto(photo)" class="black-text" disabled>Edit</a>
+                    <a mat-raised-button (click)="deletePhoto(photo._id)" color="warn" class="btn right">Delete</a>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-          <!-- SHOW IMAGE -->
-        </div>
-        <div class="card-action">
-          <button mat-raised-button color="accent" class="btn">Save</button>
-          <button mat-raised-button color="warn" class="btn right" (click)="resetForm(photoForm)">Clear</button>
-        </div>
-      </form>
-    </div>
-  </div>
+        </ng-template>
+        <p class="info-text mat-body-1" *ngIf="photoService.photos.length <= 0">No photos added yet!</p>
+      </div>
+    </mat-tab>
 
-  <div class="col s12 m12 l12 xl8">
-    <table class="card responsive-table" *ngIf="photoService.photos.length > 0">
-      <thead>
-        <tr>
-          <th>Titulo</th>
-          <th>Descripción</th>
-          <th>Operations</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let photo of photoService.photos">
-          <td>{{ photo.title }}</td>
-          <td>{{ photo.description }}</td>
-          <td>
-            <a href="{{ photo.imageURL }}" target="_blanck">
-              <i class="material-icons">local_see</i>
-            </a>
-            <a (click)="deletePhoto(photo._id)">
-              <i id="icon-cursor" class="material-icons">delete</i>
-            </a>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <p class="info-text mat-body-1" *ngIf="photoService.photos.length <= 0">No photos added yet!</p>
-  </div>
+
+  </mat-tab-group>
 </div>

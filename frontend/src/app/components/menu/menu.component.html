@@ -1,8 +1,8 @@
 <div class="row">
   <mat-tab-group mat-align-tabs="center">
 
-    <mat-tab label="Menu">
-      <div class="col s12 m12 l12 xl4">
+    <mat-tab label="Registro">
+      <div class="col s12 m12 l6 offset-l3">
         <div class="card">
           <div class="card-action white-text" id="card_back">
             <span class="card-title"><b>Menus</b></span>
@@ -49,33 +49,36 @@
       </div>
     </mat-tab>
 
-    <mat-tab label="Lista de menus">
+    <mat-tab label="Lista">
       <div class="col s12 m12 l12 xl12">
-        <table class="card responsive-table" *ngIf="menuService.menus.length > 0">
-          <thead>
-            <tr>
-              <th>Tipo de alimento</th>
-              <th>Nombre</th>
-              <th>Precio</th>
-              <th>Operations</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let menu of menuService.menus">
-              <td>{{ menu.type }}</td>
-              <td>{{ menu.name }}</td>
-              <td>{{ menu.price | currency}}</td>
-              <td>
-                <a (click)="editMenu(menu)">
-                  <i id="icon-cursor" class="material-icons">edit</i>
-                </a>
-                <a (click)="deleteMenu(menu._id)">
-                  <i id="icon-cursor" class="material-icons">delete</i>
-                </a>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <ng-template [ngIf]="menuService.menus.length > 0">
+          <table class="card responsive-table">
+            <thead>
+              <tr>
+                <th>Tipo de alimento</th>
+                <th>Nombre</th>
+                <th>Precio</th>
+                <th>Operations</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let menu of menuService.menus | paginate: {itemsPerPage: 5, currentPage: p}">
+                <td>{{ menu.type }}</td>
+                <td>{{ menu.name }}</td>
+                <td>{{ menu.price | currency}}</td>
+                <td>
+                  <a (click)="editMenu(menu)">
+                    <i id="icon-cursor" class="material-icons">edit</i>
+                  </a>
+                  <a (click)="deleteMenu(menu._id)">
+                    <i id="icon-cursor" class="material-icons">delete</i>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <pagination-controls class="my-pagination mat-body-1" (pageChange)="p = $event"></pagination-controls>
+        </ng-template>
         <p class="info-text mat-body-1" *ngIf="menuService.menus.length <= 0">No menus added yet!</p>
       </div>
     </mat-tab>

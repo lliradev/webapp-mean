@@ -10,7 +10,8 @@ declare var M: any;
   styleUrls: ['./internal.component.css']
 })
 export class InternalComponent implements OnInit {
-  filterAllInternal = '';
+  filterInternal = '';
+  p: number = 1;
 
   constructor(public internalService: InternalService) { } //Cambiar despues a private
 
@@ -65,4 +66,8 @@ export class InternalComponent implements OnInit {
     }
   }
 
+  getTotalAmount() {
+    return this.internalService.allInternal.map(i => i.amount).reduce((acc, value) => acc + value, 0);
+  }
+  
 }//End class

@@ -10,6 +10,7 @@ declare var M: any;
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
+  p: number = 1;
 
   constructor(public menuService: MenuService) { } //Cambiar despues a private
 

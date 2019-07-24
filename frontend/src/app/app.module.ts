@@ -25,7 +25,8 @@ import { AuthGuard } from './auth/auth.guard';
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { FilterInternalPipe } from './pipes/filter-internal.pipe';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
-import { ToolbarComponent } from './components/toolbar/toolbar.component';
+import { FilterCountInternalPipe } from './pipes/filter-count-internal.pipe';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
     declarations: [
@@ -41,7 +42,7 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
         SignInComponent,
         FilterInternalPipe,
         SidenavComponent,
-        ToolbarComponent
+        FilterCountInternalPipe
     ],
     imports: [
         BrowserModule,
@@ -49,7 +50,8 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
         FormsModule,
         HttpClientModule,
         MaterialModule,
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
+        NgxPaginationModule
     ],
     providers: [{
         provide: HTTP_INTERCEPTORS,

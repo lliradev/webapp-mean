@@ -11,10 +11,9 @@ declare var M: any;
   providers: [SupplierService]
 })
 export class SuppliersComponent implements OnInit {
+  p: number = 1;
 
   constructor(public supplierService: SupplierService) { } //Cambiar despues a private
-  displayedColumns: string[] = ['company', 'contact', 'phone', 'operations'];
-  dataSource = this.supplierService.suppliers;
 
   ngOnInit() {
     this.getSuppliers();

@@ -7,13 +7,13 @@ export class FilterInternalPipe implements PipeTransform {
 
   transform(value: any, arg: any): any {
     if (arg === '' || arg.length < 3) return value;
-    const resultAllInternal = [];
+    const resultInternal = [];
     for (const internal of value) {
       if (internal.responsible.toLowerCase().indexOf(arg.toLowerCase()) > -1) {
-        resultAllInternal.push(internal);
+        resultInternal.push(internal);
       };
     };
-    return resultAllInternal;
+    return resultInternal;
   }
 
 }

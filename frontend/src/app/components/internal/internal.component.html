@@ -1,80 +1,96 @@
 <div class="row">
-  <div class="col s12 m12 l12 xl4">
-    <div class="card">
-      <div class="card-action white-text" id="card_back">
-        <span class="card-title"><b>Gastos Internos</b></span>
-      </div>
+  <mat-tab-group mat-align-tabs="center">
 
-      <form #internalForm="ngForm" (ngSubmit)="addInternal(internalForm)">
-        <div class="card-content">
-          <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="internalService.selectedInternal._id">
-          <div class="row">
-            <label>Tipo de gasto</label>
-            <select class="browser-default" name="type" #type="ngModel"
-              [(ngModel)]="internalService.selectedInternal.type">
-              <option value="" disabled selected>Elige una opción</option>
-              <option value="Aumento de salario">Aumento de salario</option>
-              <option value="Gas">Gas</option>
-              <option value="Agua">Agua</option>
-              <option value="Internet">Internet</option>
-              <option value="Comida">Comida</option>
-            </select>
-            <div class="input-field col s12">
-              <input type="text" name="responsible" #responsible="ngModel"
-                [(ngModel)]="internalService.selectedInternal.responsible" placeholder="Ingrese responsable" required>
-            </div>
-            <div class="input-field col s12">
-              <input type="number" name="amount" #amount="ngModel" [(ngModel)]="internalService.selectedInternal.amount"
-                placeholder="Ingrese monto" required>
-            </div>
-            <div class="input-field col s12">
-              <textarea name="reason" #reason="ngModel" [(ngModel)]="internalService.selectedInternal.reason" cols="30"
-                rows="20" class="materialize-textarea" placeholder="Escriba el motivo" required></textarea>
-            </div>
+    <mat-tab label="Registro">
+      <div class="col s12 m12 l6 offset-l3">
+        <div class="card">
+          <div class="card-action white-text" id="card_back">
+            <span class="card-title"><b>Gastos Internos</b></span>
           </div>
+          <form #internalForm="ngForm" (ngSubmit)="addInternal(internalForm)">
+            <div class="card-content">
+              <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="internalService.selectedInternal._id">
+              <div class="row">
+                <label>Tipo de gasto</label>
+                <select class="browser-default" name="type" #type="ngModel"
+                  [(ngModel)]="internalService.selectedInternal.type">
+                  <option value="" disabled selected>Elige una opción</option>
+                  <option value="Aumento de salario">Aumento de salario</option>
+                  <option value="Gas">Gas</option>
+                  <option value="Agua">Agua</option>
+                  <option value="Internet">Internet</option>
+                  <option value="Comida">Comida</option>
+                </select>
+                <div class="input-field col s12">
+                  <input type="text" name="responsible" #responsible="ngModel"
+                    [(ngModel)]="internalService.selectedInternal.responsible" placeholder="Ingrese responsable"
+                    required>
+                </div>
+                <div class="input-field col s12">
+                  <input type="number" name="amount" #amount="ngModel"
+                    [(ngModel)]="internalService.selectedInternal.amount" placeholder="Ingrese monto" required>
+                </div>
+                <div class="input-field col s12">
+                  <textarea name="reason" #reason="ngModel" [(ngModel)]="internalService.selectedInternal.reason"
+                    cols="30" rows="20" class="materialize-textarea" placeholder="Escriba el motivo"
+                    required></textarea>
+                </div>
+              </div>
+            </div>
+            <div class="card-action">
+              <button mat-raised-button color="accent" class="btn">
+                Save
+              </button>
+              <button mat-raised-button color="warn" class="btn right" (click)="resetForm(internalForm)">
+                Clear
+              </button>
+            </div>
+          </form>
         </div>
-        <div class="card-action">
-          <button mat-raised-button color="accent" class="btn">
-            Save
-          </button>
-          <button mat-raised-button color="warn" class="btn right" (click)="resetForm(internalForm)">
-            Clear
-          </button>
-        </div>
-      </form>
-    </div>
-  </div>
+      </div>
+    </mat-tab>
 
-  <div class="col s12 m12 l12 xl8">
-    <ng-template [ngIf]="internalService.allInternal.length > 0">
-      <input type="text" name="filterAllInternal" placeholder="Buscar..." [(ngModel)]="filterAllInternal">
+    <mat-tab label="Lista">
+      <div class="col s12 m12 l12 xl12">
+        <ng-template [ngIf]="internalService.allInternal.length > 0">
+          <div class="search-form-field">
+            <input type="text" name="filterInternal" class="input-search" placeholder="Buscar..."
+              [(ngModel)]="filterInternal">
+          </div>
 
-      <table class="card responsive-table">
-        <thead>
-          <tr>
-            <th>Tipo de gasto</th>
-            <th>Responsable</th>
-            <th>Monto</th>
-            <th>Operations</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let internal of internalService.allInternal | filterInternal:filterAllInternal">
-            <td>{{ internal.type }}</td>
-            <td>{{ internal.responsible }}</td>
-            <td>{{ internal.amount | currency}}</td>
-            <td>
-              <a (click)="editInternal(internal)">
-                <i id="icon-cursor" class="material-icons">edit</i>
-              </a>
-              <a (click)="deleteInternal(internal._id)">
-                <i id="icon-cursor" class="material-icons">delete</i>
-              </a>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </ng-template>
-    <p class="info-text mat-body-1" *ngIf="internalService.allInternal.length <= 0">No Internal added yet!</p>
-  </div>
+
+          <table class="card responsive-table">
+            <thead>
+              <tr>
+                <th>Tipo de gasto</th>
+                <th>Responsable</th>
+                <th>Monto</th>
+                <th>Operations</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let internal of internalService.allInternal | filterInternal:filterInternal
+              | paginate: {itemsPerPage: 5, currentPage: p}">
+                <td>{{ internal.type }}</td>
+                <td>{{ internal.responsible }}</td>
+                <td>{{ internal.amount | currency}}</td>
+                <td>
+                  <a (click)="editInternal(internal)">
+                    <i id="icon-cursor" class="material-icons">edit</i>
+                  </a>
+                  <a (click)="deleteInternal(internal._id)">
+                    <i id="icon-cursor" class="material-icons">delete</i>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+            <p class="info-text mat-body-1"><b>Total:</b> {{ getTotalAmount() | currency }}</p>
+          </table>
+          <pagination-controls class="my-pagination mat-body-1" (pageChange)="p = $event"></pagination-controls>
+        </ng-template>
+        <p class="info-text mat-body-1" *ngIf="internalService.allInternal.length <= 0">No Internal added yet!</p>
+      </div>
+    </mat-tab>
+
+  </mat-tab-group>
 </div>
