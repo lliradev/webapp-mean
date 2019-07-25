@@ -17,7 +17,9 @@ const UserSchema = new Schema({
         required: 'Password can\'t be empty!',
         minlength: [4, 'Password must be atleast 4 character long']
     },
-    saltSecret: String
+    saltSecret: String,
+    resetPasswordToken: String,
+    resetPasswordExpires: Date
 });
 
 // Custom validation for email

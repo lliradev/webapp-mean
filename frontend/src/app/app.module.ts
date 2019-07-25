@@ -27,6 +27,7 @@ import { FilterInternalPipe } from './pipes/filter-internal.pipe';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { FilterCountInternalPipe } from './pipes/filter-count-internal.pipe';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { ForgotPasswordComponent } from './components/user/forgot-password/forgot-password.component';
 
 @NgModule({
     declarations: [
@@ -42,7 +43,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
         SignInComponent,
         FilterInternalPipe,
         SidenavComponent,
-        FilterCountInternalPipe
+        FilterCountInternalPipe,
+        ForgotPasswordComponent
     ],
     imports: [
         BrowserModule,

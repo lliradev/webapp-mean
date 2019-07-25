@@ -13,12 +13,12 @@
               <div class="row">
                 <div class="input-field col s12">
                   <input type="text" name="title" #title="ngModel" id="title"
-                    [(ngModel)]="photoService.selectedPhoto.title" placeholder="Título">
+                    [(ngModel)]="photoService.selectedPhoto.title" placeholder="Título" required>
                 </div>
                 <div class="input-field col s12">
                   <textarea name="description" #description="ngModel"
                     [(ngModel)]="photoService.selectedPhoto.description" class="materialize-textarea"
-                    placeholder="Descripción"></textarea>
+                    placeholder="Descripción" required></textarea>
                 </div>
                 <div class="file-field col s12">
                   <div class="btn">
@@ -33,9 +33,11 @@
                 </div>
               </div>
               <!-- SHOW IMAGE -->
+              <img [src]="thumbnail" class="responsive-img">
             </div>
             <div class="card-action">
-              <button mat-raised-button color="accent" class="btn">Save</button>
+              <button mat-raised-button color="accent" class="btn"
+                [disabled]="imageURL.value=='' || !photoForm.valid">Save</button>
               <button mat-raised-button color="warn" class="btn right" (click)="resetForm(photoForm)">Clear</button>
             </div>
           </form>
@@ -47,11 +49,11 @@
       <div class="col s12 m12 l12 xl12">
         <ng-template [ngIf]="photoService.photos.length > 0">
           <div class="row">
-            <div *ngFor="let photo of photoService.photos">
+            <div *ngFor="let photo of photoService.photos | paginate: {itemsPerPage: 6, currentPage: p}">
               <div class="col s12 m12 l4">
                 <div class="card">
                   <div class="card-image">
-                    <img src="{{ photo.imageURL }}" class="materialboxed">
+                    <img src="{{ photo.imageURL }}">
                     <h1 class="card-title mat-h1"><b>{{ photo.title }}</b></h1>
                   </div>
                   <div class="card-content">
@@ -66,11 +68,11 @@
               </div>
             </div>
           </div>
+          <pagination-controls class="my-pagination mat-body-1" (pageChange)="p = $event"></pagination-controls>
         </ng-template>
         <p class="info-text mat-body-1" *ngIf="photoService.photos.length <= 0">No photos added yet!</p>
       </div>
     </mat-tab>
-
 
   </mat-tab-group>
 </div>

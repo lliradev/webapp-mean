@@ -17,7 +17,9 @@
           <div *ngIf="signInForm.submitted && password.errors?.minlength">
             <label class="validation-message">Minimum 4 characters.</label>
           </div>
+          <a routerLink="/forgot">Forgot password?</a>
         </div>
+
         <div class="card-action">
           <button mat-raised-button color="primary" type="submit">Sign In</button>
         </div>

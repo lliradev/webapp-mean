@@ -13,6 +13,7 @@ import { SignInComponent } from './components/user/sign-in/sign-in.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 
 import { AuthGuard } from './auth/auth.guard';
+import { ForgotPasswordComponent } from './components/user/forgot-password/forgot-password.component';
 
 const routes: Routes = [
   {
@@ -24,16 +25,20 @@ const routes: Routes = [
     children: [{ path: '', component: SignInComponent }]
   },
   {
-    path: 'profile', component: UserProfileComponent, canActivate: [AuthGuard]
+    path: 'forgot', component: UserComponent,
+    children: [{ path: '', component: ForgotPasswordComponent }]
   },
   {
-    path: '', redirectTo: '/login', pathMatch: 'full'
+    path: 'profile', component: UserProfileComponent, canActivate: [AuthGuard]
   },
   { path: 'photos', component: PhotosComponent, canActivate: [AuthGuard] },
   { path: 'suppliers', component: SuppliersComponent, canActivate: [AuthGuard] },
   { path: 'internal', component: InternalComponent, canActivate: [AuthGuard] },
   { path: 'menu', component: MenuComponent, canActivate: [AuthGuard] },
-  { path: 'home', component: HomeComponent }
+  { path: 'home', component: HomeComponent },
+  {
+    path: '', redirectTo: '/login', pathMatch: 'full'
+  }
 ];
 
 @NgModule({

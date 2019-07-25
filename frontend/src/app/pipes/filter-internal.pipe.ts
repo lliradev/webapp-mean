@@ -11,9 +11,9 @@ export class FilterInternalPipe implements PipeTransform {
     for (const internal of value) {
       if (internal.responsible.toLowerCase().indexOf(arg.toLowerCase()) > -1) {
         resultInternal.push(internal);
-      };
-    };
+      }
+    }
     return resultInternal;
   }
 
-}
+}//End class

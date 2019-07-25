@@ -11,8 +11,9 @@ declare var M: any;
   providers: [PhotoService]
 })
 export class PhotosComponent implements OnInit {
-  imageURL: string;
+  thumbnail: string = '/assets/img/image.png'; // thumbnail
   fileToUpload: File = null; //<----
+  p: number = 1;
 
   constructor(public photoService: PhotoService) { } //Cambiar despues a private
 
@@ -25,18 +26,19 @@ export class PhotosComponent implements OnInit {
     //Show image preview
     var reader = new FileReader();
     reader.onload = (event: any) => {
-      this.imageURL = event.target.result;
+      this.thumbnail = event.target.result;
     }
     reader.readAsDataURL(this.fileToUpload);
   }
 
   addPhoto(title, description, imageURL) {
-    this.photoService.postPhoto(title.value, description.value, this.fileToUpload)
-      .subscribe(res => {
-        this.resetForm();
+    this.photoService.postPhoto(title.value, description.value, this.fileToUpload).subscribe(
+      res => {
+        this.thumbnail = '/assets/img/image.png';
         M.toast({ html: 'Saved successfully!', classes: 'rounded' });
         this.getPhotos();
-      });
+      }
+    );
   }
 
   getPhotos() {
@@ -62,10 +64,7 @@ export class PhotosComponent implements OnInit {
   }
 
   resetForm(form?: NgForm) {
-    if (form) {
-      form.resetForm();
-      this.photoService.selectedPhoto = new Photo();
-    }
+    form.reset();
   }
 
 }//End class

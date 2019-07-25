@@ -13,7 +13,7 @@
               <div class="row">
                 <label>Tipo de gasto</label>
                 <select class="browser-default" name="type" #type="ngModel"
-                  [(ngModel)]="internalService.selectedInternal.type">
+                  [(ngModel)]="internalService.selectedInternal.type" required>
                   <option value="" disabled selected>Elige una opción</option>
                   <option value="Aumento de salario">Aumento de salario</option>
                   <option value="Gas">Gas</option>
@@ -38,7 +38,8 @@
               </div>
             </div>
             <div class="card-action">
-              <button mat-raised-button color="accent" class="btn">
+              <button mat-raised-button color="accent" class="btn"
+              [disabled]="!internalForm.valid">
                 Save
               </button>
               <button mat-raised-button color="warn" class="btn right" (click)="resetForm(internalForm)">
@@ -54,10 +55,9 @@
       <div class="col s12 m12 l12 xl12">
         <ng-template [ngIf]="internalService.allInternal.length > 0">
           <div class="search-form-field">
-            <input type="text" name="filterInternal" class="input-search" placeholder="Buscar..."
+            <input type="text" name="filterInternal" placeholder="Buscar..."
               [(ngModel)]="filterInternal">
           </div>
-
 
           <table class="card responsive-table">
             <thead>

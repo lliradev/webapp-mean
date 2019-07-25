@@ -9,6 +9,7 @@
         </a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
           <div *ngIf="!user.isLoggedIn(); else logout">
+            <li routerLinkActive="active current"><a routerLink="/home">Home</a></li>
             <li routerLinkActive="active current"><a routerLink="/signup">Sign Up</a></li>
             <li routerLinkActive="active current"><a routerLink="/login">Sign In</a></li>
           </div>
@@ -56,6 +57,7 @@
     <li>
       <div class="divider"></div>
     </li>
+    <li routerLinkActive="active current"><a routerLink="/home" class="sidenav-close">Home</a></li>
     <li routerLinkActive="active current"><a routerLink="/signup" class="sidenav-close">Sign Up</a></li>
     <li routerLinkActive="active current"><a routerLink="/login" class="sidenav-close">Sign In</a></li>
   </div>

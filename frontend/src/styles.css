@@ -41,19 +41,9 @@ table td {
 .search-form-field {
     margin-top: 1rem;
     width: 100%;
-    padding: 5px 10px;
-    background-color: #f5f5f5;
-    border-radius: 15px;
 }
 
-.input-search {
-    border-bottom: none;
-    outline: none;
-    border-bottom: none!important;
-    box-shadow: none!important;
-}
-
-.my-pagination /deep/ .ngx-pagination .current {
+.my-pagination .ngx-pagination .current {
     background: #706fd3;
     /* 673ab7 */
 }
