@@ -1,13 +1,13 @@
 <div class="row">
   <mat-tab-group mat-align-tabs="center">
 
-    <mat-tab label="Registro">
+    <mat-tab label="Registro" *ngIf="step === 1" (opened)="setStep(1)">
       <div class="col s12 m12 l6 offset-l3">
         <div class="card">
           <div class="card-action white-text" id="card_back">
             <span class="card-title"><b>Gastos Internos</b></span>
           </div>
-          <form #internalForm="ngForm" (ngSubmit)="addInternal(internalForm)">
+          <form #internalForm="ngForm" (ngSubmit)="addInternal(internalForm); prevStep()">
             <div class="card-content">
               <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="internalService.selectedInternal._id">
               <div class="row">
@@ -38,11 +38,11 @@
               </div>
             </div>
             <div class="card-action">
-              <button mat-raised-button color="accent" class="btn"
-              [disabled]="!internalForm.valid">
+              <button mat-raised-button color="accent" class="btn" [disabled]="!internalForm.valid">
                 Save
               </button>
-              <button mat-raised-button color="warn" class="btn right" (click)="resetForm(internalForm)">
+              <button mat-raised-button color="warn" type="button" class="btn right"
+                (click)="resetForm(internalForm); prevStep()">
                 Clear
               </button>
             </div>
@@ -51,12 +51,17 @@
       </div>
     </mat-tab>
 
-    <mat-tab label="Lista">
+    <mat-tab label="Lista" *ngIf="step === 0" (opened)="setStep(0)">
       <div class="col s12 m12 l12 xl12">
         <ng-template [ngIf]="internalService.allInternal.length > 0">
-          <div class="search-form-field">
-            <input type="text" name="filterInternal" placeholder="Buscar..."
-              [(ngModel)]="filterInternal">
+          <div class="search-div">
+            <button mat-raised-button color="primary" (click)="nextStep()">
+              <mat-icon>add</mat-icon>
+              Create
+            </button>
+            <div class="search-form-field">
+              <input type="text" name="filterInternal" placeholder="Buscar..." [(ngModel)]="filterInternal">
+            </div>
           </div>
 
           <table class="card responsive-table">
@@ -70,12 +75,12 @@
             </thead>
             <tbody>
               <tr *ngFor="let internal of internalService.allInternal | filterInternal:filterInternal
-              | paginate: {itemsPerPage: 5, currentPage: p}">
+                | paginate: {itemsPerPage: 5, currentPage: p}">
                 <td>{{ internal.type }}</td>
                 <td>{{ internal.responsible }}</td>
                 <td>{{ internal.amount | currency}}</td>
                 <td>
-                  <a (click)="editInternal(internal)">
+                  <a (click)="editInternal(internal); nextStep()">
                     <i id="icon-cursor" class="material-icons">edit</i>
                   </a>
                   <a (click)="deleteInternal(internal._id)">
@@ -88,7 +93,11 @@
           </table>
           <pagination-controls class="my-pagination mat-body-1" (pageChange)="p = $event"></pagination-controls>
         </ng-template>
-        <p class="info-text mat-body-1" *ngIf="internalService.allInternal.length <= 0">No Internal added yet!</p>
+
+        <ng-template [ngIf]="internalService.allInternal.length <= 0">
+          <p class="info-text mat-body-1">No Internal added yet!</p>
+          <button mat-raised-button color="primary" (click)="nextStep()">Add new Internal</button>
+        </ng-template>
       </div>
     </mat-tab>
 

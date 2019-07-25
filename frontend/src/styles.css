@@ -37,9 +37,10 @@ table td {
 }
 
 /* Filter controls */
-
-.search-form-field {
+.search-div{
     margin-top: 1rem;
+}
+.search-form-field {
     width: 100%;
 }
 
