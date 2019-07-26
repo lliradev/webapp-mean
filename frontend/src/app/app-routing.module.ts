@@ -14,6 +14,8 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
 
 import { AuthGuard } from './auth/auth.guard';
 import { ForgotPasswordComponent } from './components/user/forgot-password/forgot-password.component';
+import { EditProfileComponent } from './components/user-profile/edit-profile/edit-profile.component';
+import { ResetPasswordComponent } from './components/user/reset-password/reset-password.component';
 
 const routes: Routes = [
   {
@@ -36,6 +38,8 @@ const routes: Routes = [
   { path: 'internal', component: InternalComponent, canActivate: [AuthGuard] },
   { path: 'menu', component: MenuComponent, canActivate: [AuthGuard] },
   { path: 'home', component: HomeComponent },
+  { path: 'edit', component: EditProfileComponent },
+  { path: 'reset/:token', component: ResetPasswordComponent },
   {
     path: '', redirectTo: '/login', pathMatch: 'full'
   }

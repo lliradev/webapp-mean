@@ -6,7 +6,7 @@
       </div>
       <form #signUpForm="ngForm" (ngSubmit)="signUpForm.valid && onSubmit(signUpForm)">
         <div class="card-content">
-          <input type="text" #fullname="ngModel" [(ngModel)]="userService.selectedUser.fullname" name="fullname"
+          <input type="text" name="fullname" #fullname="ngModel" [(ngModel)]="userService.selectedUser.fullname" 
             placeholder="Full Name" required [ngClass]="{'invalid-textbox' :signUpForm.submitted && !fullname.valid }">
           <div *ngIf="signUpForm.submitted && !fullname.valid">
             <label class="validation-message">This field is required.</label>

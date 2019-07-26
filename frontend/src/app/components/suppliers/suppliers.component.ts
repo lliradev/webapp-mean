@@ -11,6 +11,7 @@ declare var M: any;
   providers: [SupplierService]
 })
 export class SuppliersComponent implements OnInit {
+  filterSupplier = '';
   p: number = 1;
 
   constructor(public supplierService: SupplierService) { } //Cambiar despues a private
@@ -64,6 +65,20 @@ export class SuppliersComponent implements OnInit {
       form.reset();
       this.supplierService.selectedSupplier = new Supplier();
     }
+  }
+
+  /* Tabs */
+  step = 0;
+  setStep(index: number) {
+    this.step = index;
+  }
+
+  nextStep() {
+    this.step++;
+  }
+
+  prevStep() {
+    this.step--;
   }
 
 }//End class

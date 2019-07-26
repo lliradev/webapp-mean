@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
-import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
 
 @Component({
-  selector: 'app-forgot-password',
-  templateUrl: './forgot-password.component.html',
-  styleUrls: ['./forgot-password.component.css']
+  selector: 'app-reset-password',
+  templateUrl: './reset-password.component.html',
+  styleUrls: ['./reset-password.component.css']
 })
-export class ForgotPasswordComponent implements OnInit {
+export class ResetPasswordComponent implements OnInit {
 
   constructor(public userService: UserService, private router: Router) { }
 
@@ -16,7 +16,7 @@ export class ForgotPasswordComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-    this.userService.postForgot(form.value)
+    this.userService.postReset(form.value)
       .subscribe(res => {
         this.resetForm(form);
         this.router.navigate(['/login']);

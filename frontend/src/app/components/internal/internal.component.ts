@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { InternalService } from 'src/app/services/internal.service';
-import { NgForm, FormControl } from '@angular/forms';
+import { NgForm } from '@angular/forms';
 import { Internal } from 'src/app/models/internal';
 declare var M: any;
 
@@ -70,6 +70,7 @@ export class InternalComponent implements OnInit {
     return this.internalService.allInternal.map(i => i.amount).reduce((acc, value) => acc + value, 0);
   }
 
+  /* Tabs */
   step = 0;
   setStep(index: number) {
     this.step = index;

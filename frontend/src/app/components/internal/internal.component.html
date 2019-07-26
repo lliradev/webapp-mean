@@ -43,7 +43,7 @@
               </button>
               <button mat-raised-button color="warn" type="button" class="btn right"
                 (click)="resetForm(internalForm); prevStep()">
-                Clear
+                Cancel
               </button>
             </div>
           </form>
@@ -57,7 +57,7 @@
           <div class="search-div">
             <button mat-raised-button color="primary" (click)="nextStep()">
               <mat-icon>add</mat-icon>
-              Create
+              Nuevo
             </button>
             <div class="search-form-field">
               <input type="text" name="filterInternal" placeholder="Buscar..." [(ngModel)]="filterInternal">
@@ -95,8 +95,8 @@
         </ng-template>
 
         <ng-template [ngIf]="internalService.allInternal.length <= 0">
-          <p class="info-text mat-body-1">No Internal added yet!</p>
-          <button mat-raised-button color="primary" (click)="nextStep()">Add new Internal</button>
+          <p class="info-text mat-body-1">No hay Gastos agregados todavía!</p>
+          <button mat-raised-button color="primary" (click)="nextStep()">Crear nuevo gasto</button>
         </ng-template>
       </div>
     </mat-tab>

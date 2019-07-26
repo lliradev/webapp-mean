@@ -12,7 +12,7 @@ import {
     MatListModule,
     MatTabsModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
 } from '@angular/material';
 
 @NgModule({
@@ -27,7 +27,7 @@ import {
         MatListModule,
         MatTabsModule,
         MatFormFieldModule,
-        MatInputModule
+        MatInputModule,
     ],
     exports: [
         MatButtonModule,
@@ -40,7 +40,7 @@ import {
         MatListModule,
         MatTabsModule,
         MatFormFieldModule,
-        MatInputModule
+        MatInputModule,
     ]
 })
 export class MaterialModule { }

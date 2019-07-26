@@ -33,12 +33,12 @@
                 </div>
               </div>
               <!-- SHOW IMAGE -->
-              <img [src]="thumbnail" class="responsive-img">
+              <img [src]="thumbnail" class="center responsive-img">
             </div>
             <div class="card-action">
               <button mat-raised-button color="accent" class="btn"
                 [disabled]="imageURL.value=='' || !photoForm.valid">Save</button>
-              <button mat-raised-button color="warn" class="btn right" (click)="resetForm(photoForm)">Clear</button>
+              <button mat-raised-button color="warn" class="btn right" (click)="resetForm(photoForm)">Cancel</button>
             </div>
           </form>
         </div>

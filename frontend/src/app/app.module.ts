@@ -25,9 +25,11 @@ import { AuthGuard } from './auth/auth.guard';
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { FilterInternalPipe } from './pipes/filter-internal.pipe';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
-import { FilterCountInternalPipe } from './pipes/filter-count-internal.pipe';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ForgotPasswordComponent } from './components/user/forgot-password/forgot-password.component';
+import { EditProfileComponent } from './components/user-profile/edit-profile/edit-profile.component';
+import { FilterSupplierPipe } from './pipes/filter-supplier.pipe';
+import { ResetPasswordComponent } from './components/user/reset-password/reset-password.component';
 
 @NgModule({
     declarations: [
@@ -43,8 +45,10 @@ import { ForgotPasswordComponent } from './components/user/forgot-password/forgo
         SignInComponent,
         FilterInternalPipe,
         SidenavComponent,
-        FilterCountInternalPipe,
-        ForgotPasswordComponent
+        ForgotPasswordComponent,
+        EditProfileComponent,
+        FilterSupplierPipe,
+        ResetPasswordComponent
     ],
     imports: [
         BrowserModule,

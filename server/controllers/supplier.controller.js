@@ -12,8 +12,6 @@ supplierCtrl.createSupplier = async (req, res) => {
         contactName: req.body.contactName,
         address: req.body.address,
         city: req.body.city,
-        postalCode: req.body.postalCode,
-        country: req.body.country,
         phone: req.body.phone
     });
     await supplier.save();
@@ -32,8 +30,6 @@ supplierCtrl.editSupplier = async (req, res) => {
         contactName: req.body.contactName,
         address: req.body.address,
         city: req.body.city,
-        postalCode: req.body.postalCode,
-        country: req.body.country,
         phone: req.body.phone
     };
     await Supplier.findByIdAndUpdate(id, { $set: supplier }, { new: true });
