@@ -13,6 +13,7 @@ import {
     MatTabsModule,
     MatFormFieldModule,
     MatInputModule,
+    MatProgressSpinnerModule,
 } from '@angular/material';
 
 @NgModule({
@@ -28,6 +29,7 @@ import {
         MatTabsModule,
         MatFormFieldModule,
         MatInputModule,
+        MatProgressSpinnerModule
     ],
     exports: [
         MatButtonModule,
@@ -41,6 +43,7 @@ import {
         MatTabsModule,
         MatFormFieldModule,
         MatInputModule,
+        MatProgressSpinnerModule
     ]
 })
 export class MaterialModule { }

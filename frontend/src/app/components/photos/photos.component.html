@@ -1,13 +1,13 @@
 <div class="row">
   <mat-tab-group mat-align-tabs="center">
 
-    <mat-tab label="Registro">
+    <mat-tab label="Registro" *ngIf="step === 1" (opened)="setStep(1)">
       <div class="col s12 m12 l6 offset-l3">
         <div class="card">
           <div class="card-action white-text" id="card_back">
             <span class="card-title"><b>Fotos</b></span>
           </div>
-          <form #photoForm="ngForm" (ngSubmit)="addPhoto(title, description, imageURL)">
+          <form #photoForm="ngForm" (ngSubmit)="addPhoto(title, description, imageURL); prevStep()">
             <div class="card-content">
               <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="photoService.selectedPhoto._id">
               <div class="row">
@@ -38,16 +38,24 @@
             <div class="card-action">
               <button mat-raised-button color="accent" class="btn"
                 [disabled]="imageURL.value=='' || !photoForm.valid">Save</button>
-              <button mat-raised-button color="warn" class="btn right" (click)="resetForm(photoForm)">Cancel</button>
+              <button mat-raised-button color="warn" type="button" class="btn right"
+                (click)="resetForm(photoForm); prevStep()">Cancel</button>
             </div>
           </form>
         </div>
       </div>
     </mat-tab>
 
-    <mat-tab label="Lista">
+    <mat-tab label="Lista de Fotos" *ngIf="step === 0" (opened)="setStep(0)">
       <div class="col s12 m12 l12 xl12">
-        <ng-template [ngIf]="photoService.photos.length > 0">
+        <mat-spinner *ngIf="isLoading"></mat-spinner>
+        <ng-template [ngIf]="photoService.photos.length > 0 && !isLoading">
+          <div class="search-div">
+            <button mat-raised-button color="primary" (click)="nextStep()">
+              <mat-icon>add</mat-icon>
+              Nuevo
+            </button>
+          </div>
           <div class="row">
             <div *ngFor="let photo of photoService.photos | paginate: {itemsPerPage: 6, currentPage: p}">
               <div class="col s12 m12 l4">
@@ -70,7 +78,13 @@
           </div>
           <pagination-controls class="my-pagination mat-body-1" (pageChange)="p = $event"></pagination-controls>
         </ng-template>
-        <p class="info-text mat-body-1" *ngIf="photoService.photos.length <= 0">No photos added yet!</p>
+
+        <p class="info-text mat-body-1" *ngIf="photoService.photos.length <= 0 && !isLoading">
+          No hay Fotos agregadas todavía!
+          <br>
+          <button mat-raised-button color="primary" (click)="nextStep()">Crear nueva foto</button>
+        </p>
+
       </div>
     </mat-tab>
 

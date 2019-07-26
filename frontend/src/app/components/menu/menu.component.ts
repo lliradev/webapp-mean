@@ -11,6 +11,7 @@ declare var M: any;
 })
 export class MenuComponent implements OnInit {
   p: number = 1;
+  isLoading = false;
 
   constructor(public menuService: MenuService) { } //Cambiar despues a private
 
@@ -20,16 +21,20 @@ export class MenuComponent implements OnInit {
 
   addMenu(form: NgForm) {
     if (form.value._id) {
+      this.isLoading = true;
       this.menuService.putMenu(form.value)
         .subscribe(res => {
           this.resetForm(form);
+          this.isLoading = false;
           M.toast({ html: 'Update successfully!', classes: 'rounded' });
           this.findAll();
         })
     } else {
+      this.isLoading = true;
       this.menuService.postMenu(form.value)
         .subscribe(res => {
           this.resetForm(form);
+          this.isLoading = false;
           M.toast({ html: 'Saved successfully!', classes: 'rounded' });
           this.findAll();
         });
@@ -37,10 +42,12 @@ export class MenuComponent implements OnInit {
   }
 
   findAll() {
+    this.isLoading = true;
     this.menuService.findAll()
       .subscribe(res => {
         this.menuService.menus = res as Menu[];
         console.log(res);
+        this.isLoading = false;
       });
   }
 
@@ -63,6 +70,20 @@ export class MenuComponent implements OnInit {
       form.reset();
       this.menuService.selectedMenu = new Menu();
     }
+  }
+
+  /* Tabs */
+  step = 0;
+  setStep(index: number) {
+    this.step = index;
+  }
+
+  nextStep() {
+    this.step++;
+  }
+
+  prevStep() {
+    this.step--;
   }
 
 }//End class

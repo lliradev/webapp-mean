@@ -51,9 +51,10 @@
       </div>
     </mat-tab>
 
-    <mat-tab label="Lista" *ngIf="step === 0" (opened)="setStep(0)">
+    <mat-tab label="Lista de Gastos Internos" *ngIf="step === 0" (opened)="setStep(0)">
       <div class="col s12 m12 l12 xl12">
-        <ng-template [ngIf]="internalService.allInternal.length > 0">
+        <mat-spinner *ngIf="isLoading"></mat-spinner>
+        <ng-template [ngIf]="internalService.allInternal.length > 0 && !isLoading">
           <div class="search-div">
             <button mat-raised-button color="primary" (click)="nextStep()">
               <mat-icon>add</mat-icon>
@@ -63,7 +64,6 @@
               <input type="text" name="filterInternal" placeholder="Buscar..." [(ngModel)]="filterInternal">
             </div>
           </div>
-
           <table class="card responsive-table">
             <thead>
               <tr>
@@ -93,11 +93,11 @@
           </table>
           <pagination-controls class="my-pagination mat-body-1" (pageChange)="p = $event"></pagination-controls>
         </ng-template>
-
-        <ng-template [ngIf]="internalService.allInternal.length <= 0">
-          <p class="info-text mat-body-1">No hay Gastos agregados todavía!</p>
+        <p class="info-text mat-body-1" *ngIf="internalService.allInternal.length <= 0 && !isLoading">
+          No hay Gastos agregados todavía!
+          <br>
           <button mat-raised-button color="primary" (click)="nextStep()">Crear nuevo gasto</button>
-        </ng-template>
+        </p>
       </div>
     </mat-tab>
 

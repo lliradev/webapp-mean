@@ -38,7 +38,8 @@
               <button mat-raised-button color="accent" class="btn">
                 Save
               </button>
-              <button mat-raised-button color="warn" class="btn right" (click)="resetForm(supplierForm)">
+              <button mat-raised-button color="warn" type="button" class="btn right"
+                (click)="resetForm(supplierForm); prevStep()">
                 Cancel
               </button>
             </div>
@@ -47,9 +48,9 @@
       </div>
     </mat-tab>
 
-    <mat-tab label="Lista" *ngIf="step === 0" (opened)="setStep(0)">
+    <mat-tab label="Lista de Proveedores" *ngIf="step === 0" (opened)="setStep(0)">
       <div class="col s12 m12 l12 xl12">
-        <ng-template [ngIf]="supplierService.suppliers.length > 0">
+        <ng-template [ngIf]="supplierService.suppliers.length > 0 && !isLoading">
           <div class="search-div">
             <button mat-raised-button color="primary" (click)="nextStep()">
               <mat-icon>add</mat-icon>
@@ -86,11 +87,12 @@
           <pagination-controls class="my-pagination mat-body-1" (pageChange)="p = $event"></pagination-controls>
         </ng-template>
 
-        <ng-template [ngIf]="supplierService.suppliers.length <= 0">
-          <p class="info-text mat-body-1">No hay Proveedores agregados
-            todavía!</p>
+        <p class="info-text mat-body-1" *ngIf="supplierService.suppliers.length <= 0 && !isLoading">
+          No hay Proveedores agregados todavía!
+          <br>
           <button mat-raised-button color="primary" (click)="nextStep()">Crear nuevo proveedor</button>
-        </ng-template>
+        </p>
+
       </div>
     </mat-tab>
 

@@ -14,6 +14,7 @@ export class PhotosComponent implements OnInit {
   thumbnail: string = '/assets/img/image.png'; // thumbnail
   fileToUpload: File = null; //<----
   p: number = 1;
+  isLoading = false;
 
   constructor(public photoService: PhotoService) { } //Cambiar despues a private
 
@@ -32,9 +33,11 @@ export class PhotosComponent implements OnInit {
   }
 
   addPhoto(title, description, imageURL) {
+    this.isLoading = true;
     this.photoService.postPhoto(title.value, description.value, this.fileToUpload).subscribe(
       res => {
         this.thumbnail = '/assets/img/image.png';
+        this.isLoading = false;
         M.toast({ html: 'Saved successfully!', classes: 'rounded' });
         this.getPhotos();
       }
@@ -42,10 +45,12 @@ export class PhotosComponent implements OnInit {
   }
 
   getPhotos() {
+    this.isLoading = true;
     this.photoService.getPhotos()
       .subscribe(res => {
         this.photoService.photos = res as Photo[];
         console.log(res);
+        this.isLoading = false;
       });
   }
 
@@ -65,6 +70,20 @@ export class PhotosComponent implements OnInit {
 
   resetForm(form?: NgForm) {
     form.reset();
+  }
+
+  /* Tabs */
+  step = 0;
+  setStep(index: number) {
+    this.step = index;
+  }
+
+  nextStep() {
+    this.step++;
+  }
+
+  prevStep() {
+    this.step--;
   }
 
 }//End class

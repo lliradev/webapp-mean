@@ -13,6 +13,7 @@ declare var M: any;
 export class SuppliersComponent implements OnInit {
   filterSupplier = '';
   p: number = 1;
+  isLoading = false;
 
   constructor(public supplierService: SupplierService) { } //Cambiar despues a private
 
@@ -22,16 +23,20 @@ export class SuppliersComponent implements OnInit {
 
   addSupplier(form: NgForm) {
     if (form.value._id) {
+      this.isLoading = true;
       this.supplierService.putSupplier(form.value)
         .subscribe(res => {
           this.resetForm(form);
+          this.isLoading = false;
           M.toast({ html: 'Updated successfully!', classes: 'rounded' });
           this.getSuppliers();
         });
     } else {
+      this.isLoading = true;
       this.supplierService.postSupplier(form.value)
         .subscribe(res => {
           this.resetForm(form);
+          this.isLoading = false;
           M.toast({ html: 'Saved successfully!', classes: 'rounded' });
           this.getSuppliers();
         });
@@ -39,10 +44,12 @@ export class SuppliersComponent implements OnInit {
   }
 
   getSuppliers() {
+    this.isLoading = true;
     this.supplierService.getSuppliers()
       .subscribe(res => {
         this.supplierService.suppliers = res as Supplier[];
         console.log(res);
+        this.isLoading = false;
       })
   }
 

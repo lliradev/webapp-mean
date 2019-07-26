@@ -12,6 +12,7 @@ declare var M: any;
 export class InternalComponent implements OnInit {
   filterInternal = '';
   p: number = 1;
+  isLoading = false;
 
   constructor(public internalService: InternalService) { } //Cambiar despues a private
 
@@ -21,16 +22,20 @@ export class InternalComponent implements OnInit {
 
   addInternal(form: NgForm) {
     if (form.value._id) {
+      this.isLoading = true;
       this.internalService.putInternal(form.value)
         .subscribe(res => {
           this.resetForm(form);
+          this.isLoading = false;
           M.toast({ html: 'Update successfully!', classes: 'rounded' });
           this.findAll();
         })
     } else {
+      this.isLoading = true;
       this.internalService.postInternal(form.value)
         .subscribe(res => {
           this.resetForm(form);
+          this.isLoading = false;
           M.toast({ html: 'Saved successfully!', classes: 'rounded' });
           this.findAll();
         });
@@ -38,10 +43,12 @@ export class InternalComponent implements OnInit {
   }
 
   findAll() {
+    this.isLoading = true;
     this.internalService.findAll()
       .subscribe(res => {
         this.internalService.allInternal = res as Internal[];
         console.log(res);
+        this.isLoading = false;
       });
   }
 

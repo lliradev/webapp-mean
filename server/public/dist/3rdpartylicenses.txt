@@ -74,6 +74,8 @@ THE SOFTWARE.
 
 @angular/material/menu
 
+@angular/material/progress-spinner
+
 @angular/material/sidenav
 
 @angular/material/tabs
