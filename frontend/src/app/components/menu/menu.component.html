@@ -52,6 +52,7 @@
 
     <mat-tab label="Lista de Menus" *ngIf="step === 0" (opened)="setStep(0)">
       <div class="col s12 m12 l12 xl12">
+        <mat-spinner *ngIf="isLoading"></mat-spinner>
         <ng-template [ngIf]="menuService.menus.length > 0 && !isLoading">
           <div class="search-div">
             <button mat-raised-button color="primary" (click)="nextStep()">
@@ -71,7 +72,7 @@
               <tr *ngFor="let menu of menuService.menus | paginate: {itemsPerPage: 5, currentPage: p}">
                 <td>{{ menu.type }}</td>
                 <td>{{ menu.name }}</td>
-                <td>{{ menu.price | currency}}</td>
+                <td>{{ menu.price | currency:'MXN'}}</td>
                 <td>
                   <a (click)="editMenu(menu); nextStep()">
                     <i id="icon-cursor" class="material-icons">edit</i>

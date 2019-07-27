@@ -4,7 +4,7 @@ const _ = require('lodash');
 const userCtrl = {};
 const nodemailer = require('nodemailer');
 const async = require('async');
-const bcrypt = require('bcryptjs');
+const flash = require('express-flash');
 const crypto = require('crypto');
 
 userCtrl.getUsers = async (req, res) => {
@@ -55,8 +55,7 @@ userCtrl.editUser = async (req, res, next) => {
         return next(err);
     }
   });
-  res.json({ status: "User updated!" });
-}
+};
 
 userCtrl.authenticate = (req, res, next) => {
   // call for passport authentication
@@ -76,7 +75,7 @@ userCtrl.userProfile = (req, res, next) => {
       if (!user)
         return res.status(404).json({ status: false, message: 'User record not found.' });
       else
-        return res.status(200).json({ status: true, user: _.pick(user, ['fullname', 'email', 'avatar', '_id']) });
+        return res.status(200).json({ status: true, user: _.pick(user, ['fullname', 'email', 'avatar', '_id', 'last_login_date']) });
     }
   );
 }
@@ -95,7 +94,8 @@ userCtrl.forgot = (req, res, next) => {
       User.findOne({ email: req.body.email }, function (err, user) {
         if (!user) {
           //req.flash('error', 'No account with that email address exists.');//cambiar
-          console.log(res);
+          console.log('No account with that email address exists.');
+          return res.redirect('/forgot');
         }
         user.resetPasswordToken = token;
         user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
@@ -124,12 +124,13 @@ userCtrl.forgot = (req, res, next) => {
       };
       smtpTransport.sendMail(mailOptions, function (err) {
         //req.flash('info', 'An e-mail has been sent to ' + user.email + ' with further instructions.');//cambiar
+        console.log('An e-mail has been sent to ' + user.email + ' with further instructions.');
         done(err, 'done');
       });
     }
   ], function (err) {
     if (err) return next(err);
-    console.log(res);
+    res.redirect('/forgot');
   });
 };
 
@@ -138,13 +139,13 @@ userCtrl.reset = (req, res) => {
     function (done) {
       User.findOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } }, function (err, user) {
         if (!user) {
-          return console.log(res);
+          //req.flash('error', 'Password reset token is invalid or has expired.');
+          console.log('Password reset token is invalid or has expired.');
+          return res.redirect('back');
         }
-
         user.password = req.body.password;
         user.resetPasswordToken = undefined;
         user.resetPasswordExpires = undefined;
-
         user.save(function (err) {
           req.logIn(user, function (err) {
             done(err, user);
@@ -169,11 +170,12 @@ userCtrl.reset = (req, res) => {
       };
       smtpTransport.sendMail(mailOptions, function (err) {
         //req.flash('success', 'Success! Your password has been changed.');
+        console.log('Success! Your password has been changed.');
         done(err);
       });
     }
   ], function (err) {
-    //res.redirect('/');
+    res.redirect('/');
   });
 }
 

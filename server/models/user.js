@@ -19,6 +19,10 @@ const UserSchema = new Schema({
     },
     saltSecret: String,
     avatar: String,
+    last_login_date: {
+        type: Date,
+        default: Date.now
+    },
     resetPasswordToken: String,
     resetPasswordExpires: Date
 });

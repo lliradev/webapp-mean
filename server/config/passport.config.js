@@ -17,7 +17,8 @@ passport.use(
             return done(null, false, { message: 'Wrong password.' });
           // authentication succeeded
           else
-            return done(null, user);
+            user.last_login_date = Date.now(); // Typo was here.
+          return done(null, user);
         });
     })
 );

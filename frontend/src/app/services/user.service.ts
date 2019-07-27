@@ -16,6 +16,7 @@ export class UserService {
   };
   users: User[] = [];
   noAuthHeader = { headers: new HttpHeaders({ 'NoAuth': 'True' }) };
+  token: string = '';
 
   constructor(private http: HttpClient) { }
 
@@ -43,9 +44,8 @@ export class UserService {
   postForgot(user: User) {
     return this.http.post(environment.URL_API + '/forgot', user);
   }
-
   postReset(user: User) {
-    return this.http.post(environment.URL_API + '/reset', user);
+    return this.http.post(environment.URL_API + '/reset' + `/${this.token}`, user);
   }
 
   //Helper Methods

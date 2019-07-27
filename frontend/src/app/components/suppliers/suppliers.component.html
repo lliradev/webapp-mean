@@ -50,6 +50,7 @@
 
     <mat-tab label="Lista de Proveedores" *ngIf="step === 0" (opened)="setStep(0)">
       <div class="col s12 m12 l12 xl12">
+        <mat-spinner *ngIf="isLoading"></mat-spinner>
         <ng-template [ngIf]="supplierService.suppliers.length > 0 && !isLoading">
           <div class="search-div">
             <button mat-raised-button color="primary" (click)="nextStep()">

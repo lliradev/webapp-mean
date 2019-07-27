@@ -12,7 +12,7 @@ declare var M: any;
   styleUrls: ['./user-profile.component.css']
 })
 export class UserProfileComponent implements OnInit {
-  @ViewChild(EditProfileComponent, null) edit: EditProfileComponent;
+  panelOpenState = false;
   userDetails;
   constructor(public userService: UserService, private router: Router, private route: ActivatedRoute) { } //Cambiar despues a private
 

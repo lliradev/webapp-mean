@@ -78,7 +78,7 @@
                 | paginate: {itemsPerPage: 5, currentPage: p}">
                 <td>{{ internal.type }}</td>
                 <td>{{ internal.responsible }}</td>
-                <td>{{ internal.amount | currency}}</td>
+                <td>{{ internal.amount | currency:'MXN'}}</td>
                 <td>
                   <a (click)="editInternal(internal); nextStep()">
                     <i id="icon-cursor" class="material-icons">edit</i>
@@ -89,7 +89,7 @@
                 </td>
               </tr>
             </tbody>
-            <p class="info-text mat-body-1"><b>Total:</b> {{ getTotalAmount() | currency }}</p>
+            <p class="info-text mat-body-1"><b>Total:</b> {{ getTotalAmount() | currency:'MXN' }}</p>
           </table>
           <pagination-controls class="my-pagination mat-body-1" (pageChange)="p = $event"></pagination-controls>
         </ng-template>

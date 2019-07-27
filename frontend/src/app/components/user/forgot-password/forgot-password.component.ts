@@ -19,8 +19,8 @@ export class ForgotPasswordComponent implements OnInit {
     this.userService.postForgot(form.value)
       .subscribe(res => {
         this.resetForm(form);
-        this.router.navigate(['/login']);
       });
+    this.router.navigate(['/login']);
   }
 
   resetForm(form: NgForm) {
