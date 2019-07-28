@@ -16,6 +16,7 @@ import { AuthGuard } from './auth/auth.guard';
 import { ForgotPasswordComponent } from './components/user/forgot-password/forgot-password.component';
 import { EditProfileComponent } from './components/user-profile/edit-profile/edit-profile.component';
 import { ResetPasswordComponent } from './components/user/reset-password/reset-password.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 const routes: Routes = [
   {
@@ -42,7 +43,8 @@ const routes: Routes = [
   { path: 'reset/:token', component: ResetPasswordComponent },
   {
     path: '', redirectTo: '/login', pathMatch: 'full'
-  }
+  },
+  { path: '**', component: NotFoundComponent }
 ];
 
 @NgModule({

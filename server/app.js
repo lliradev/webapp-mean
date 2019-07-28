@@ -5,7 +5,6 @@ const multer = require('multer');
 const path = require('path');
 const cors = require('cors');
 const passport = require('passport');
-const flash = require('express-flash');
 
 // Inicializando
 const app = express();
@@ -37,7 +36,6 @@ app.use((err, req, res, next) => {
         console.log(err);
     }
 });
-app.use(flash());
 
 // Routes
 app.use('/api', require('./routes/user.routes'));
@@ -47,9 +45,9 @@ app.use('/api/internal/', require('./routes/internal.routes'));
 app.use('/api/menus/', require('./routes/menu.routes'));
 
 // Static Files
-/*app.use(express.static(path.join(__dirname, 'public/dist')));
+app.use(express.static(path.join(__dirname, 'public/dist')));
 app.get('*', function(req, res){
     res.sendfile(path.join(__dirname, 'public/dist/index.html'));
-});*/
+});
 
 module.exports = app;
