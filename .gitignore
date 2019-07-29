@@ -1,4 +1,4 @@
 node_modules
 .env
 server/public/uploads
-server/test
+.nyc_output

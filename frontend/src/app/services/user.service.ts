@@ -44,9 +44,11 @@ export class UserService {
   postForgot(user: User) {
     return this.http.post(environment.URL_API + '/forgot', user);
   }
+  getReset(){
+    this.http.get(environment.URL_API + '/reset/:token')
+  }
   postReset(user: User) {
-    var token: string = '';
-    return this.http.post(environment.URL_API + '/reset' + `/${token}`, user);
+    return this.http.post(environment.URL_API + '/reset/:token', user);
   }
 
   //Helper Methods
