@@ -19,20 +19,16 @@ export class PhotoService {
     return this.http.get(environment.URL_API + this.API);
   }
 
-  postPhoto(title: string, description: string, fileToUpload: File) {
-    const fd: FormData = new FormData();
-    fd.append('imageURL', fileToUpload, fileToUpload.name);
-    fd.append('title', title);
-    fd.append('description', description);
-    return this.http.post(environment.URL_API + this.API, fd);
+  getPhoto(_id:string){
+    return this.http.get(environment.URL_API + this.API + `/${_id}`)
   }
 
-  putPhoto(_id:string, title: string, description: string, fileToUpload: File) {
-    const fd: FormData = new FormData();
-    fd.append('imageURL', fileToUpload, fileToUpload.name);
-    fd.append('title', title);
-    fd.append('description', description);
-    return this.http.put(environment.URL_API + this.API + `/${_id}`, fd);
+  postPhoto(photo) {
+    return this.http.post(environment.URL_API + this.API, photo);
+  }
+
+  putPhoto(photo) {
+    return this.http.put(environment.URL_API + this.API + `/${photo._id}`, photo);
   }
 
   deletePhoto(_id: string) {

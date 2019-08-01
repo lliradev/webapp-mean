@@ -67,3 +67,7 @@ mat-spinner {
 .validation-message {
     color: red;
 }
+
+input[type="file"] {
+    visibility: hidden;
+}

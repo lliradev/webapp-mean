@@ -1,3 +1,19 @@
-<div *ngFor="let photo of photoService.photos">
+<!--<div *ngFor="let photo of photoService.photos">
   <img class="responsive-img z-depth-5" src="{{ photo.imageURL }}">
+</div>-->
+
+<div class="row">
+  <div *ngFor="let photo of photoService.photos">
+    <div class="col s12 m12 l4">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>{{ photo.title }}</mat-card-title>
+        </mat-card-header>
+        <img mat-card-image src="{{ photo.imageURL }}" alt="{{ photo.title }}">
+        <mat-card-content>
+          <button mat-raised-button color="primary">Pedir</button>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
 </div>
