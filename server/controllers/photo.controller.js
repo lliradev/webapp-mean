@@ -1,12 +1,7 @@
 const Photo = require('../models/photo');
 const photoCtrl = {};
-const cloudinary = require('cloudinary');
-cloudinary.config({
-    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-    api_key: process.env.CLOUDINARY_API_KEY,
-    api_secret: process.env.CLOUDINARY_API_SECRET
-});
-const fs = require('fs-extra');
+const path = require('path');
+const { unlink } = require('fs-extra');
 
 /* METHODS */
 photoCtrl.getPhotos = async (req, res) => {
@@ -15,19 +10,16 @@ photoCtrl.getPhotos = async (req, res) => {
 };
 
 photoCtrl.createPhoto = async (req, res) => {
+    const url = req.protocol + '://' + req.get('host');
     const { title, description } = req.body;
-    console.log(req.file);
-    const result = await cloudinary.v2.uploader.upload(req.file.path);
-    console.log(result);
-
     const photo = new Photo({
         title,
         description,
-        imageURL: result.url,
-        public_id: result.public_id
+        filename: req.file.filename,
+        imageURL: url + '/uploads/' + req.file.filename,
+        originalname: req.file.originalname
     });
     await photo.save();
-    await fs.unlink(req.file.path);
     res.json({ status: "Photo saved!" });
 };
 
@@ -37,19 +29,26 @@ photoCtrl.getPhoto = async (req, res) => {
 };
 
 photoCtrl.editPhoto = async (req, res) => {
+    let imageURL = req.body.imageURL;
+    if (req.file) {
+        const url = req.protocol + '://' + req.get('host');
+        imageURL = url + '/uploads/' + req.file.filename
+    }
     const { id } = req.params;
     const photo = {
         title: req.body.title,
-        description: req.body.description
+        description: req.body.description,
+        imageURL: imageURL
     };
+    console.log(photo);
     await Photo.findByIdAndUpdate(id, { $set: photo }, { new: true });
     res.json({ status: "Photo updated!" })
 };
 
 photoCtrl.deletePhoto = async (req, res) => {
+    //const url = req.protocol + '://' + req.get('host');
     const photo = await Photo.findByIdAndDelete(req.params.id);
-    const result = await cloudinary.v2.uploader.destroy(photo.public_id);
-    console.log(result);
+    //await unlink(path.resolve('./server/public/' + photo.imageURL));
     res.json({ status: "Photo deleted!" });
 };
 
