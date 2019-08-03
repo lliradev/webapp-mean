@@ -19,16 +19,16 @@ export class PhotoService {
     return this.http.get(environment.URL_API + this.API);
   }
 
-  getPhoto(_id:string){
-    return this.http.get(environment.URL_API + this.API + `/${_id}`)
+  getPhoto(_id: string) {
+    return this.http.get<Photo>(environment.URL_API + this.API + `/${_id}`)
   }
 
   postPhoto(photo) {
     return this.http.post(environment.URL_API + this.API, photo);
   }
 
-  putPhoto(photo) {
-    return this.http.put(environment.URL_API + this.API + `/${photo._id}`, photo);
+  putPhoto(photo, _id: string) {
+    return this.http.put<any>(environment.URL_API + this.API + `/${_id}`, photo);
   }
 
   deletePhoto(_id: string) {

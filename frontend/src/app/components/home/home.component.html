@@ -1,8 +1,7 @@
 <!--<div *ngFor="let photo of photoService.photos">
   <img class="responsive-img z-depth-5" src="{{ photo.imageURL }}">
 </div>-->
-
-<div class="row">
+<div class="row" *ngIf="photoService.photos.length > 0">
   <div *ngFor="let photo of photoService.photos">
     <div class="col s12 m12 l4">
       <mat-card>
@@ -17,3 +16,7 @@
     </div>
   </div>
 </div>
+
+<p class="info-text mat-body-1" *ngIf="photoService.photos.length <= 0">
+  No hay Fotos todavía!
+</p>

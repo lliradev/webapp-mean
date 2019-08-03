@@ -162,7 +162,7 @@ userCtrl.postReset = (req, res) => {
           if (!user) {
             //req.flash('error', 'Password reset token is invalid or has expired.');
             console.log('Password reset token is invalid or has expired.');
-            return console.log(res);
+            return console.log('Nel!');
           }
           user.password = req.body.password;
           user.resetPasswordToken = undefined;

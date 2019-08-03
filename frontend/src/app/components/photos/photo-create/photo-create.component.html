@@ -1,0 +1,40 @@
+<div class="row">
+  <mat-tab-group mat-align-tabs="center">
+    <mat-tab label="Registro">
+      <div class="col s12 m12 l6 offset-l3">
+        <mat-spinner *ngIf="isLoading"></mat-spinner>
+        <div class="card" *ngIf="!isLoading">
+
+          <div class="card-action white-text" id="card_back">
+            <span class="card-title"><b>Fotos</b></span>
+          </div>
+          <form [formGroup]="photoForm" (ngSubmit)="addPhoto()">
+            <div class="card-content">
+              <div class="row">
+                <div class="input-field col s12">
+                  <input type="text" formControlName="title" placeholder="Título" required>
+                </div>
+                <div class="input-field col s12">
+                  <textarea formControlName="description" class="materialize-textarea" placeholder="Descripción"
+                    required></textarea>
+                </div>
+                <div class="input-field col s12">
+                  <a mat-raised-button (click)="image.click()">Pick Image</a>
+                  <input #image type="file" id="imageURL" (change)="onSelectedFile($event)" accept="image/*">
+                </div>
+                <!-- SHOW IMAGE -->
+                <img [src]="thumbnail" class="center responsive-img">
+              </div>
+            </div>
+            <div class="card-action">
+              <input type="hidden" formControlName="_id">
+              <button mat-raised-button color="accent" class="btn">Save</button>
+              <button mat-raised-button color="warn" type="button" class="btn right" 
+              (click)="cancel()">Cancel</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</div>

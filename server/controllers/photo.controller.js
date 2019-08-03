@@ -38,15 +38,11 @@ photoCtrl.getPhoto = async (req, res) => {
 
 photoCtrl.editPhoto = async (req, res) => {
     const { id } = req.params;
-    const result = await cloudinary.v2.uploader.upload(req.file.path);
     const photo = {
         title: req.body.title,
-        description: req.body.description,
-        imageURL: result.url,
-        public_id: result.public_id
+        description: req.body.description
     };
     await Photo.findByIdAndUpdate(id, { $set: photo }, { new: true });
-    await fs.unlink(req.file.path);
     res.json({ status: "Photo updated!" })
 };
 

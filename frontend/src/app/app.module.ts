@@ -8,7 +8,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // components
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { PhotosComponent } from './components/photos/photos.component';
 
 import { MaterialModule } from './material.module';
 import { HomeComponent } from './components/home/home.component';
@@ -31,11 +30,12 @@ import { EditProfileComponent } from './components/user-profile/edit-profile/edi
 import { FilterSupplierPipe } from './pipes/filter-supplier.pipe';
 import { ResetPasswordComponent } from './components/user/reset-password/reset-password.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { PhotoCreateComponent } from './components/photos/photo-create/photo-create.component';
+import { PhotoListComponent } from './components/photos/photo-list/photo-list.component';
 
 @NgModule({
     declarations: [
         AppComponent,
-        PhotosComponent,
         HomeComponent,
         SuppliersComponent,
         InternalComponent,
@@ -50,7 +50,9 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
         EditProfileComponent,
         FilterSupplierPipe,
         ResetPasswordComponent,
-        NotFoundComponent
+        NotFoundComponent,
+        PhotoCreateComponent,
+        PhotoListComponent
     ],
     imports: [
         BrowserModule,

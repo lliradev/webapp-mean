@@ -2,7 +2,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 // components
-import { PhotosComponent } from './components/photos/photos.component';
 import { HomeComponent } from './components/home/home.component';
 import { SuppliersComponent } from './components/suppliers/suppliers.component';
 import { InternalComponent } from './components/internal/internal.component';
@@ -17,6 +16,8 @@ import { ForgotPasswordComponent } from './components/user/forgot-password/forgo
 import { EditProfileComponent } from './components/user-profile/edit-profile/edit-profile.component';
 import { ResetPasswordComponent } from './components/user/reset-password/reset-password.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { PhotoCreateComponent } from './components/photos/photo-create/photo-create.component';
+import { PhotoListComponent } from './components/photos/photo-list/photo-list.component';
 
 const routes: Routes = [
   {
@@ -32,15 +33,23 @@ const routes: Routes = [
     children: [{ path: '', component: ForgotPasswordComponent }]
   },
   {
+    path: 'reset/:token', component: UserComponent,
+    children: [{ path: '', component: ResetPasswordComponent }]
+  },
+  {
+    path: 'home', component: UserComponent,
+    children: [{ path: '', component: HomeComponent }]
+  },
+  {
     path: 'profile', component: UserProfileComponent, canActivate: [AuthGuard]
   },
-  { path: 'photos', component: PhotosComponent, canActivate: [AuthGuard] },
+  { path: 'photos', component: PhotoListComponent, canActivate: [AuthGuard] },
+  { path: 'photos/create', component: PhotoCreateComponent, canActivate: [AuthGuard] },
+  { path: 'photos/edit/:_id', component: PhotoCreateComponent, canActivate: [AuthGuard] },
   { path: 'suppliers', component: SuppliersComponent, canActivate: [AuthGuard] },
   { path: 'internal', component: InternalComponent, canActivate: [AuthGuard] },
   { path: 'menu', component: MenuComponent, canActivate: [AuthGuard] },
-  { path: 'home', component: HomeComponent },
-  { path: 'edit', component: EditProfileComponent },
-  { path: 'reset/:token', component: ResetPasswordComponent },
+  { path: 'edit', component: EditProfileComponent, canActivate: [AuthGuard] },
   {
     path: '', redirectTo: '/login', pathMatch: 'full'
   },
