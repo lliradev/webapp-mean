@@ -1,10 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
-import { Router, ActivatedRoute } from '@angular/router';
-import { EditProfileComponent } from './edit-profile/edit-profile.component';
-import { User } from 'src/app/models/user';
-import { NgForm } from '@angular/forms';
-declare var M: any;
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-profile',
@@ -12,15 +8,29 @@ declare var M: any;
   styleUrls: ['./user-profile.component.css']
 })
 export class UserProfileComponent implements OnInit {
-  panelOpenState = false;
+  notes = [
+    { title: 'Lorem ipsum', content: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos provident quisquam quod dignissimos quibusdam', location: 'mexico' },
+    { title: 'Lorem ipsum', content: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos provident quisquam quod dignissimos quibusdam', location: 'usa' },
+    { title: 'Lorem ipsum', content: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos provident quisquam quod dignissimos quibusdam', location: 'argentina' },
+    { title: 'Lorem ipsum', content: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos provident quisquam quod dignissimos quibusdam', location: 'peru' },
+    { title: 'Lorem ipsum', content: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos provident quisquam quod dignissimos quibusdam', location: 'belgium' },
+    { title: 'Lorem ipsum', content: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos provident quisquam quod dignissimos quibusdam', location: 'england' },
+    { title: 'Lorem ipsum', content: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos provident quisquam quod dignissimos quibusdam', location: 'france' },
+    { title: 'Lorem ipsum', content: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos provident quisquam quod dignissimos quibusdam', location: 'chile' },
+  ];
+  step = 0;
   userDetails;
-  constructor(public userService: UserService, private router: Router, private route: ActivatedRoute) { } //Cambiar despues a private
+  constructor(
+    public userService: UserService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
     this.userService.getUserProfile()
       .subscribe(
         res => {
           this.userDetails = res['user'];
+          console.log(this.userDetails._id);
         },
         err => { }
       )
@@ -31,7 +41,7 @@ export class UserProfileComponent implements OnInit {
     this.router.navigate(['/login']);
   }
 
-  editProfile() {
+  onEditAvatar() {
     this.router.navigate(['/edit']);
   }
 

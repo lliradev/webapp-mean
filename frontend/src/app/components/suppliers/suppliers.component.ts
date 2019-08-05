@@ -48,7 +48,6 @@ export class SuppliersComponent implements OnInit {
     this.supplierService.getSuppliers()
       .subscribe(res => {
         this.supplierService.suppliers = res as Supplier[];
-        console.log(res);
         this.isLoading = false;
       })
   }

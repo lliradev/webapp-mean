@@ -47,7 +47,6 @@ export class InternalComponent implements OnInit {
     this.internalService.findAll()
       .subscribe(res => {
         this.internalService.allInternal = res as Internal[];
-        console.log(res);
         this.isLoading = false;
       });
   }

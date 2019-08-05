@@ -4,39 +4,38 @@
     <div class="col s12 m12 l12 xl4">
       <mat-card>
         <mat-card-header>
-          <div mat-card-avatar class="card-header-image">
-            <img src="{{ userDetails.avatar || '/assets/avatars/avatar-default.png' }}" alt="User avatar"
-              class="circle responsive-img">
-          </div>
+          <img mat-card-avatar src="{{ userDetails.avatar || '/assets/avatars/avatar-default.png' }}" alt="User avatar">
           <mat-card-title>{{ userDetails.fullname }}</mat-card-title>
           <mat-card-subtitle>{{ userDetails.email }}</mat-card-subtitle>
-          <mat-card-subtitle>Id: {{ userDetails._id }}</mat-card-subtitle>
         </mat-card-header>
-
         <mat-card-content>
-          <p class="mat-body-1">Tu sesion dura 10 minutos.</p>
-          <a mat-stroked-button (click)="editProfile()">Editar perfil</a>
+          <a mat-raised-button (click)="onEditAvatar()">Editar avatar</a>
         </mat-card-content>
-
-        <mat-card-actions>
-          <a mat-raised-button (click)="onLogout()">Salir</a>
-        </mat-card-actions>
       </mat-card>
-    </div>
 
-    <div class="col s12 m12 l12 xl8">
       <mat-accordion>
-        <mat-expansion-panel>
+        <mat-expansion-panel [expanded]="step === 0">
           <mat-expansion-panel-header>
-            <mat-panel-title>
-              Historial inicio de sesion
-            </mat-panel-title>
-            <mat-panel-description>
-              Última fecha de inicio de sesión
-            </mat-panel-description>
+            Info
           </mat-expansion-panel-header>
           <p class="mat-body-1">Tu usuario fue creado: {{ userDetails.creation_date | date:'medium' }}</p>
           <p class="mat-body-1">Iniciaste sesion: {{ userDetails.last_login_date | date:'medium' }}</p>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+
+    <div class="col s12 m12 l12 xl8">
+      <mat-accordion multi="true">
+        <mat-expansion-panel *ngFor="let note of notes">
+          <mat-expansion-panel-header>
+            {{ note.title }}
+          </mat-expansion-panel-header>
+          <p>{{ note.content }}</p>
+          <p>{{ note.location }}</p>
+          <mat-action-row>
+            <button mat-button color="warn" class="white">Delete</button>
+            <button mat-button color="primary" class="white">View</button>
+          </mat-action-row>
         </mat-expansion-panel>
       </mat-accordion>
     </div>

@@ -21,7 +21,10 @@
 
         <div class="card-action">
           <button mat-raised-button color="primary" type="submit">Sign In</button>
-          <a mat-button routerLink="/forgot" class="blue-text right">Forgot password</a>
+          <!--<a mat-button routerLink="/forgot" class="blue-text right">Forgot password</a>-->
+          <button type="button" mat-button class="white blue-text right" (click)="onForgotPassword()">
+            Forgot password
+          </button>
         </div>
       </form>
     </div>

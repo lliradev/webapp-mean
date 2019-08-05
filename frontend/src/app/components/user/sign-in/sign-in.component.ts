@@ -35,4 +35,8 @@ export class SignInComponent implements OnInit {
       );
   }
 
+  onForgotPassword() {
+    this.router.navigateByUrl('/forgot');
+  }
+
 }//End class
