@@ -9,7 +9,6 @@
         </a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
           <div *ngIf="!user.isLoggedIn(); else logout">
-            <li routerLinkActive="active current"><a routerLink="/home">Home</a></li>
             <li routerLinkActive="active current"><a routerLink="/signup">Sign Up</a></li>
             <li routerLinkActive="active current"><a routerLink="/login">Sign In</a></li>
           </div>

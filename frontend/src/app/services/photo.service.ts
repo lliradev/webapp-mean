@@ -20,7 +20,7 @@ export class PhotoService {
   }
 
   getPhoto(_id: string) {
-    return this.http.get<Photo>(environment.URL_API + this.API + `/${_id}`)
+    return this.http.get<Photo>(environment.URL_API + this.API + `/${_id}`);
   }
 
   postPhoto(photo) {

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { PhotoService } from 'src/app/services/photo.service';
-import { Photo } from 'src/app/models/photo';
+import { MenuService } from 'src/app/services/menu.service';
+import { Menu } from 'src/app/models/menu';
 
 @Component({
   selector: 'app-home',
@@ -8,19 +8,21 @@ import { Photo } from 'src/app/models/photo';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  isLoading = false;
 
-  constructor(public photoService: PhotoService) { } //Cambiar despues a private
+  constructor(public menuService: MenuService) { }
 
   ngOnInit() {
     this.getPhotos();
   }
 
   getPhotos() {
-    this.photoService.getPhotos()
+    this.isLoading = true;
+    this.menuService.findAll()
       .subscribe(res => {
-        this.photoService.photos = res as Photo[];
-        console.log(res);
+        this.isLoading = false;
+        this.menuService.menus = res as Menu[];
       });
   }
 
-}
+}//end class

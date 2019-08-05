@@ -5,7 +5,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { SuppliersComponent } from './components/suppliers/suppliers.component';
 import { InternalComponent } from './components/internal/internal.component';
-import { MenuComponent } from './components/menu/menu.component';
 import { SignUpComponent } from './components/user/sign-up/sign-up.component';
 import { UserComponent } from './components/user/user.component';
 import { SignInComponent } from './components/user/sign-in/sign-in.component';
@@ -18,6 +17,8 @@ import { ResetPasswordComponent } from './components/user/reset-password/reset-p
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { PhotoCreateComponent } from './components/photos/photo-create/photo-create.component';
 import { PhotoListComponent } from './components/photos/photo-list/photo-list.component';
+import { MenuListComponent } from './components/menu/menu-list/menu-list.component';
+import { MenuCreateComponent } from './components/menu/menu-create/menu-create.component';
 
 const routes: Routes = [
   {
@@ -46,12 +47,16 @@ const routes: Routes = [
   { path: 'photos', component: PhotoListComponent, canActivate: [AuthGuard] },
   { path: 'photos/create', component: PhotoCreateComponent, canActivate: [AuthGuard] },
   { path: 'photos/edit/:_id', component: PhotoCreateComponent, canActivate: [AuthGuard] },
+
+  { path: 'menus', component: MenuListComponent, canActivate: [AuthGuard] },
+  { path: 'menus/create', component: MenuCreateComponent, canActivate: [AuthGuard] },
+  { path: 'menus/edit/:_id', component: MenuCreateComponent, canActivate: [AuthGuard] },
+
   { path: 'suppliers', component: SuppliersComponent, canActivate: [AuthGuard] },
   { path: 'internal', component: InternalComponent, canActivate: [AuthGuard] },
-  { path: 'menu', component: MenuComponent, canActivate: [AuthGuard] },
   { path: 'edit', component: EditProfileComponent, canActivate: [AuthGuard] },
   {
-    path: '', redirectTo: '/login', pathMatch: 'full'
+    path: '', redirectTo: '/home', pathMatch: 'full'
   },
   { path: '**', component: NotFoundComponent }
 ];

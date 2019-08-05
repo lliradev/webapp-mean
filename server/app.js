@@ -25,7 +25,7 @@ const storage = multer.diskStorage({
         cb(null, new Date().getTime() + path.extname(file.originalname));
     }
 });
-app.use(multer({ storage }).single('imageURL'));
+app.use(multer({ storage }).single('image'));
 app.use((err, req, res, next) => {
     if (err.name === 'ValidationError') {
         var valErrors = [];

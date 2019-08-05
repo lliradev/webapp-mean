@@ -10,6 +10,7 @@
               Nuevo
             </a>
           </div>
+
           <div class="row">
             <div *ngFor="let photo of photoService.photos | paginate: {itemsPerPage: 6, currentPage: p}">
               <div class="col s12 m12 l4">
@@ -32,6 +33,7 @@
               </div>
             </div>
           </div>
+          
           <pagination-controls class="my-pagination mat-body-1" (pageChange)="p = $event"></pagination-controls>
         </ng-template>
         <p class="info-text mat-body-1" *ngIf="photoService.photos.length <= 0 && !isLoading">

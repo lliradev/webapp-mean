@@ -15,8 +15,11 @@ export class PhotoCreateComponent implements OnInit {
   isLoading = false;
   photoForm: FormGroup;
 
-  constructor(public photoService: PhotoService, private fb: FormBuilder,
-    private route: ActivatedRoute, private router: Router) { }
+  constructor(
+    public photoService: PhotoService,
+    private fb: FormBuilder,
+    private route: ActivatedRoute,
+    private router: Router) { }
 
   ngOnInit() {
     const _id = this.route.snapshot.paramMap.get('_id');

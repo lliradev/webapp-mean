@@ -13,7 +13,6 @@ import { MaterialModule } from './material.module';
 import { HomeComponent } from './components/home/home.component';
 import { SuppliersComponent } from './components/suppliers/suppliers.component';
 import { InternalComponent } from './components/internal/internal.component';
-import { MenuComponent } from './components/menu/menu.component';
 import { UserComponent } from './components/user/user.component';
 import { SignUpComponent } from './components/user/sign-up/sign-up.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
@@ -32,6 +31,8 @@ import { ResetPasswordComponent } from './components/user/reset-password/reset-p
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { PhotoCreateComponent } from './components/photos/photo-create/photo-create.component';
 import { PhotoListComponent } from './components/photos/photo-list/photo-list.component';
+import { MenuCreateComponent } from './components/menu/menu-create/menu-create.component';
+import { MenuListComponent } from './components/menu/menu-list/menu-list.component';
 
 @NgModule({
     declarations: [
@@ -39,7 +40,6 @@ import { PhotoListComponent } from './components/photos/photo-list/photo-list.co
         HomeComponent,
         SuppliersComponent,
         InternalComponent,
-        MenuComponent,
         UserComponent,
         SignUpComponent,
         UserProfileComponent,
@@ -52,7 +52,9 @@ import { PhotoListComponent } from './components/photos/photo-list/photo-list.co
         ResetPasswordComponent,
         NotFoundComponent,
         PhotoCreateComponent,
-        PhotoListComponent
+        PhotoListComponent,
+        MenuCreateComponent,
+        MenuListComponent
     ],
     imports: [
         BrowserModule,

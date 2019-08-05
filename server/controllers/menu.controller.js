@@ -1,5 +1,12 @@
 const Menu = require('../models/menu');
 const menuCtrl = {};
+const cloudinary = require('cloudinary');
+cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET
+});
+const fs = require('fs-extra');
 
 menuCtrl.findAll = async (req, res) => {
     const findAll = await Menu.find();
@@ -7,11 +14,18 @@ menuCtrl.findAll = async (req, res) => {
 }
 
 menuCtrl.createMenu = async (req, res) => {
-    const { type, name, description, price, image } = req.body;
+    const { type, name, description, price } = req.body;
+    const result = await cloudinary.v2.uploader.upload(req.file.path);
     const menu = new Menu({
-        type, name, description, price, image
+        type,
+        name,
+        description,
+        price,
+        image: result.url,
+        public_id: result.public_id
     });
     await menu.save();
+    await fs.unlink(req.file.path);
     res.json({ status: "Menu saved!" });
 }
 
@@ -23,18 +37,19 @@ menuCtrl.getMenu = async (req, res) => {
 menuCtrl.editMenu = async (req, res) => {
     const { id } = req.params;
     const menu = {
-        type: req.body.type, 
-        name: req.body.name, 
-        description: req.body.description, 
-        price: req.body.price, 
-        image: req.body.image
+        type: req.body.type,
+        name: req.body.name,
+        description: req.body.description,
+        price: req.body.price
     };
     await Menu.findByIdAndUpdate(id, { $set: menu }, { new: true });
     res.json({ status: "Menu updated!" });
 }
 
 menuCtrl.deleteMenu = async (req, res) => {
-    await Menu.findByIdAndRemove(req.params.id);
+    const menu = await Menu.findByIdAndRemove(req.params.id);
+    const result = await cloudinary.v2.uploader.destroy(menu.public_id);
+    console.log(result);
     res.json({ status: "Menu deleted!" });
 }
 

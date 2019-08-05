@@ -1,22 +1,23 @@
-<!--<div *ngFor="let photo of photoService.photos">
-  <img class="responsive-img z-depth-5" src="{{ photo.imageURL }}">
-</div>-->
-<div class="row" *ngIf="photoService.photos.length > 0">
-  <div *ngFor="let photo of photoService.photos">
+<div class="row" *ngIf="menuService.menus.length > 0">
+  <div *ngFor="let menu of menuService.menus">
     <div class="col s12 m12 l4">
-      <mat-card>
+      <mat-spinner *ngIf="isLoading"></mat-spinner>
+      <mat-card class="animated fadeInDown" *ngIf="!isLoading">
         <mat-card-header>
-          <mat-card-title>{{ photo.title }}</mat-card-title>
+          <mat-card-title>{{ menu.name }}</mat-card-title>
         </mat-card-header>
-        <img mat-card-image src="{{ photo.imageURL }}" alt="{{ photo.title }}">
+        <img mat-card-image src="{{ menu.image }}" alt="{{ menu.name }}">
         <mat-card-content>
-          <button mat-raised-button color="primary">Pedir</button>
+          <p>{{ menu.price | currency:'MXN' }}</p>
+          <p class="rigth">
+            <mat-icon>shopping_cart</mat-icon>
+          </p>
         </mat-card-content>
       </mat-card>
     </div>
   </div>
 </div>
 
-<p class="info-text mat-body-1" *ngIf="photoService.photos.length <= 0">
-  No hay Fotos todavía!
+<p class="info-text mat-body-1" *ngIf="menuService.menus.length <= 0 && !isLoading">
+  No hay Menus todavía!
 </p>
