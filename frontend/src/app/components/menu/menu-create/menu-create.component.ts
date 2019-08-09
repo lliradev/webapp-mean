@@ -69,6 +69,7 @@ export class MenuCreateComponent implements OnInit {
     fd.append('price', this.menuForm.get('price').value);
     fd.append('image', this.menuForm.get('image').value);
     const _id = this.menuForm.get('_id').value;
+    
     if (_id) {
       this.isLoading = true;
       this.menuService.putMenu(fd, _id)

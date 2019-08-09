@@ -3,6 +3,7 @@
     <mat-tab label="Lista de Menus">
       <div class="col s12 m12 l12 xl12">
         <mat-spinner *ngIf="isLoading"></mat-spinner>
+
         <ng-template [ngIf]="menuService.menus.length > 0 && !isLoading">
           <div class="search-div">
             <a [routerLink]="['/menus/create']" mat-raised-button color="primary">
@@ -34,7 +35,6 @@
               </div>
             </div>
           </div>
-
           <pagination-controls class="my-pagination mat-body-1" (pageChange)="p = $event"></pagination-controls>
         </ng-template>
 

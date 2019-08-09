@@ -5,11 +5,19 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-// components
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-
 import { MaterialModule } from './material.module';
+import { NgxPaginationModule } from 'ngx-pagination';
+
+// services, pipes and auth
+import { UserService } from './services/user.service';
+import { AuthGuard } from './auth/auth.guard';
+import { AuthInterceptor } from './auth/auth.interceptor';
+import { FilterInternalPipe } from './pipes/filter-internal.pipe';
+import { FilterSupplierPipe } from './pipes/filter-supplier.pipe';
+
+// components
+import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { SuppliersComponent } from './components/suppliers/suppliers.component';
 import { InternalComponent } from './components/internal/internal.component';
@@ -17,22 +25,16 @@ import { UserComponent } from './components/user/user.component';
 import { SignUpComponent } from './components/user/sign-up/sign-up.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { SignInComponent } from './components/user/sign-in/sign-in.component';
-import { UserService } from './services/user.service';
-
-import { AuthGuard } from './auth/auth.guard';
-import { AuthInterceptor } from './auth/auth.interceptor';
-import { FilterInternalPipe } from './pipes/filter-internal.pipe';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
-import { NgxPaginationModule } from 'ngx-pagination';
 import { ForgotPasswordComponent } from './components/user/forgot-password/forgot-password.component';
 import { EditProfileComponent } from './components/user-profile/edit-profile/edit-profile.component';
-import { FilterSupplierPipe } from './pipes/filter-supplier.pipe';
 import { ResetPasswordComponent } from './components/user/reset-password/reset-password.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { PhotoCreateComponent } from './components/photos/photo-create/photo-create.component';
 import { PhotoListComponent } from './components/photos/photo-list/photo-list.component';
 import { MenuCreateComponent } from './components/menu/menu-create/menu-create.component';
 import { MenuListComponent } from './components/menu/menu-list/menu-list.component';
+import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
     declarations: [
@@ -54,7 +56,8 @@ import { MenuListComponent } from './components/menu/menu-list/menu-list.compone
         PhotoCreateComponent,
         PhotoListComponent,
         MenuCreateComponent,
-        MenuListComponent
+        MenuListComponent,
+        HeaderComponent
     ],
     imports: [
         BrowserModule,

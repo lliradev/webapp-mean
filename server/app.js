@@ -46,7 +46,6 @@ app.use('/api/menus/', require('./routes/menu.routes'));
 
 // Static Files
 app.use(express.static(path.join(__dirname, 'public/dist')));
-app.use(express.static(path.join(__dirname, 'public')));
 app.get('*', function(req, res){
     res.sendfile(path.join(__dirname, 'public/dist/index.html'));
 });

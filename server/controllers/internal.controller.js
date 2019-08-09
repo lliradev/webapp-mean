@@ -39,5 +39,4 @@ internalCtrl.deleteInternal = async (req, res) => {
     res.json({ status: "Internal deleted!" });
 };
 
-//Exports
 module.exports = internalCtrl;

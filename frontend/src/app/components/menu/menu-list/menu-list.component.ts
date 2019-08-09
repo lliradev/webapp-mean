@@ -15,9 +15,7 @@ export class MenuListComponent implements OnInit {
   constructor(public menuService: MenuService) { }
 
   ngOnInit() {
-    this.isLoading = true;
     this.getMenus();
-    this.isLoading = false;
   }
 
   getMenus() {

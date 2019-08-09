@@ -44,8 +44,7 @@ userCtrl.userProfile = (req, res, next) => {
         return res.status(404).json({ status: false, message: 'User record not found.' });
       else
         return res.status(200).json({
-          status: true, user: _.pick(user, ['fullname', 'email', 'avatar',
-            '_id', 'last_login_date', 'creation_date'])
+          status: true, user: _.pick(user, ['fullname', 'email', 'avatar', '_id'])
         });
     }
   );

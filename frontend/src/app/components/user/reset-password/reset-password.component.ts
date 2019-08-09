@@ -9,6 +9,7 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./reset-password.component.css']
 })
 export class ResetPasswordComponent implements OnInit {
+  token:string;
 
   constructor(public userService: UserService, private router: Router) { }
 
@@ -16,7 +17,7 @@ export class ResetPasswordComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-    this.userService.postReset(form.value)
+    this.userService.postReset(form.value, this.token)
       .subscribe(res => {
         this.resetForm(form);
       });

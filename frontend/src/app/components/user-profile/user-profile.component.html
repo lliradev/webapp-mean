@@ -12,32 +12,7 @@
           <a mat-raised-button (click)="onEditAvatar()">Editar avatar</a>
         </mat-card-content>
       </mat-card>
-
-      <mat-accordion>
-        <mat-expansion-panel [expanded]="step === 0">
-          <mat-expansion-panel-header>
-            Info
-          </mat-expansion-panel-header>
-          <p class="mat-body-1">Tu usuario fue creado: {{ userDetails.creation_date | date:'medium' }}</p>
-          <p class="mat-body-1">Iniciaste sesion: {{ userDetails.last_login_date | date:'medium' }}</p>
-        </mat-expansion-panel>
-      </mat-accordion>
-    </div>
-
-    <div class="col s12 m12 l12 xl8">
-      <mat-accordion multi="true">
-        <mat-expansion-panel *ngFor="let note of notes">
-          <mat-expansion-panel-header>
-            {{ note.title }}
-          </mat-expansion-panel-header>
-          <p>{{ note.content }}</p>
-          <p>{{ note.location }}</p>
-          <mat-action-row>
-            <button mat-button color="warn" class="white">Delete</button>
-            <button mat-button color="primary" class="white">View</button>
-          </mat-action-row>
-        </mat-expansion-panel>
-      </mat-accordion>
     </div>
   </div>
+  
 </ng-template>

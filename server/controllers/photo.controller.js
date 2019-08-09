@@ -3,7 +3,6 @@ const photoCtrl = {};
 const path = require('path');
 const { unlink } = require('fs-extra');
 
-/* METHODS */
 photoCtrl.getPhotos = async (req, res) => {
     const photos = await Photo.find();
     res.json(photos);

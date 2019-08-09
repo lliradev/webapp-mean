@@ -1,8 +1,9 @@
-<div class="row" *ngIf="menuService.menus.length > 0">
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+
+<div class="row" *ngIf="menuService.menus.length > 0 && !isLoading">
   <div *ngFor="let menu of menuService.menus">
     <div class="col s12 m12 l4">
-      <mat-spinner *ngIf="isLoading"></mat-spinner>
-      <mat-card class="animated fadeInDown" *ngIf="!isLoading">
+      <mat-card class="animated fadeInDown">
         <mat-card-header>
           <mat-card-title>{{ menu.name }}</mat-card-title>
         </mat-card-header>

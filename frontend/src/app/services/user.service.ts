@@ -16,21 +16,12 @@ export class UserService {
   };
   users: User[] = [];
   noAuthHeader = { headers: new HttpHeaders({ 'NoAuth': 'True' }) };
-  
 
   constructor(private http: HttpClient) { }
 
   //HttpMethods
-  getUsers() {
-    return this.http.get(environment.URL_API + '/users');
-  }
-
   postUser(user: User) {
     return this.http.post(environment.URL_API + '/register', user, this.noAuthHeader);
-  }
-
-  putUser(user: User) {
-    return this.http.put(environment.URL_API + '/user' + `/${user._id}`, user);
   }
 
   login(authCredentials) {
@@ -41,14 +32,21 @@ export class UserService {
     return this.http.get(environment.URL_API + '/profile');
   }
 
+  // Change password and avatar
+  getUsers() {
+    return this.http.get(environment.URL_API + '/users');
+  }
+  putUser(user: User) {
+    return this.http.put(environment.URL_API + '/user' + `/${user._id}`, user);
+  }
   postForgot(user: User) {
     return this.http.post(environment.URL_API + '/forgot', user);
   }
-  getReset(){
-    this.http.get(environment.URL_API + '/reset/:token')
+  getReset(token: string) {
+    this.http.get(environment.URL_API + '/reset' + `/${token}`)
   }
-  postReset(user: User) {
-    return this.http.post(environment.URL_API + '/reset/:token', user);
+  postReset(user: User, token: string) {
+    return this.http.post(environment.URL_API + '/reset' + `/${token}`, user);
   }
 
   //Helper Methods
