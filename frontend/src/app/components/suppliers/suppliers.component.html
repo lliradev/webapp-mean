@@ -7,7 +7,6 @@
           <div class="card-action white-text" id="card_back">
             <span class="card-title"><b>Proveedores</b></span>
           </div>
-
           <form #supplierForm="ngForm" (ngSubmit)="addSupplier(supplierForm); prevStep()">
             <div class="card-content">
               <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="supplierService.selectedSupplier._id">

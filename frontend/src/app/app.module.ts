@@ -15,6 +15,7 @@ import { AuthGuard } from './auth/auth.guard';
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { FilterInternalPipe } from './pipes/filter-internal.pipe';
 import { FilterSupplierPipe } from './pipes/filter-supplier.pipe';
+import { TruncatePipe } from './pipes/truncate.pipe';
 
 // components
 import { AppComponent } from './app.component';
@@ -35,6 +36,7 @@ import { PhotoListComponent } from './components/photos/photo-list/photo-list.co
 import { MenuCreateComponent } from './components/menu/menu-create/menu-create.component';
 import { MenuListComponent } from './components/menu/menu-list/menu-list.component';
 import { HeaderComponent } from './components/header/header.component';
+import { SalesComponent } from './components/sales/sales.component';
 
 @NgModule({
     declarations: [
@@ -57,7 +59,9 @@ import { HeaderComponent } from './components/header/header.component';
         PhotoListComponent,
         MenuCreateComponent,
         MenuListComponent,
-        HeaderComponent
+        HeaderComponent,
+        SalesComponent,
+        TruncatePipe
     ],
     imports: [
         BrowserModule,

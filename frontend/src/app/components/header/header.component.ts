@@ -19,7 +19,7 @@ export class HeaderComponent implements OnInit {
 
   onLogout() {
     this.user.deleteToken();
-    this.router.navigate(['/login']);
+    this.router.navigate(['/home']);
   }
 
 }//End class

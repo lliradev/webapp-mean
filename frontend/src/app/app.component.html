@@ -1,9 +1,7 @@
 <app-header></app-header>
 <!-- CONTENT -->
 <div *ngIf="!user.isLoggedIn(); else loggedOut">
-  <div class="container">
-    <router-outlet></router-outlet>
-  </div>
+  <router-outlet></router-outlet>
 </div>
 
 <ng-template #loggedOut>

@@ -24,7 +24,7 @@
                   <img mat-card-image src="{{ menu.image }}" alt="{{ menu.title }}">
                   <mat-card-content>
                     <p>Tipo de comida: {{ menu.type }}</p>
-                    <p>Descripción: {{ menu.description }}</p>
+                    <p>Descripción: {{ menu.description | truncate: [140, '...'] }}</p>
                     <p>Precio: {{ menu.price | currency:'MXN' }}</p>
                   </mat-card-content>
                   <mat-card-actions>

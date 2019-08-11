@@ -19,6 +19,7 @@ import { PhotoCreateComponent } from './components/photos/photo-create/photo-cre
 import { PhotoListComponent } from './components/photos/photo-list/photo-list.component';
 import { MenuListComponent } from './components/menu/menu-list/menu-list.component';
 import { MenuCreateComponent } from './components/menu/menu-create/menu-create.component';
+import { SalesComponent } from './components/sales/sales.component';
 
 const routes: Routes = [
   {
@@ -54,6 +55,7 @@ const routes: Routes = [
 
   { path: 'suppliers', component: SuppliersComponent, canActivate: [AuthGuard] },
   { path: 'internal', component: InternalComponent, canActivate: [AuthGuard] },
+  { path: 'sales', component: SalesComponent, canActivate: [AuthGuard] },
   { path: 'edit', component: EditProfileComponent, canActivate: [AuthGuard] },
   {
     path: '', redirectTo: '/home', pathMatch: 'full'

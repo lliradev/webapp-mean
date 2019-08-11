@@ -1,3 +1,29 @@
+.showcase {
+  background-image: url('../../../assets/img/boat_sea.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 0 20px;
+}
+
+.section-a {
+  padding: 20px;
+  background: #926239;
+  color: rgb(255, 255, 255);
+  text-align: center;
+}
+
+.section-b {
+  padding: 20px;
+  background: rgb(53, 202, 86);
+  text-align: center;
+}
+
 mat-card {
   margin-top: 1rem;
 }

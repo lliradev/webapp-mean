@@ -23,11 +23,9 @@ export class UserService {
   postUser(user: User) {
     return this.http.post(environment.URL_API + '/register', user, this.noAuthHeader);
   }
-
   login(authCredentials) {
     return this.http.post(environment.URL_API + '/authenticate', authCredentials, this.noAuthHeader);
   }
-
   getUserProfile() {
     return this.http.get(environment.URL_API + '/profile');
   }

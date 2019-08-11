@@ -1,4 +1,4 @@
-<div class="row">
+<!--<div class="row">
   <div class="col s12 m12 l4">
     <div class="card">
       <form #editProfileForm="ngForm" (ngSubmit)="addUser(editProfileForm)">
@@ -72,5 +72,35 @@
         </tr>
       </tbody>
     </table>
+  </div>
+</div>
+-->
+
+<div class="row">
+  <div class="col s12 m12 l6 offset-l3">
+    <div class="card">
+      <div class="card-action white-text" id="card_back">
+        <span class="card-title"><b>Avatar</b></span>
+      </div>
+      <form>
+        <div class="card-content">
+          <mat-form-field>
+            <mat-label>Avatar</mat-label>
+            <mat-select>
+              <mat-option>-- Elige tu avatar --</mat-option>
+              <mat-option *ngFor="let avatar of avatars" [value]="avatar.value">
+                <img with="40" height="40" src="{{ avatar.viewValue }}">
+                {{ avatar.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="card-action">
+          <button mat-raised-button color="accent" class="btn">Update</button>
+          <button mat-raised-button color="warn" class="btn right">Cancel</button>
+        </div>
+      </form>
+    </div>
   </div>
 </div>

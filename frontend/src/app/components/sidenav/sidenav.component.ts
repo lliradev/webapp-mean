@@ -22,7 +22,7 @@ export class SidenavComponent implements OnInit {
 
   onLogout() {
     this.user.deleteToken();
-    this.router.navigate(['/login']);
+    this.router.navigate(['/home']);
   }
 
   isScreenSmall(): boolean {
