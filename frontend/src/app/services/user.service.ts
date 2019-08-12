@@ -43,8 +43,15 @@ export class UserService {
   getReset(token: string) {
     this.http.get(environment.URL_API + '/reset' + `/${token}`)
   }
-  postReset(user: User, token: string) {
-    return this.http.post(environment.URL_API + '/reset' + `/${token}`, user);
+  postReset(body) {
+    const options = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `bearer ${body.token}`
+      })
+    }
+    return this.http.put(environment.URL_API + '/reset' + `/${body.token}`,
+      { password: body.password }, options);
   }
 
   //Helper Methods

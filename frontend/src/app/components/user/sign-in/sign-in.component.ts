@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-sign-in',
@@ -10,7 +11,10 @@ import { Router } from '@angular/router';
 })
 export class SignInComponent implements OnInit {
 
-  constructor(public userService: UserService, private router: Router) { } //Cambiar despues a private
+  constructor(
+    public userService: UserService,
+    private router: Router,
+    private snackBar: MatSnackBar) { }
   model = {
     email: '',
     password: ''
@@ -30,7 +34,10 @@ export class SignInComponent implements OnInit {
         this.router.navigateByUrl('/profile');
       },
         err => {
-          this.serverErrorMessages = err.error.message;
+          //this.serverErrorMessages = err.error.message;
+          this.snackBar.open(err.error.message, 'Warning', {
+            duration: 4000
+          });
         }
       );
   }

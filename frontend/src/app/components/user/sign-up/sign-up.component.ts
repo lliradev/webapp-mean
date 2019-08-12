@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { NgForm } from '@angular/forms';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-sign-up',
@@ -12,7 +13,9 @@ export class SignUpComponent implements OnInit {
   showSucessMessage: boolean;
   serverErrorMessages: string;
 
-  constructor(public userService: UserService) { } //Cambiar despues a private
+  constructor(
+    public userService: UserService,
+    private snackBar: MatSnackBar) { }
 
   ngOnInit() {
   }
@@ -20,6 +23,9 @@ export class SignUpComponent implements OnInit {
   onSubmit(form: NgForm) {
     this.userService.postUser(form.value)
       .subscribe(res => {
+        this.snackBar.open('Saved successfully', 'Success', {
+          duration: 4000
+        });
         this.showSucessMessage = true;
         setTimeout(() => this.showSucessMessage = false, 4000);
         this.resetForm(form);

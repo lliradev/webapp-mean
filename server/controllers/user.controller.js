@@ -146,7 +146,7 @@ userCtrl.getReset = (req, res) => {
       if (!user) {
         //req.flash('error', 'Password reset token is invalid or has expired.');
         console.log('Password reset token is invalid or has expired');
-        return res.redirect('/api/forgot');
+        return res.redirect('/');
       }
       res.render('reset', {
         user: req.user
@@ -186,7 +186,8 @@ userCtrl.postReset = (req, res) => {
         from: process.env.GMAIL_USER,
         subject: 'Your password has been changed',
         text: 'Hello,\n\n' +
-          'This is a confirmation that the password for your account ' + user.email + ' has just been changed.\n'
+          'This is a confirmation that the password for your account ' 
+          + user.email + ' has just been changed.\n'
       };
       smtpTransport.sendMail(mailOptions, function (err) {
         //req.flash('success', 'Success! Your password has been changed.');

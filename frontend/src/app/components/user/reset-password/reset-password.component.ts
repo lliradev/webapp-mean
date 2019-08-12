@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
-import { Router } from '@angular/router';
-import { NgForm } from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-reset-password',
@@ -9,29 +10,43 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./reset-password.component.css']
 })
 export class ResetPasswordComponent implements OnInit {
-  token:string;
+  form: FormGroup;
+  private token = '';
 
-  constructor(public userService: UserService, private router: Router) { }
+  constructor(
+    public userService: UserService,
+    private router: Router,
+    private fb: FormBuilder,
+    private snackBar: MatSnackBar,
+    private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.initForm();
+    this.token = this.route.snapshot.params['token'];
   }
 
-  onSubmit(form: NgForm) {
-    this.userService.postReset(form.value, this.token)
-      .subscribe(res => {
-        this.resetForm(form);
+  onSubmit() {
+    let { password, confirmPassword } = this.form.value;
+    if (password !== confirmPassword) {
+      this.snackBar.open('Both password should match', 'warning', {
+        duration: 4000
+      });
+      return;
+    }
+    this.userService.postReset({ token: this.token, password })
+      .subscribe(data => {
+        this.snackBar.open('Success! Your password has been changed.', 'Success', {
+          duration: 4000
+        });
+        this.router.navigate(['/login']);
       });
   }
 
-  resetForm(form: NgForm) {
-    this.userService.selectedUser = {
-      _id: '',
-      fullname: '',
-      email: '',
-      password: '',
-      avatar: ''
-    };
-    form.resetForm();
+  private initForm() {
+    this.form = this.fb.group({
+      password: ['', Validators.required],
+      confirmPassword: ['', Validators.required]
+    });
   }
 
-}
+}//End class

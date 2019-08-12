@@ -84,16 +84,18 @@
       </div>
       <form>
         <div class="card-content">
-          <mat-form-field>
-            <mat-label>Avatar</mat-label>
-            <mat-select>
-              <mat-option>-- Elige tu avatar --</mat-option>
-              <mat-option *ngFor="let avatar of avatars" [value]="avatar.value">
-                <img with="40" height="40" src="{{ avatar.viewValue }}">
-                {{ avatar.name }}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
+          <div class="row">
+            <mat-form-field class="col s12">
+              <mat-label>Avatar</mat-label>
+              <mat-select>
+                <mat-option>-- Elige tu avatar --</mat-option>
+                <mat-option *ngFor="let avatar of avatars" [value]="avatar.value">
+                  <img with="40" height="40" src="{{ avatar.viewValue }}">
+                  {{ avatar.name }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
         </div>
 
         <div class="card-action">

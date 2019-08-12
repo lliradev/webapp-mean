@@ -21,6 +21,7 @@ import {
     MatDialogModule,
     MatDividerModule,
     MatSelectModule,
+    MatSnackBarModule,
 } from '@angular/material';
 
 @NgModule({
@@ -44,6 +45,7 @@ import {
         MatDialogModule,
         MatDividerModule,
         MatSelectModule,
+        MatSnackBarModule,
     ],
     exports: [
         MatButtonModule,
@@ -65,6 +67,7 @@ import {
         MatDialogModule,
         MatDividerModule,
         MatSelectModule,
+        MatSnackBarModule,
     ]
 })
 export class MaterialModule { }

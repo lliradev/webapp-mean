@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-forgot-password',
@@ -10,7 +11,10 @@ import { Router } from '@angular/router';
 })
 export class ForgotPasswordComponent implements OnInit {
 
-  constructor(public userService: UserService, private router: Router) { }
+  constructor(
+    public userService: UserService,
+    private router: Router,
+    public snackBar: MatSnackBar) { }
 
   ngOnInit() {
   }
@@ -18,6 +22,10 @@ export class ForgotPasswordComponent implements OnInit {
   onSubmit(form: NgForm) {
     this.userService.postForgot(form.value)
       .subscribe(res => {
+        this.snackBar.open('An e-mail has been sent to ' + this.userService.selectedUser.email
+          + ' with further instructions.', 'Success', {
+            duration: 4000
+          });
         this.resetForm(form);
       });
     this.router.navigate(['/login']);

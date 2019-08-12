@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/models/user';
-import { NgForm } from '@angular/forms';
+import { NgForm, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 declare var M: any;
 
@@ -47,7 +47,8 @@ export class EditProfileComponent implements OnInit {
 
   constructor(
     public userService: UserService,
-    private router: Router) { }
+    private router: Router,
+    private fb: FormBuilder) { }
 
   ngOnInit() {
     this.getUsers();

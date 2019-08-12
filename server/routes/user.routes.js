@@ -14,7 +14,7 @@ router.put('/user/:id', user.editUser);
 router.get('/forgot', user.getForgot);
 router.post('/forgot', user.postForgot);
 router.get('/reset/:token', user.getReset);
-router.post('/reset/:token', user.postReset);
+router.put('/reset/:token', user.postReset);
 
 
 module.exports = router;

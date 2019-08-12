@@ -56,7 +56,7 @@ const routes: Routes = [
   { path: 'suppliers', component: SuppliersComponent, canActivate: [AuthGuard] },
   { path: 'internal', component: InternalComponent, canActivate: [AuthGuard] },
   { path: 'sales', component: SalesComponent, canActivate: [AuthGuard] },
-  { path: 'edit', component: EditProfileComponent, canActivate: [AuthGuard] },
+  { path: 'edit-avatar', component: EditProfileComponent, canActivate: [AuthGuard] },
   {
     path: '', redirectTo: '/home', pathMatch: 'full'
   },

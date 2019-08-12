@@ -28,7 +28,7 @@ export class UserProfileComponent implements OnInit {
   }
 
   onEditAvatar() {
-    this.router.navigate(['/edit']);
+    this.router.navigate(['/edit-avatar']);
   }
 
 }//End class

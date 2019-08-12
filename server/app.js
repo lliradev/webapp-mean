@@ -55,9 +55,9 @@ app.use('/api/sales', require('./routes/sale.routes'));
 //app.use('/api/schedules', require('./routes/schedule.routes'));
 
 // Static Files
-app.use(express.static(path.join(__dirname, 'public/dist')));
+/*app.use(express.static(path.join(__dirname, 'public/dist')));
 app.get('*', function (req, res) {
   res.sendfile(path.join(__dirname, 'public/dist/index.html'));
-});
+});*/
 
 module.exports = app;
