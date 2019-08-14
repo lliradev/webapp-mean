@@ -13,17 +13,45 @@
 
 .section-a {
   padding: 20px;
-  background: #926239;
+  background: #887575;
   color: rgb(255, 255, 255);
   text-align: center;
 }
 
 .section-b {
   padding: 20px;
-  background: rgb(53, 202, 86);
+  background: #213458;
   text-align: center;
 }
 
 mat-card {
   margin-top: 1rem;
+}
+
+#center {
+  min-height: 30em;
+}
+
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 412px;
+  height: 432px;
+}
+
+#card {
+  min-height: 10em;
+}
+
+#info-text {
+  min-height: 5em;
+}
+
+.page-footer {
+  background: #543864;
+}
+
+.text {
+  font-family: 'Kalam', cursive;
 }

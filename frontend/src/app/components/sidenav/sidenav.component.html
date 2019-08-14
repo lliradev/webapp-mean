@@ -3,12 +3,6 @@
   <mat-sidenav #sidenav class="app-sidenav" [opened]="!isScreenSmall()" [mode]="isScreenSmall() ? 'over' : 'side'">
     <mat-list role="list">
       <h3 mat-subheader>Catálogos</h3>
-      <!--<a routerLink="/photos" routerLinkActive="mat-primary">
-        <mat-list-item>
-          <mat-icon mat-list-icon>photo</mat-icon>
-          <h4 mat-line>Fotos</h4>
-        </mat-list-item>
-      </a>-->
       <a routerLink="/internal">
         <mat-list-item routerLinkActive="active current">
           <mat-icon mat-list-icon>note</mat-icon>
@@ -25,6 +19,12 @@
         <mat-list-item routerLinkActive="active current">
           <mat-icon mat-list-icon>restaurant_menu</mat-icon>
           <h4 mat-line>Menu</h4>
+        </mat-list-item>
+      </a>
+      <a routerLink="/orders">
+        <mat-list-item routerLinkActive="active current">
+          <mat-icon mat-list-icon>assignment</mat-icon>
+          <h4 mat-line>Ordenes</h4>
         </mat-list-item>
       </a>
       <a routerLink="/sales">

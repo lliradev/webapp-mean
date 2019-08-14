@@ -37,6 +37,10 @@ import { MenuCreateComponent } from './components/menu/menu-create/menu-create.c
 import { MenuListComponent } from './components/menu/menu-list/menu-list.component';
 import { HeaderComponent } from './components/header/header.component';
 import { SalesComponent } from './components/sales/sales.component';
+import { CartComponent } from './components/cart/cart.component';
+import { CheckoutComponent } from './components/checkout/checkout.component';
+import { MenulistorderComponent } from './components/menulistorder/menulistorder.component';
+import { OrderComponent } from './components/order/order.component';
 
 @NgModule({
     declarations: [
@@ -61,7 +65,11 @@ import { SalesComponent } from './components/sales/sales.component';
         MenuListComponent,
         HeaderComponent,
         SalesComponent,
-        TruncatePipe
+        TruncatePipe,
+        CartComponent,
+        CheckoutComponent,
+        MenulistorderComponent,
+        OrderComponent
     ],
     imports: [
         BrowserModule,

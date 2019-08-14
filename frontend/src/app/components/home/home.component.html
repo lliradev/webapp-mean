@@ -1,6 +1,7 @@
 <div class="showcase">
-  <h1 class=".mat-display-4 white-text">Bienvenido a Muelle 13</h1>
-  <p>El restaurante que ofrece los mejores mariscos a buen precio y excelente servicio.</p>
+  <h1 class=".mat-display-4 white-text text">Bienvenido a Muelle 13</h1>
+  <p class=".mat-card-title white-text">El restaurante que ofrece los mejores mariscos a buen precio y excelente
+    servicio.</p>
   <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Read More</a>
   <!-- Modal Structure -->
   <div id="modal1" class="modal modal-fixed-footer">
@@ -9,32 +10,34 @@
       <p>A bunch of text</p>
     </div>
     <div class="modal-footer">
-      <a routerLink="/" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+      <a routerLink="" class="modal-close waves-effect waves-green btn-flat">Agree</a>
     </div>
   </div>
 </div>
 
 <div class="section-a">
   <mat-spinner *ngIf="isLoading"></mat-spinner>
+  <a mat-raised-button color="accent" routerLink="/menulistorder" routerLinkActive="active current">
+    Ordenar Ahora!
+  </a>
   <div class="row" *ngIf="menuService.menus.length > 0 && !isLoading">
     <div *ngFor="let menu of menuService.menus">
       <div class="col s12 m12 l4">
+
         <mat-card>
           <mat-card-header>
             <mat-card-title>{{ menu.name }}</mat-card-title>
           </mat-card-header>
           <img mat-card-image src="{{ menu.image }}" alt="{{ menu.name }}">
-          <mat-card-content>
-            <p>{{ menu.price | currency:'MXN' }}</p>
-            <p>{{ menu.description | truncate: [140, '...'] }}</p>
-            <p class="rigth">
-              <mat-icon>shopping_cart</mat-icon>
-            </p>
+          <mat-card-content class="text">
+            <p id="info-text">{{ menu.description | truncate: [140, '...'] }}</p>
           </mat-card-content>
         </mat-card>
       </div>
     </div>
+
   </div>
+
   <p class="info-text mat-body-1" *ngIf="menuService.menus.length <= 0 && !isLoading">
     No hay Menus todavía!
   </p>
@@ -48,11 +51,11 @@
   </iframe>
 </div>
 
-<footer class="page-footer orange">
+<footer class="page-footer">
   <div class="container">
     <div class="row">
       <div class="col l6 s12">
-        <h5 class="white-text">Company Muelle 13</h5>
+        <h5 class="white-text text">Company Muelle 13</h5>
         <p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our full
           time job. Any amount would help support and continue development on this project and is greatly appreciated.
         </p>

@@ -20,6 +20,10 @@ import { PhotoListComponent } from './components/photos/photo-list/photo-list.co
 import { MenuListComponent } from './components/menu/menu-list/menu-list.component';
 import { MenuCreateComponent } from './components/menu/menu-create/menu-create.component';
 import { SalesComponent } from './components/sales/sales.component';
+import { CartComponent } from './components/cart/cart.component';
+import { MenulistorderComponent } from './components/menulistorder/menulistorder.component';
+import { CheckoutComponent } from './components/checkout/checkout.component';
+import { OrderComponent } from './components/order/order.component';
 
 const routes: Routes = [
   {
@@ -43,6 +47,22 @@ const routes: Routes = [
     children: [{ path: '', component: HomeComponent }]
   },
   {
+    path: 'cart', component: CartComponent,
+    children: [{ path: '', component: CartComponent }]
+  },
+  {
+    path: 'menulistorder', component: MenulistorderComponent,
+    children: [{ path: '', component: MenulistorderComponent }]
+  },
+  {
+    path: 'checkout', component: CheckoutComponent,
+    children: [{ path: '', component: CheckoutComponent }]
+  },
+  {
+    path: 'orders', component: OrderComponent,
+    children: [{ path: '', component: OrderComponent }]
+  },
+  {
     path: 'profile', component: UserProfileComponent, canActivate: [AuthGuard]
   },
   { path: 'photos', component: PhotoListComponent, canActivate: [AuthGuard] },
@@ -58,7 +78,7 @@ const routes: Routes = [
   { path: 'sales', component: SalesComponent, canActivate: [AuthGuard] },
   { path: 'edit-avatar', component: EditProfileComponent, canActivate: [AuthGuard] },
   {
-    path: '', redirectTo: '/home', pathMatch: 'full'
+    path: '', redirectTo: '/login', pathMatch: 'full'
   },
   { path: '**', component: NotFoundComponent }
 ];

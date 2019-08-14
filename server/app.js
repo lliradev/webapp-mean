@@ -5,6 +5,7 @@ const multer = require('multer');
 const path = require('path');
 const cors = require('cors');
 const passport = require('passport');
+const pdf = require('express-pdf');
 
 // Inicializando
 const app = express();
@@ -16,6 +17,7 @@ app.set('port', process.env.PORT || 3000);
 // Middlewares
 app.use(morgan('dev'));
 app.use(cors());
+app.use(pdf);
 app.use(passport.initialize());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

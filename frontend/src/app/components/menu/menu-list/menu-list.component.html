@@ -10,6 +10,7 @@
               <mat-icon>add</mat-icon>Nuevo
             </a>
           </div>
+          
 
           <div class="row">
             <div *ngFor="let menu of menuService.menus | paginate: {itemsPerPage: 6, currentPage: p}">
@@ -22,7 +23,7 @@
                     </a>
                   </mat-card-header>
                   <img mat-card-image src="{{ menu.image }}" alt="{{ menu.title }}">
-                  <mat-card-content>
+                  <mat-card-content id="card">
                     <p>Tipo de comida: {{ menu.type }}</p>
                     <p>Descripción: {{ menu.description | truncate: [140, '...'] }}</p>
                     <p>Precio: {{ menu.price | currency:'MXN' }}</p>
@@ -35,6 +36,9 @@
               </div>
             </div>
           </div>
+
+
+
           <pagination-controls class="my-pagination mat-body-1" (pageChange)="p = $event"></pagination-controls>
         </ng-template>
 

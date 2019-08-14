@@ -146,7 +146,7 @@ userCtrl.getReset = (req, res) => {
       if (!user) {
         //req.flash('error', 'Password reset token is invalid or has expired.');
         console.log('Password reset token is invalid or has expired');
-        return res.redirect('/');
+        //return res.redirect('/');
       }
       res.render('reset', {
         user: req.user

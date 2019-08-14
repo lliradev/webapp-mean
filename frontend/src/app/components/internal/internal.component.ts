@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { InternalService } from 'src/app/services/internal.service';
 import { NgForm } from '@angular/forms';
 import { Internal } from 'src/app/models/internal';
+import { MatSnackBar } from '@angular/material';
+import * as jsPDF from 'jspdf';
 declare var M: any;
 
 @Component({
@@ -14,7 +16,9 @@ export class InternalComponent implements OnInit {
   p: number = 1;
   isLoading = false;
 
-  constructor(public internalService: InternalService) { } //Cambiar despues a private
+  constructor(
+    public internalService: InternalService,
+    private snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.findAll();
@@ -74,6 +78,22 @@ export class InternalComponent implements OnInit {
 
   getTotalAmount() {
     return this.internalService.allInternal.map(i => i.amount).reduce((acc, value) => acc + value, 0);
+  }
+
+  // Reports
+  downloadInternalPDF() {
+    const doc = jsPDF();
+    this.generateHeader(doc);
+    //doc.text('Gastos Internos - SAM 13', 10, 10);
+    //doc.autoTable({ html: "#internal-table" });
+    doc.save('Gastos-Internos-' + new Date().getTime() + '.pdf')
+  }
+
+  generateHeader(doc) {
+    doc.setFontSize(20);
+    doc.setTextColor(40);
+    doc.setFontStyle('normal');
+    doc.text("Gastos Internos - SAM 13", 50, 22, { align: "center" });
   }
 
   /* Tabs */

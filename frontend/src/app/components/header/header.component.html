@@ -9,11 +9,18 @@
         </a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
           <div *ngIf="!user.isLoggedIn(); else logout">
-            <li><a routerLink="/"><i class="material-icons">shopping_cart</i></a></li>
-            <!--<li routerLinkActive="active current"><a routerLink="/signup">Sign Up</a></li>
-            <li routerLinkActive="active current"><a routerLink="/login">Sign In</a></li>-->
             <li>
-              <a mat-icon-button [matMenuTriggerFor]="menu">
+              <a routerLink="/cart" mat-icon-button>
+                <mat-icon *ngIf="cart.length" matBadge="{{ cart.length }}" matBadgeColor="warn">shopping_cart</mat-icon>
+              </a>
+            </li>
+            <li>
+              <a mat-icon-button routerLink="/home" routerLinkActive="mat-accent">
+                <mat-icon>home</mat-icon>
+              </a>
+            </li>
+            <li>
+              <a mat-icon-button [matMenuTriggerFor]="menu" routerLinkActive="mat-accent">
                 <mat-icon>account_box</mat-icon>
               </a>
               <mat-menu #menu="matMenu" xPosition="before">
@@ -28,11 +35,11 @@
             </li>
           </div>
           <ng-template #logout>
-            <li>
+            <!--<li>
               <a mat-icon-button>
                 <mat-icon matBadge="{{ 2 + 6 }}" matBadgeColor="warn">notifications</mat-icon>
               </a>
-            </li>
+            </li>-->
             <li>
               <a mat-icon-button [matMenuTriggerFor]="menu">
                 <mat-icon>menu</mat-icon>
@@ -77,12 +84,6 @@
 
   <ng-template #logoutmobile>
     <li><a class="subheader">Catálogos</a></li>
-    <!--<li routerLinkActive="active current">
-      <a routerLink="/photos" class="sidenav-close">
-        <i class="material-icons">photo</i>
-        Fotos
-      </a>
-    </li>-->
     <li routerLinkActive="active current">
       <a routerLink="/internal" class="sidenav-close">
         <i class="material-icons">note</i>

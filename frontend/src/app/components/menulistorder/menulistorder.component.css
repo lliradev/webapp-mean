@@ -1,15 +1,8 @@
-mat-card {
-  margin-top: 1rem;
-}
-
-.mat-icon-view {
-  color: rgba(0, 0, 0, 0.54);
-}
 
 #center {  
   min-height: 30em;
 }
-img{
+.card-image img{
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -19,7 +12,7 @@ img{
 }
 
 #card{
-  min-height: 10em;
+  min-height: 40em;
 }
 
 #info-text{

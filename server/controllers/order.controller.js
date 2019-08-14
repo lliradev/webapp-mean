@@ -28,4 +28,9 @@ orderCtrl.getOrders = async (req, res) => {
     })
 }
 
+orderCtrl.deleteOrder = async (req, res) => {
+  await Order.findByIdAndDelete(req.params.id);
+  res.json({ status: 'Orden Eliminada' });
+}
+
 module.exports = orderCtrl;

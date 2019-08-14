@@ -60,6 +60,10 @@
               <mat-icon>add</mat-icon>
               Nuevo
             </button>
+            <button class="download-pdf" mat-raised-button color="warn" (click)="downloadInternalPDF()">
+              <i class="fas fa-file-pdf"></i>
+              Generar PDF
+            </button>
             <div class="search-form-field">
               <input type="text" name="filterInternal" placeholder="Buscar..." [(ngModel)]="filterInternal">
             </div>
