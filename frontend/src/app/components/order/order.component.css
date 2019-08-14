@@ -1,0 +1,15 @@
+.left p{
+  min-height: 8em;
+}
+
+#totalOrder{
+  background: #ffba92;
+}
+
+#totalGanancia{
+  background: #35b0ab;
+}
+
+#totalPlatillos{
+  background: #df7599;
+}

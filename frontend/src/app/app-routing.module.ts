@@ -24,6 +24,8 @@ import { CartComponent } from './components/cart/cart.component';
 import { MenulistorderComponent } from './components/menulistorder/menulistorder.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { OrderComponent } from './components/order/order.component';
+import { ExternalComponent } from './components/external/external.component';
+import { InvoiceComponent } from './components/invoice/invoice.component';
 
 const routes: Routes = [
   {
@@ -75,6 +77,8 @@ const routes: Routes = [
 
   { path: 'suppliers', component: SuppliersComponent, canActivate: [AuthGuard] },
   { path: 'internal', component: InternalComponent, canActivate: [AuthGuard] },
+  { path: 'external', component: ExternalComponent, canActivate: [AuthGuard] },
+  { path: 'invoice', component: InvoiceComponent, canActivate: [AuthGuard] },
   { path: 'sales', component: SalesComponent, canActivate: [AuthGuard] },
   { path: 'edit-avatar', component: EditProfileComponent, canActivate: [AuthGuard] },
   {

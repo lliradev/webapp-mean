@@ -41,6 +41,9 @@ import { CartComponent } from './components/cart/cart.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { MenulistorderComponent } from './components/menulistorder/menulistorder.component';
 import { OrderComponent } from './components/order/order.component';
+import { ExternalComponent } from './components/external/external.component';
+import { FilterExternalPipe } from './pipes/filter-external.pipe';
+import { InvoiceComponent } from './components/invoice/invoice.component';
 
 @NgModule({
     declarations: [
@@ -69,7 +72,10 @@ import { OrderComponent } from './components/order/order.component';
         CartComponent,
         CheckoutComponent,
         MenulistorderComponent,
-        OrderComponent
+        OrderComponent,
+        ExternalComponent,
+        FilterExternalPipe,
+        InvoiceComponent
     ],
     imports: [
         BrowserModule,

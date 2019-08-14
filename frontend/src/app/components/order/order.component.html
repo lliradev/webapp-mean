@@ -1,36 +1,49 @@
 <div class="container">
   <br><br>
   <div class="row">
-    <div class="col">
-      <div class="card text-white bg-secondary mb-3">
-        <div class="card-body">
-          <p class="card-text d-flex justify-content-around">
-            <i class="fas fa-5x fa-box"></i> <span class="statsNum">{{orders.length}}</span>
-          </p>
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card text-white bg-success mb-3">
-        <div class="card-body">
-          <p class="card-text d-flex justify-content-around">
-            <i class="fas fa-5x fa-money-bill-alt"></i> <span
-              class="statsNum">{{totalEarnings(orders) | currency}}</span>
-          </p>
-        </div>
-      </div>
-    </div>
-    <div class="col">
 
-      <div class="card text-white bg-info mb-3">
-        <div class="card-body">
-          <p class="card-text d-flex justify-content-around">
-            <i class="fas fa-5x fa-sticky-note"></i> <span class="statsNum">{{totalItems(orders)}}</span>
-          </p>
-        </div>
-      </div>
+
+
+    <div class="col s12 m12 l4" >
+      <mat-card id="totalOrder">
+        <mat-card-header>
+          <mat-card-title class="left">
+            <p class="white-text">Total de ordenes: {{orders.length}}</p>
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content id="card">
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <div class="col s12 m12 l4">
+      <mat-card id="totalGanancia">
+        <mat-card-header>
+          <mat-card-title class="left">
+            <p class="white-text">Total de ganancia: {{totalEarnings(orders) | currency}}</p>
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content id="card">
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <div class="col s12 m12 l4">
+      <mat-card id="totalPlatillos">
+        <mat-card-header>
+          <mat-card-title class="left">
+            <p class="white-text">Total de platillos: {{totalItems(orders)}}</p>
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content id="card">
+        </mat-card-content>
+      </mat-card>
     </div>
   </div>
+
+
+
+
   <div class="card mt-2" *ngFor="let order of orders">
     <div class="card-body p-0 pl-3">
       <div class="row">
@@ -48,18 +61,20 @@
             <li class="list-group-item" *ngFor="let item of order.items">{{item.name}}</li>
           </ul>
         </div>
-        <div class="col">
-
-          <a (click)='deleteOrder(order._id)'>
-            <i id="icon-cursor" class='material-icons'>delete</i>
-          </a>
-
-        </div>
       </div>
     </div>
-    <div class="card-footer text-muted text-right"><b>
-        Order Id: {{order._id}} <br>
-        Total: {{orderTotal(order.items) | currency}}
-      </b></div>
+    <div class="card-content">
+      <div class="card-footer text-muted text-right"><b>
+          Order Id: {{order._id}} <br>
+          Total: {{orderTotal(order.items) | currency}}
+        </b>
+        <mat-card-actions>
+          <a mat-raised-button (click)='deleteOrder(order._id)' color="warn" class="btn right">Delete</a>
+        </mat-card-actions>
+      </div>
+    </div>
   </div>
+
+
+
 </div>
