@@ -8,7 +8,7 @@ import { MenuService } from '../../services/menu.service';
 })
 export class MenulistorderComponent implements OnInit {
   menus = [];
-  constructor(private menuService: MenuService) { }
+  constructor(public menuService: MenuService) { }
 
   ngOnInit() {
     this.menuService.clearCart();

@@ -66,7 +66,13 @@ THE SOFTWARE.
 
 @angular/material/core
 
+@angular/material/datepicker
+
+@angular/material/dialog
+
 @angular/material/divider
+
+@angular/material/form-field
 
 @angular/material/icon
 
@@ -76,9 +82,15 @@ THE SOFTWARE.
 
 @angular/material/progress-spinner
 
+@angular/material/select
+
 @angular/material/sidenav
 
+@angular/material/snack-bar
+
 @angular/material/tabs
+
+@angular/material/toolbar
 
 @angular/platform-browser
 MIT
@@ -110,6 +122,9 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
+
+jspdf
+MIT
 
 ngx-pagination
 MIT
