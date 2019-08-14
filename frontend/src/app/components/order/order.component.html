@@ -1,59 +1,54 @@
-<div class="container">
-  <br><br>
-  <div class="row">
-
-
-
-    <div class="col s12 m12 l4" >
-      <mat-card id="totalOrder">
-        <mat-card-header>
-          <mat-card-title class="left">
-            <p class="white-text">Total de ordenes: {{orders.length}}</p>
-          </mat-card-title>
-        </mat-card-header>
-        <mat-card-content id="card">
-        </mat-card-content>
-      </mat-card>
-    </div>
-
-    <div class="col s12 m12 l4">
-      <mat-card id="totalGanancia">
-        <mat-card-header>
-          <mat-card-title class="left">
-            <p class="white-text">Total de ganancia: {{totalEarnings(orders) | currency}}</p>
-          </mat-card-title>
-        </mat-card-header>
-        <mat-card-content id="card">
-        </mat-card-content>
-      </mat-card>
-    </div>
-
-    <div class="col s12 m12 l4">
-      <mat-card id="totalPlatillos">
-        <mat-card-header>
-          <mat-card-title class="left">
-            <p class="white-text">Total de platillos: {{totalItems(orders)}}</p>
-          </mat-card-title>
-        </mat-card-header>
-        <mat-card-content id="card">
-        </mat-card-content>
-      </mat-card>
-    </div>
+<div class="row">
+  <div class="col s12 m12 l4">
+    <mat-card id="totalOrder">
+      <mat-card-header>
+        <mat-card-title class="left">
+          <p class="white-text">Total de ordenes: {{orders.length}}</p>
+        </mat-card-title>
+        <mat-card-subtitle><img mat-card-image src="/assets/img/order.png" alt=""></mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content id="card"></mat-card-content>
+    </mat-card>
   </div>
 
+  <div class="col s12 m12 l4">
+    <mat-card id="totalGanancia">
+      <mat-card-header>
+        <mat-card-title class="left">
+          <p class="white-text">Total de ganancia: {{totalEarnings(orders) | currency}}</p>
+        </mat-card-title>
+        <mat-card-subtitle><img mat-card-image src="/assets/img/money.png" alt=""></mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content id="card">
+      </mat-card-content>
+    </mat-card>
+  </div>
 
+  <div class="col s12 m12 l4">
+    <mat-card id="totalPlatillos">
+      <mat-card-header>
+        <mat-card-title class="left">
+          <p class="white-text">Total de platillos: {{totalItems(orders)}}</p>
+        </mat-card-title>
+        <mat-card-subtitle><img mat-card-image src="/assets/img/food.png" alt=""></mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content id="card">
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
 
-
-  <div class="card mt-2" *ngFor="let order of orders">
+<div class="container">
+  <div class="card mt-2" *ngFor="let order of orders | paginate: {itemsPerPage: 3, currentPage: p}">
     <div class="card-body p-0 pl-3">
       <div class="row">
         <div class="col d-flex flex-column justify-content-center">
           <h5 class="card-title">Address</h5>
           <p class="card-text">
-            Name: {{order.firstName}} {{order.lastName}}<br />
-            Phone: {{order.phone}}
-            Date: {{order.date | date: 'dd/MM/yy'}}
+            Name: {{order.firstName}} {{order.lastName}}
           </p>
+          <p>Telefono: {{ order.phone }}</p>
+          <p>Fecha: {{ order.date }}</p>
         </div>
         <div class="col">
           <h5 class="card-title">Order Items</h5>
@@ -69,12 +64,10 @@
           Total: {{orderTotal(order.items) | currency}}
         </b>
         <mat-card-actions>
-          <a mat-raised-button (click)='deleteOrder(order._id)' color="warn" class="btn right">Delete</a>
+          <a mat-raised-button (click)='deleteOrder(order._id)' color="warn" class="btn right">Eliminar</a>
         </mat-card-actions>
       </div>
     </div>
   </div>
-
-
-
+  <pagination-controls class="my-pagination mat-body-1" (pageChange)="p = $event"></pagination-controls>
 </div>

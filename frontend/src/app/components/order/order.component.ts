@@ -10,6 +10,7 @@ declare var M: any;
   styleUrls: ['./order.component.css']
 })
 export class OrderComponent implements OnInit {
+  p: number = 1;
   readonly API = '/orders';
 
   orders = [];

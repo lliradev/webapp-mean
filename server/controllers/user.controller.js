@@ -117,14 +117,14 @@ userCtrl.postForgot = (req, res, next) => {
         }
       });
       //req.headers.host
-      //var host = req.headers.host;
+      var host = req.headers.host;
       var mailOptions = {
         to: user.email,
         from: process.env.GMAIL_USER,
         subject: 'SAM 13 Password Reset',
         text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
           'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
-          'http://' + 'localhost:4200' + '/reset/' + token + '\n\n' +
+          'http://' + host + '/reset/' + token + '\n\n' +
           'If you did not request this, please ignore this email and your password will remain unchanged.\n'
       };
       smtpTransport.sendMail(mailOptions, function (err) {

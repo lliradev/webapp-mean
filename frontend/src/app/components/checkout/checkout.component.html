@@ -33,35 +33,35 @@
           <div class="card-content">
             <div class="row">
               <div class="col s12">
-                <label for="firstName">First name</label>
+                <label for="firstName">Nombre</label>
                 <input type="text" class="form-control" id="firstName" placeholder="" value="" required=""
                   formControlName="firstName">
-                <div class="invalid-feedback">Valid first name is required.</div>
               </div>
               <div class="col s12">
-                <label for="lastName">Last name</label>
+                <label for="lastName">Apellido</label>
                 <input type="text" class="form-control" id="lastName" placeholder="" value="" required=""
                   formControlName="lastName">
-                <div class="invalid-feedback">Valid last name is required.</div>
               </div>
               <div class="col s12">
-                <label for="email">Email <span class="text-muted"></span></label>
-                <input type="email" email class="form-control" id="email" placeholder="you@example.com"
+                <label for="email">Correo<span class="text-muted"></span></label>
+                <input type="email" email class="form-control" id="email" placeholder="tu@ejemplo.com"
                   formControlName="email">
-                <div class="invalid-feedback">Please enter a valid email address for shipping updates.</div>
               </div>
 
               <div class="col s12">
-                <label for="address">number phone</label>
+                <label for="address">Teléfono</label>
                 <input type="text" class="form-control" id="phone" placeholder="444 555 5555" required=""
                   formControlName="phone">
-                <div class="invalid-feedback">Please enter your shipping address.</div>
+
               </div>
             </div>
           </div>
           <div class="card-action">
-            <button mat-raised-button color="accent" [disabled]="!checkoutForm.valid"  type="submit">
+            <button mat-raised-button color="accent" [disabled]="!checkoutForm.valid" type="submit">
               Realizar Pedido
+            </button>
+            <button mat-raised-button color="warn" (click)="onCancel()" type="button" class="right">
+              Regresar
             </button>
           </div>
         </form>

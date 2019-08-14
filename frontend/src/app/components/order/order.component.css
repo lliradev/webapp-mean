@@ -1,15 +1,28 @@
-.left p{
+.left p {
   min-height: 8em;
 }
 
-#totalOrder{
+#totalOrder {
   background: #ffba92;
 }
 
-#totalGanancia{
+#totalGanancia {
   background: #35b0ab;
 }
 
-#totalPlatillos{
+#totalPlatillos {
   background: #df7599;
+}
+
+img {
+  position: absolute;
+  width: 120px;
+  top: 45%;
+  left: 33%;
+  right: 50%;
+  bottom: 50%;
+}
+
+mat-card {
+  height: 250px;
 }
