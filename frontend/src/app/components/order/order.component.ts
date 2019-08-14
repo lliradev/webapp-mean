@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { MenuService } from 'src/app/services/menu.service';
 import { OrderService } from '../../services/order.service';
+import { MatSnackBar } from '@angular/material';
+import { saveAs } from 'file-saver';
 declare var M: any;
 
 @Component({
@@ -11,12 +12,14 @@ declare var M: any;
 })
 export class OrderComponent implements OnInit {
   p: number = 1;
+  order;
   readonly API = '/orders';
 
   orders = [];
   constructor(
     public menuService: MenuService,
-    public orderService: OrderService) { }
+    public orderService: OrderService,
+    private snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.getOrders();
@@ -45,6 +48,16 @@ export class OrderComponent implements OnInit {
           M.toast({ html: 'Eliminado satisfactoriamente', classes: 'rounded' })
         });
     }
+  }
+
+  downloadHandler(_id) {
+    this.orderService.downloadOrder(_id)
+      .subscribe(data => {
+        this.snackBar.open('Saved successfully', 'Success', {
+          duration: 4000
+        });
+        saveAs(data, null);
+      });
   }
 
 }//end class

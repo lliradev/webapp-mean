@@ -39,28 +39,4 @@ internalCtrl.deleteInternal = async (req, res) => {
   res.json({ status: "Internal deleted!" });
 };
 
-internalCtrl.download = async (req, res) => {
-  try {
-    const templateBody = `<h1>Hello Nito Jicote</h1>`;
-    const html = `
-    <!doctype html>
-    <html lang="en">
-      <head>
-        <title>Internal</title>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-      </head>
-      <body>
-        ${templateBody}
-      </body>
-    </html>`;
-    res.pdfFromHTML({
-      filename: 'hello-world.pdf',
-      htmlContent: html,
-    });
-  } catch (error) {
-    console.log(error)
-    return res.status(500).send(error);
-  }
-}
-
 module.exports = internalCtrl;

@@ -118,6 +118,7 @@ userCtrl.postForgot = (req, res, next) => {
       });
       //req.headers.host
       var host = req.headers.host;
+      var host_local = 'localhost:4000';
       var mailOptions = {
         to: user.email,
         from: process.env.GMAIL_USER,
@@ -186,7 +187,7 @@ userCtrl.postReset = (req, res) => {
         from: process.env.GMAIL_USER,
         subject: 'Your password has been changed',
         text: 'Hello,\n\n' +
-          'This is a confirmation that the password for your account ' 
+          'This is a confirmation that the password for your account '
           + user.email + ' has just been changed.\n'
       };
       smtpTransport.sendMail(mailOptions, function (err) {

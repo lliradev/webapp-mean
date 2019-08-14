@@ -65,6 +65,9 @@
         </b>
         <mat-card-actions>
           <a mat-raised-button (click)='deleteOrder(order._id)' color="warn" class="btn right">Eliminar</a>
+          <button mat-raised-button color="accent" (click)="downloadHandler(order._id)">
+            Descargar
+          </button>
         </mat-card-actions>
       </div>
     </div>

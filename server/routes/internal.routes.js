@@ -7,6 +7,5 @@ router.post('/', internal.createInternal);
 router.get('/:id', internal.getInternal);
 router.put('/:id', internal.editInternal);
 router.delete('/:id', internal.deleteInternal);
-router.get('/:id/download', internal.download);
 
 module.exports = router;

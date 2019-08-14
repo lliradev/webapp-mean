@@ -33,4 +33,36 @@ orderCtrl.deleteOrder = async (req, res) => {
   res.json({ status: 'Orden Eliminada' });
 }
 
+orderCtrl.download = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const order = await Order.findById(id).populate('menu');
+    const templateBody =
+      `<div class="container">
+      <h1>${order.firstName} ${order.lastName}</h1>
+      <p>${order.email}</p>
+      <p>${order.phone}</p>
+    </div>`;
+
+    const html = `
+    <!doctype html>
+    <html lang="en">
+      <head>
+        <title>Internal</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+      </head>
+      <body>
+        ${templateBody}
+      </body>
+    </html>`;
+    res.pdfFromHTML({
+      filename: 'Detalles-de-la-Orden-' + new Date().getTime() + '.pdf',
+      htmlContent: html,
+    });
+  } catch (error) {
+    console.log(error)
+    return res.status(500).send(error);
+  }
+}
+
 module.exports = orderCtrl;
