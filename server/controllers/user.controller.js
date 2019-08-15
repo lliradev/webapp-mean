@@ -118,7 +118,7 @@ userCtrl.postForgot = (req, res, next) => {
       });
       //req.headers.host
       var host = req.headers.host;
-      var host_local = 'localhost:4000';
+      var host_local = 'localhost:4200';
       var mailOptions = {
         to: user.email,
         from: process.env.GMAIL_USER,
@@ -197,7 +197,7 @@ userCtrl.postReset = (req, res) => {
       });
     }
   ], function (err) {
-    res.redirect('/');
+    //res.redirect('/');
   });
 }
 

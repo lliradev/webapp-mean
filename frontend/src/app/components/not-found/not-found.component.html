@@ -11,7 +11,12 @@
         </p>
       </mat-card-content>
       <mat-card-actions>
-        <a mat-raised-button color="accent" routerLink="/">Return home</a>
+        <div *ngIf="!user.isLoggedIn(); else logout">
+          <a mat-raised-button color="accent" routerLink="/home">Return home</a>
+        </div>
+        <ng-template #logout>
+          <a mat-raised-button color="accent" routerLink="/profile">Return home</a>
+        </ng-template>
       </mat-card-actions>
     </mat-card>
   </div>

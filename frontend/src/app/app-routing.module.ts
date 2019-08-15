@@ -82,7 +82,7 @@ const routes: Routes = [
   { path: 'sales', component: SalesComponent, canActivate: [AuthGuard] },
   { path: 'edit-avatar', component: EditProfileComponent, canActivate: [AuthGuard] },
   {
-    path: '', redirectTo: '/login', pathMatch: 'full'
+    path: '', redirectTo: '/home', pathMatch: 'full'
   },
   { path: '**', component: NotFoundComponent }
 ];
