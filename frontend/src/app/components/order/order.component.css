@@ -23,6 +23,15 @@ img {
   bottom: 50%;
 }
 
-mat-card {
+.card-menu {
   height: 250px;
+}
+
+:host {
+  display: block;
+  margin-top: 1rem;
+}
+
+.card-info {
+  margin-bottom: 1rem;
 }

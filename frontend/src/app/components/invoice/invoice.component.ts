@@ -40,7 +40,6 @@ export class InvoiceComponent implements OnInit {
     this.invoiceService.findAll()
       .subscribe(res => {
         this.invoiceService.invoices = res as Invoice[];
-        console.log(res);
       });
   }
 

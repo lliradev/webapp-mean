@@ -34,7 +34,7 @@
               </div>
             </div>
             <div class="card-action">
-              <button mat-raised-button color="accent" class="btn">
+              <button mat-raised-button color="accent" class="btn" [disabled]="!supplierForm.valid">
                 Save
               </button>
               <button mat-raised-button color="warn" type="button" class="btn right"

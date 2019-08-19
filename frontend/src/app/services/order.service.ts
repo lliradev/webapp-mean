@@ -14,8 +14,10 @@ export class OrderService {
     return this.http.delete(environment.URL_API + this.API + `/${_id}`);
   }
 
-  downloadOrder(_id:string){
-    return this.http.get(environment.URL_API + this.API + `/${_id}`+ '/download');
+  downloadOrder(_id: string) {
+    return this.http.get(environment.URL_API + this.API + `/${_id}` + '/download', {
+      responseType: 'blob'
+    });
   }
 
 }//End class

@@ -61,14 +61,18 @@
               Nuevo
             </button>
             <button class="download-pdf" mat-raised-button color="warn" (click)="downloadInternalPDF()">
-              <i class="fas fa-file-pdf"></i>
+              <img src="../../../assets/img/pdf.png" alt="PDF">
               Generar PDF
+            </button>
+            <button class="white green accent-4 download-excel" mat-raised-button (click)="exportAsXLSX()">
+              <img src="../../../assets/img/excel.png" alt="Excel">
+              Generar Excel
             </button>
             <div class="search-form-field">
               <input type="text" name="filterInternal" placeholder="Buscar..." [(ngModel)]="filterInternal">
             </div>
           </div>
-          <table class="card responsive-table">
+          <table class="card responsive-table" id="table-internal">
             <thead>
               <tr>
                 <th>Tipo de gasto</th>

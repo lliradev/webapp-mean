@@ -14,6 +14,7 @@ export class OrderComponent implements OnInit {
   p: number = 1;
   order;
   readonly API = '/orders';
+  isResultsLoading = false;
 
   orders = [];
   constructor(
@@ -51,12 +52,14 @@ export class OrderComponent implements OnInit {
   }
 
   downloadHandler(_id) {
+    this.isResultsLoading = true;
     this.orderService.downloadOrder(_id)
       .subscribe(data => {
-        this.snackBar.open('Saved successfully', 'Success', {
+        this.snackBar.open('Descargado!', '', {
           duration: 4000
         });
-        saveAs(data, null);
+        saveAs(data, 'Detalle-de-Orden-' + new Date().getTime() + '.pdf');
+        this.isResultsLoading = false;
       });
   }
 

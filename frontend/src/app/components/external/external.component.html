@@ -76,11 +76,11 @@
           </table>
           <pagination-controls class="my-pagination mat-body-1" (pageChange)="p = $event"></pagination-controls>
         </ng-template>
-
-        <ng-template [ngIf]="externalService.allExternal.length <= 0">
-          <p class="info-text mat-body-1">No hay gastos agregados todavía!</p>
+        <p class="info-text mat-body-1" *ngIf="externalService.allExternal.length <= 0">
+          No hay gastos agregados todavía!
+          <br>
           <button mat-raised-button color="primary" (click)="nextStep()">Crear nuevo gasto</button>
-        </ng-template>
+        </p>
       </div>
     </mat-tab>
 

@@ -35,11 +35,6 @@
             </li>
           </div>
           <ng-template #logout>
-            <!--<li>
-              <a mat-icon-button>
-                <mat-icon matBadge="{{ 2 + 6 }}" matBadgeColor="warn">notifications</mat-icon>
-              </a>
-            </li>-->
             <li>
               <a mat-icon-button [matMenuTriggerFor]="menu">
                 <mat-icon>menu</mat-icon>
@@ -109,7 +104,7 @@
       </a>
     </li>
     <li routerLinkActive="active current">
-      <a routerLink="/orders">
+      <a routerLink="/orders" class="sidenav-close">
         <i class="material-icons">assignment</i>
         Ordenes
       </a>

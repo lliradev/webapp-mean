@@ -36,12 +36,13 @@ orderCtrl.deleteOrder = async (req, res) => {
 orderCtrl.download = async (req, res) => {
   try {
     const { id } = req.params;
-    const order = await Order.findById(id).populate('menu');
+    const order = await Order.findById(id).populate('items');
     const templateBody =
       `<div class="container">
       <h1>${order.firstName} ${order.lastName}</h1>
       <p>${order.email}</p>
       <p>${order.phone}</p>
+      <p>${order.items}</p>
     </div>`;
 
     const html = `

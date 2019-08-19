@@ -41,7 +41,6 @@ export class ExternalComponent implements OnInit {
     this.externalService.findAll()
       .subscribe(res => {
         this.externalService.allExternal = res as External[];
-        console.log(res);
       });
   }
 
