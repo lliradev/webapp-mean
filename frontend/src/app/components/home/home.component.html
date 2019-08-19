@@ -1,18 +1,8 @@
 <div class="showcase">
   <h1 class=".mat-display-4 white-text text">Bienvenido a Muelle 13</h1>
-  <p class=".mat-card-title white-text">El restaurante que ofrece los mejores mariscos a buen precio y excelente
-    servicio.</p>
-  <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Read More</a>
-  <!-- Modal Structure -->
-  <div id="modal1" class="modal modal-fixed-footer">
-    <div class="modal-content">
-      <h4>Modal Header</h4>
-      <p>A bunch of text</p>
-    </div>
-    <div class="modal-footer">
-      <a routerLink="" class="modal-close waves-effect waves-green btn-flat">Agree</a>
-    </div>
-  </div>
+  <p class=".mat-card-title white-text">
+    El restaurante que ofrece los mejores mariscos a buen precio y excelente servicio.
+  </p>
 </div>
 
 <div class="section-a">
@@ -23,7 +13,6 @@
   <div class="row" *ngIf="menuService.menus.length > 0 && !isLoading">
     <div *ngFor="let menu of menuService.menus">
       <div class="col s12 m12 l4">
-
         <mat-card>
           <mat-card-header>
             <mat-card-title>{{ menu.name }}</mat-card-title>
@@ -35,14 +24,11 @@
         </mat-card>
       </div>
     </div>
-
   </div>
-
   <p class="info-text mat-body-1" *ngIf="menuService.menus.length <= 0 && !isLoading">
     No hay Menus todavía!
   </p>
 </div>
-
 <div class="section-b">
   <h5 class="white-text">Ubicación del establecimiento</h5>
   <iframe
