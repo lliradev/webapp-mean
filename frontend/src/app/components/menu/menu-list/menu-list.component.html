@@ -3,16 +3,16 @@
     <mat-tab label="Lista de Menus">
       <div class="col s12 m12 l12 xl12">
         <mat-spinner *ngIf="isLoading"></mat-spinner>
-
         <ng-template [ngIf]="menuService.menus.length > 0 && !isLoading">
           <div class="search-div">
             <a [routerLink]="['/menus/create']" mat-raised-button color="primary">
               <mat-icon>add</mat-icon>Nuevo
             </a>
+            <button class="download-pdf" mat-raised-button color="warn" (click)="downloadMenuPDF()">
+              Generar PDF
+            </button>
           </div>
-          
-
-          <div class="row">
+          <div class="row" id="menus">
             <div *ngFor="let menu of menuService.menus | paginate: {itemsPerPage: 6, currentPage: p}">
               <div class="col s12 m12 l4">
                 <mat-card>
@@ -22,7 +22,7 @@
                       <mat-icon class="mat-icon-view">launch</mat-icon>
                     </a>
                   </mat-card-header>
-                  <img mat-card-image src="{{ menu.image }}" alt="{{ menu.title }}">
+                  <img mat-card-image src="{{ menu.image }}" alt="{{ menu.title }}" crossorigin>
                   <mat-card-content id="card">
                     <p>Tipo de comida: {{ menu.type }}</p>
                     <p>Descripción: {{ menu.description | truncate: [140, '...'] }}</p>
@@ -36,9 +36,6 @@
               </div>
             </div>
           </div>
-
-
-
           <pagination-controls class="my-pagination mat-body-1" (pageChange)="p = $event"></pagination-controls>
         </ng-template>
 

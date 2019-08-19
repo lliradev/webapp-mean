@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { InternalService } from 'src/app/services/internal.service';
 import { NgForm } from '@angular/forms';
 import { Internal } from 'src/app/models/internal';
-import { MatSnackBar } from '@angular/material';
 import * as jsPDF from 'jspdf';
 import 'jspdf-autotable';
 declare var M: any;
@@ -18,8 +17,7 @@ export class InternalComponent implements OnInit {
   isLoading = false;
 
   constructor(
-    public internalService: InternalService,
-    private snackBar: MatSnackBar) { }
+    public internalService: InternalService) { }
 
   ngOnInit() {
     this.findAll();

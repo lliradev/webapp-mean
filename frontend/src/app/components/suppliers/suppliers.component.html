@@ -56,16 +56,27 @@
               <mat-icon>add</mat-icon>
               Nuevo
             </button>
+            <button class="download-pdf" mat-raised-button color="warn" (click)="downloadSupplierPDF()">
+              <img src="../../../assets/img/pdf.png" alt="PDF">
+              Generar PDF
+            </button>
+            <button class="white green accent-4 download-excel" mat-raised-button (click)="exportAsXLSX()">
+              <img src="../../../assets/img/excel.png" alt="Excel">
+              Generar Excel
+            </button>
             <div class="search-form-field">
               <input type="text" name="filterSupplier" placeholder="Buscar..." [(ngModel)]="filterSupplier">
             </div>
           </div>
-          <table class="card responsive-table highlight">
+
+          <table class="card responsive-table highlight" id="table-suppliers">
             <thead>
-              <th>Compañia</th>
-              <th>Contacto</th>
-              <th>Telefono</th>
-              <th>Operaciones</th>
+              <tr>
+                <th>Compañia</th>
+                <th>Contacto</th>
+                <th>Telefono</th>
+                <th>Operaciones</th>
+              </tr>
             </thead>
             <tbody>
               <tr *ngFor="let supplier of supplierService.suppliers | filterSupplier:filterSupplier 

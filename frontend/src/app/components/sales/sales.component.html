@@ -57,42 +57,61 @@
 
     <mat-tab label="Lista de Ventas" *ngIf="step === 0" (opened)="setStep(0)">
       <div class="col s12 m12 l12 xl12">
-        <div class="search-div">
-          <button mat-raised-button color="primary" (click)="nextStep()">
-            <mat-icon>add</mat-icon>
-            Nuevo
-          </button>
-        </div>
-        <table class="card responsive-table">
-          <thead>
-            <th>Fecha Venta</th>
-            <th>No. Mesa</th>
-            <th>Platillo/Bebida</th>
-            <th>Cantidad</th>
-            <th>Monto a Pagar</th>
-            <th>Tipo Pago</th>
-            <th>Operaciones</th>
-          </thead>
-          <tbody>
-            <tr *ngFor="let sale of saleService.sales">
-              <td>{{ sale.dateSell | date: 'dd/MM/yy'}}</td>
-              <td>{{ sale.table }}</td>
-              <td>{{ sale.dish_drink }}</td>
-              <td>{{ sale.quantity }}</td>
-              <td>{{ sale.toPay | currency }}</td>
-              <td>{{ sale.payType }}</td>
-              <td>
-                <a (click)='editSale(sale); nextStep()'>
-                  <i id="icon-cursor" class='material-icons'>edit</i>
-                </a>
-                <a (click)='deleteSale(sale._id)'>
-                  <i id="icon-cursor" class='material-icons'>delete</i>
-                </a>
-              </td>
-            </tr>
-          </tbody>
-          <p class="info-text mat-body-1"><b>Total:</b> {{ getTotal() | currency:'MXN' }}</p>
-        </table>
+        <mat-spinner *ngIf="isLoading"></mat-spinner>
+        <ng-template [ngIf]="saleService.sales.length > 0 && !isLoading">
+          <div class="search-div">
+            <button mat-raised-button color="primary" (click)="nextStep()">
+              <mat-icon>add</mat-icon>
+              Nuevo
+            </button>
+            <button class="download-pdf" mat-raised-button color="warn" (click)="downloadSalePDF()">
+              <img src="../../../assets/img/pdf.png" alt="PDF">
+              Generar PDF
+            </button>
+            <button class="white green accent-4 download-excel" mat-raised-button (click)="exportAsXLSX()">
+              <img src="../../../assets/img/excel.png" alt="Excel">
+              Generar Excel
+            </button>
+          </div>
+          <table class="card responsive-table" id="table-sales">
+            <thead>
+              <tr>
+                <th>Fecha Venta</th>
+                <th>No. Mesa</th>
+                <th>Platillo/Bebida</th>
+                <th>Cantidad</th>
+                <th>Monto a Pagar</th>
+                <th>Tipo Pago</th>
+                <th>Operaciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let sale of saleService.sales  | paginate: {itemsPerPage: 5, currentPage: p}">
+                <td>{{ sale.dateSell | date: 'dd/MM/yy'}}</td>
+                <td>{{ sale.table }}</td>
+                <td>{{ sale.dish_drink }}</td>
+                <td>{{ sale.quantity }}</td>
+                <td>{{ sale.toPay | currency }}</td>
+                <td>{{ sale.payType }}</td>
+                <td>
+                  <a (click)='editSale(sale); nextStep()'>
+                    <i id="icon-cursor" class='material-icons'>edit</i>
+                  </a>
+                  <a (click)='deleteSale(sale._id)'>
+                    <i id="icon-cursor" class='material-icons'>delete</i>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+            <p class="info-text mat-body-1"><b>Total:</b> {{ getTotal() | currency:'MXN' }}</p>
+          </table>
+          <pagination-controls class="my-pagination mat-body-1" (pageChange)="p = $event"></pagination-controls>
+        </ng-template>
+        <p class="info-text mat-body-1" *ngIf="saleService.sales.length <= 0 && !isLoading">
+          No hay Ventas agregados todavía!
+          <br>
+          <button mat-raised-button color="primary" (click)="nextStep()">Crear nueva venta</button>
+        </p>
       </div>
     </mat-tab>
 

@@ -44,12 +44,20 @@
               <mat-icon>add</mat-icon>
               Nuevo
             </button>
+            <button class="download-pdf" mat-raised-button color="warn" (click)="downloadExternalPDF()">
+              <img src="../../../assets/img/pdf.png" alt="PDF">
+              Generar PDF
+            </button>
+            <button class="white green accent-4 download-excel" mat-raised-button (click)="exportAsXLSX()">
+              <img src="../../../assets/img/excel.png" alt="Excel">
+              Generar Excel
+            </button>
             <div class="search-form-field">
               <input type="text" name="filterExternal" placeholder="Buscar..." [(ngModel)]="filterExternal">
             </div>
           </div>
 
-          <table class="card responsive-table">
+          <table class="card responsive-table" id="table-external">
             <thead>
               <tr>
                 <th>Motivo</th>

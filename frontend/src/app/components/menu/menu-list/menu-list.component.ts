@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuService } from 'src/app/services/menu.service';
 import { Menu } from 'src/app/models/menu';
+import * as jsPDF from 'jspdf';
+import 'jspdf-autotable';
+import * as html2canvas from 'html2canvas';
 declare var M: any;
 
 @Component({
@@ -37,6 +40,19 @@ export class MenuListComponent implements OnInit {
           M.toast({ html: 'Eliminado exitosamente!', classes: 'rounded' });
         });
     }
+  }
+
+  downloadMenuPDF() {
+    html2canvas(document.getElementById('menus'), {
+      allowTaint: true,
+      useCORS: false,
+      scale: 1
+    }).then(function (canvas) {
+      var img = canvas.toDataURL("image/*");
+      var doc = new jsPDF();
+      doc.addImage(img, 'JPG', 7, 20, 195, 105);
+      doc.save('Menus-' + new Date().getTime() + '.pdf');
+    });
   }
 
 }//end class
