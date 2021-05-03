@@ -1,15 +1,12 @@
-require('./config/passport.config');
 const express = require('express');
 const morgan = require('morgan');
 const multer = require('multer');
 const path = require('path');
 const cors = require('cors');
 const passport = require('passport');
-const pdf = require('express-pdf');
-
-// Inicializando
-const app = express();
+require('./config/passport.config');
 require('./database');
+const app = express();
 
 // Settings
 app.set('port', process.env.PORT || 3000);
@@ -17,7 +14,6 @@ app.set('port', process.env.PORT || 3000);
 // Middlewares
 app.use(morgan('dev'));
 app.use(cors());
-app.use(pdf);
 app.use(passport.initialize());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -38,14 +34,6 @@ app.use((err, req, res, next) => {
   } else {
     console.log(err);
   }
-});
-app.use(function (req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header(
-    'Access-Control-Allow-Headers',
-    'Origin, X-Requested-With, Content-Type, Accept'
-  );
-  next();
 });
 
 // Routes
