@@ -7,28 +7,39 @@ import { MatSnackBar } from '@angular/material';
 @Component({
   selector: 'app-forgot-password',
   templateUrl: './forgot-password.component.html',
-  styleUrls: ['./forgot-password.component.css']
+  styleUrls: ['./forgot-password.component.css'],
 })
 export class ForgotPasswordComponent implements OnInit {
-
   constructor(
     public userService: UserService,
     private router: Router,
-    public snackBar: MatSnackBar) { }
+    public snackBar: MatSnackBar
+  ) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   onSubmit(form: NgForm) {
-    this.userService.postForgot(form.value)
-      .subscribe(res => {
-        this.snackBar.open('An e-mail has been sent to ' + this.userService.selectedUser.email
-          + ' with further instructions.', 'Success', {
-            duration: 4000
-          });
+    this.userService.postForgot(form.value).subscribe(
+      (res) => {
+        this.snackBar.open(
+          'An e-mail has been sent to ' +
+            this.userService.selectedUser.email +
+            ' with further instructions.',
+          'Success',
+          {
+            duration: 4000,
+          }
+        );
         this.resetForm(form);
-      });
-    this.router.navigate(['/login']);
+        setTimeout(() => {
+          this.router.navigate(['/login']);
+        }, 4000);
+      },
+      (err) => {
+        this.snackBar.open(err.error.message, 'Error');
+        this.snackBar.open(err.error.message, 'Success');
+      }
+    );
   }
 
   resetForm(form: NgForm) {
@@ -37,9 +48,8 @@ export class ForgotPasswordComponent implements OnInit {
       fullname: '',
       email: '',
       password: '',
-      avatar: ''
+      avatar: '',
     };
     form.resetForm();
   }
-
 }

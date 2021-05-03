@@ -5,22 +5,22 @@ const jwt = require('jsonwebtoken');
 const UserSchema = new Schema({
   fullname: {
     type: String,
-    required: 'Fullname can\'t be empty!'
+    required: "Fullname can't be empty!",
   },
   email: {
     type: String,
-    required: 'Email can\'t be empty!',
-    unique: true
+    required: "Email can't be empty!",
+    unique: true,
   },
   password: {
     type: String,
-    required: 'Password can\'t be empty!',
-    minlength: [4, 'Password must be atleast 4 character long']
+    required: "Password can't be empty!",
+    minlength: [4, 'Password must be atleast 4 character long'],
   },
   saltSecret: String,
   avatar: String,
   resetPasswordToken: String,
-  resetPasswordExpires: Date
+  resetPasswordExpires: Date,
 });
 
 // Custom validation for email
@@ -46,11 +46,9 @@ UserSchema.methods.verifyPassword = function (password) {
 };
 
 UserSchema.methods.generateJwt = function () {
-  return jwt.sign({ _id: this._id },
-    process.env.JWT_SECRET,
-    {
-      expiresIn: process.env.JWT_EXP
-    });
-}
+  return jwt.sign({ _id: this._id }, process.env.JWT_SECRET, {
+    expiresIn: process.env.JWT_EXP,
+  });
+};
 
 module.exports = model('User', UserSchema);

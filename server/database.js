@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 mongoose.connect(process.env.MONGODB_URI, {
   useCreateIndex: true,
   useNewUrlParser: true,
-  useFindAndModify: false
+  useFindAndModify: false,
 });
 
 const connection = mongoose.connection;

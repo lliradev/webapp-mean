@@ -1,12 +1,13 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'filterExternal'
+  name: 'filterExternal',
 })
 export class FilterExternalPipe implements PipeTransform {
-
   transform(value: any, arg: any): any {
-    if (arg === '' || arg.length < 1) return value;
+    if (arg === '' || arg.length < 1) {
+      return value;
+    }
     const resultExternal = [];
     for (const external of value) {
       if (external.reason.toLowerCase().indexOf(arg.toLowerCase()) > -1) {
@@ -15,5 +16,4 @@ export class FilterExternalPipe implements PipeTransform {
     }
     return resultExternal;
   }
-
-}//End class
+}

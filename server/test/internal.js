@@ -7,16 +7,16 @@ const Internal = require('../models/internal');
 describe('Internal Model', () => {
   // Create a new internal
   it('Should create a new internal', (done) => {
-    const InternalMock = sinon.mock(new Internal({
-      type: 'Aumento de Salario',
-      responsible: 'Camila Lira',
-      amount: 200,
-      reason: 'Pagar los cursos de Udemy'
-    }));
+    const InternalMock = sinon.mock(
+      new Internal({
+        type: 'Aumento de Salario',
+        responsible: 'Camila Lira',
+        amount: 200,
+        reason: 'Pagar los cursos de Udemy',
+      })
+    );
     const internal = InternalMock.object;
-    InternalMock
-      .expects('save')
-      .yields(null);
+    InternalMock.expects('save').yields(null);
 
     internal.save((err) => {
       InternalMock.verify();
@@ -31,7 +31,7 @@ describe('Internal Model', () => {
     const internalMock = sinon.mock(Internal);
     const expectedInternal = {
       _id: '02102020202',
-      type: 'Aumento de salario'
+      type: 'Aumento de salario',
     };
 
     internalMock
@@ -46,5 +46,4 @@ describe('Internal Model', () => {
       done();
     });
   });
-
-});//End describe
+});

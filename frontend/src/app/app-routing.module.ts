@@ -29,66 +29,103 @@ import { InvoiceComponent } from './components/invoice/invoice.component';
 
 const routes: Routes = [
   {
-    path: 'signup', component: UserComponent,
-    children: [{ path: '', component: SignUpComponent }]
+    path: 'signup',
+    component: UserComponent,
+    children: [{ path: '', component: SignUpComponent }],
   },
   {
-    path: 'login', component: UserComponent,
-    children: [{ path: '', component: SignInComponent }]
+    path: 'login',
+    component: UserComponent,
+    children: [{ path: '', component: SignInComponent }],
   },
   {
-    path: 'forgot', component: UserComponent,
-    children: [{ path: '', component: ForgotPasswordComponent }]
+    path: 'forgot',
+    component: UserComponent,
+    children: [{ path: '', component: ForgotPasswordComponent }],
   },
   {
-    path: 'reset/:token', component: UserComponent,
-    children: [{ path: '', component: ResetPasswordComponent }]
+    path: 'reset/:token',
+    component: UserComponent,
+    children: [{ path: '', component: ResetPasswordComponent }],
   },
   {
-    path: 'home', component: UserComponent,
-    children: [{ path: '', component: HomeComponent }]
+    path: 'home',
+    component: UserComponent,
+    children: [{ path: '', component: HomeComponent }],
   },
   {
-    path: 'cart', component: CartComponent,
-    children: [{ path: '', component: CartComponent }]
+    path: 'cart',
+    component: CartComponent,
+    children: [{ path: '', component: CartComponent }],
   },
   {
-    path: 'menulistorder', component: MenulistorderComponent,
-    children: [{ path: '', component: MenulistorderComponent }]
+    path: 'menulistorder',
+    component: MenulistorderComponent,
+    children: [{ path: '', component: MenulistorderComponent }],
   },
   {
-    path: 'checkout', component: CheckoutComponent,
-    children: [{ path: '', component: CheckoutComponent }]
+    path: 'checkout',
+    component: CheckoutComponent,
+    children: [{ path: '', component: CheckoutComponent }],
   },
   {
-    path: 'orders', component: OrderComponent,
-    children: [{ path: '', component: OrderComponent }]
+    path: 'orders',
+    component: OrderComponent,
+    children: [{ path: '', component: OrderComponent }],
   },
   {
-    path: 'profile', component: UserProfileComponent, canActivate: [AuthGuard]
+    path: 'profile',
+    component: UserProfileComponent,
+    canActivate: [AuthGuard],
   },
   { path: 'photos', component: PhotoListComponent, canActivate: [AuthGuard] },
-  { path: 'photos/create', component: PhotoCreateComponent, canActivate: [AuthGuard] },
-  { path: 'photos/edit/:_id', component: PhotoCreateComponent, canActivate: [AuthGuard] },
+  {
+    path: 'photos/create',
+    component: PhotoCreateComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'photos/edit/:_id',
+    component: PhotoCreateComponent,
+    canActivate: [AuthGuard],
+  },
 
   { path: 'menus', component: MenuListComponent, canActivate: [AuthGuard] },
-  { path: 'menus/create', component: MenuCreateComponent, canActivate: [AuthGuard] },
-  { path: 'menus/edit/:_id', component: MenuCreateComponent, canActivate: [AuthGuard] },
+  {
+    path: 'menus/create',
+    component: MenuCreateComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'menus/edit/:_id',
+    component: MenuCreateComponent,
+    canActivate: [AuthGuard],
+  },
 
-  { path: 'suppliers', component: SuppliersComponent, canActivate: [AuthGuard] },
+  {
+    path: 'suppliers',
+    component: SuppliersComponent,
+    canActivate: [AuthGuard],
+  },
   { path: 'internal', component: InternalComponent, canActivate: [AuthGuard] },
   { path: 'external', component: ExternalComponent, canActivate: [AuthGuard] },
   { path: 'invoice', component: InvoiceComponent, canActivate: [AuthGuard] },
   { path: 'sales', component: SalesComponent, canActivate: [AuthGuard] },
-  { path: 'edit-avatar', component: EditProfileComponent, canActivate: [AuthGuard] },
   {
-    path: '', redirectTo: '/home', pathMatch: 'full'
+    path: 'edit-avatar',
+    component: EditProfileComponent,
+    canActivate: [AuthGuard],
   },
-  { path: '**', component: NotFoundComponent }
+  {
+    path: '',
+    redirectTo: '/home',
+    pathMatch: 'full',
+  },
+  { path: '**', component: NotFoundComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
