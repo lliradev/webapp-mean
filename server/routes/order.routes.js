@@ -6,5 +6,6 @@ router.post('/', order.createOrder);
 router.get('/', order.getOrders);
 router.delete('/:id', order.deleteOrder);
 router.get('/:id/download', order.download);
+router.get('/download', order.download2);
 
 module.exports = router;

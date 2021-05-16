@@ -66,4 +66,15 @@ orderCtrl.download = async (req, res) => {
   }
 };
 
+orderCtrl.download2 = async (req, res) => {
+  try {
+    // const file = `${__dirname}/public/images/invoice.pdf`;
+    const file = `${__dirname}/invoice.pdf`;
+    res.download(file);
+  } catch (error) {
+    console.log(error);
+    return res.status(500).send(error);
+  }
+};
+
 module.exports = orderCtrl;
